@@ -1,2 +1,4 @@
 # tigerIslandTeamS
-Tiger Island, of the team S variety
+
+Note: must change CucumberRunTest.java file feature directory
+DO NOT COMMIT CHANGES TO CucumberRunTest.java
