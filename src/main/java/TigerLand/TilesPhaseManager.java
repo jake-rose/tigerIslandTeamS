@@ -1,7 +1,7 @@
 package TigerLand;
 
 /**
- * Created by Mega on 2017/3/22.
+ * Created by TK on 2017/3/22.
  */
 public class TilesPhaseManager {
     int level = 0;
