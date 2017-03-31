@@ -1,7 +1,7 @@
 package TigerLand.StepsDef;
 
 /**
- * Created by Mega on 2017/3/30.
+ * Created by TK on 2017/3/30.
  */
 public class SetupDefs {
     @Given("^The player's turn$")
