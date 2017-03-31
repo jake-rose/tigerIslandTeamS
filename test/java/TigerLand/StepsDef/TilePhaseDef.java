@@ -5,7 +5,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 /**
- * Created by Mega on 2017/3/24.
+ * Created by TK on 2017/3/24.
  */
 public class TilePhaseDef {
     @Given("^The player get the randomly tile$")
