@@ -48,4 +48,7 @@ class HexManager(){
     public boolean sameLevel(Hex hex1, Hex hex2){
         return hex1.getLevel()==hex2.getLevel();
     }
+    public boolean sameTerrain(Hex hex1, Hex hex2){
+        return hex1.getTerrain()==hex2.getTerrain();
+    }
 }
