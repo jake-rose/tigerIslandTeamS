@@ -6,12 +6,12 @@ class HexManager(){
     public Hex[] findAdj(Hex hex){
         int[] coord = hex.getCoord();
         Hex[] adjHex = new Hex[6];
-        adjHex[0] = new Hex(coord[0]-1, coord[1], coord[2]);
-        adjHex[1] = new Hex(coord[0], coord[1]-1, coord[2]);
-        adjHex[2] = new Hex(coord[0], coord[1], coord[2]-1);
-        adjHex[3] = new Hex(coord[0]+1, coord[1], coord[2]);
-        adjHex[4] = new Hex(coord[0], coord[1]+1, coord[2]);
-        adjHex[5] = new Hex(coord[0], coord[1], coord[2]+1);
+        adjHex[0] = new Hex(coord[0]-1, coord[1]+1, coord[2]);
+        adjHex[1] = new Hex(coord[0], coord[1]+1, coord[2]-1);
+        adjHex[2] = new Hex(coord[0]+1, coord[1], coord[2]-1);
+        adjHex[3] = new Hex(coord[0]+1, coord[1]-1, coord[2]);
+        adjHex[4] = new Hex(coord[0], coord[1]-1, coord[2]+1);
+        adjHex[5] = new Hex(coord[0]-1, coord[1], coord[2]+1);
         return adjHex;
     }
     public void addHex(Hex hex){
