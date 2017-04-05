@@ -12,6 +12,8 @@ Note: must change CucumberRunTest.java file feature directory
   * ^assuming upstream is correctly configured
 3. Push your changes to YOUR branch
   * git push origin [yourBranch]
+  * (to set upstream) git pull --set-upstream origin [yourBranch]
+    * ^if upstream is set, you can just push without origin [yourBranch]
 4. Create pull request FROM your branch TO master branch
   * Available on webpage or Git gui
 5. Merge pull request
