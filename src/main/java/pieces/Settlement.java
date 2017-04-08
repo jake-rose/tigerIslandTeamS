@@ -1,5 +1,6 @@
 import java.util.*;
-import src.main.java.Pieces;
+import src.main.java.pieces;
+import src.main.java.board;
 
 class Settlement(){
     private List<Piece> pieces;
@@ -7,12 +8,12 @@ class Settlement(){
     private boolean hasTotoro;
     private boolean hasTiger;
 
+    //Constrcutors for both lists and individual pieces
     public Settlement(int sNum, List<Piece> pieces){
         this.pieces=pieces;
         this.hasTotoro=false;
         this.hasTiger=false;
     }
-
     public Settlement(int sNum, Piece piece){
         this.pieces.add(piece);
         this.sNum=sNum;
@@ -20,10 +21,18 @@ class Settlement(){
         this.hasTiger=false;
     }
 
+    //Skeleton constructor for temp settlements
     public Settlement(int sNum){
         this.sNum=sNum;
         this.hasTotoro=false;
         this.hasTiger=false;
+    }
+    //default constructor
+    public Settlement(){
+        this.pieces=null;
+        this.hasTotoro=false;
+        this.hasTiger=false;
+        this.sNum=null;
     }
     
     public List<Piece> getPieces(){
@@ -59,12 +68,26 @@ class Settlement(){
         return pieces.contains(temp);
     }
 
+    //Replace equals so as to only compare sNum
     @Override
     public boolean equals(Object obj){
         if(!obj instanceorf Settlement)
             return false;
         Settlement other = (Settlement)obj;
         return sNum==other.sNum;
+    }
+    
+    //Find pieces using either list of hexes or array
+    public List<Hex> findPieces(List<Hex> hexes){
+        List<Hex> occupied = new List<>();
+        for(Hex h: hexes){
+            Piece temp = new Piece(1,h);
+            if(pieces.contains(temp){
+                occupied.add(h);
+            }
+            temp = null;
+        }
+        return occupied;
     }
 
     public List<Hex> findPieces(Hex[] hexes){

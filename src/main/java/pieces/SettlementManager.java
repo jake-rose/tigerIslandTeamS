@@ -10,6 +10,10 @@ class SettlementManager(){
         sNumIterator++;
     }
 
+    public void expandSettlement(Piece piece, int sNum){
+        settlements.get(settlements.indexOf(new Settlement(sNum))).add(piece);
+    }
+
     public List<Settlement> getSettlements(){
         return this.settlements;
     }
@@ -23,5 +27,9 @@ class SettlementManager(){
         settlements.get(settlements.indexOf(s1)).addAll(settlements.get(settlements.indexOf(s2)));
         settlements.remove(settlements.indexOf(s2));
         s1 = s2 = null;
+    }
+
+    public void splitSettlement(Settlement initial){
+        //
     }
 }
