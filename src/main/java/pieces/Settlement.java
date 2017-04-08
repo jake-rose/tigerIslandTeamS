@@ -7,8 +7,23 @@ class Settlement(){
     private boolean hasTotoro;
     private boolean hasTiger;
 
-    public Settlement(List<Piece> pieces){
+    public Settlement(int sNum, List<Piece> pieces){
         this.pieces=pieces;
+        this.hasTotoro=false;
+        this.hasTiger=false;
+    }
+
+    public Settlement(int sNum, Piece piece){
+        this.pieces.add(piece);
+        this.sNum=sNum;
+        this.hasTotoro=false;
+        this.hasTiger=false;
+    }
+
+    public Settlement(int sNum){
+        this.sNum=sNum;
+        this.hasTotoro=false;
+        this.hasTiger=false;
     }
     
     public List<Piece> getPieces(){

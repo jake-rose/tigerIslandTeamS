@@ -27,6 +27,15 @@ class HexManager(){
         return adjHex;
     }
 
+    public List<Hex> findAdjPlaced(Hex hex){
+        List<Hex> hexes = new ArrayList<>();
+        Hex[] adjHex = findAdj(hex);
+        for(int i=0, i<adjHex.length, i++){
+            if(hexStack.contains(adjHex[i]))
+                hexes.add(hexStack.get(hexStack.indexOf(adjHex[i])));
+        }
+    }
+
     //Add full hex
     public void addHex(Hex hex){
         this.hexStack.add(hex);
