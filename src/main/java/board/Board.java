@@ -24,15 +24,10 @@ public class Board{
     }
     
     //Validate and place new tiles
-    public boolean placeTile(Hex h1, Hex h2, Hex h3){
-        if(hexManager.validTileHexes(h1,h2,h3)){
-            hexManager.addHex(h1);
-            hexManager.addHex(h2);
-            hexManager.addHex(h3);
-            return true;
-        }
-        else
-            return false;
+    public void placeTile(Hex h1, Hex h2, Hex h3){
+        hexManager.addHex(h1);
+        hexManager.addHex(h2);
+        hexManager.addHex(h3);
     }
 
     //Find adjacent terrain for sake of settlements

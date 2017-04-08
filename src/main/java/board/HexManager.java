@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HexManager{
-    private List<Hex> hexStack = new ArrayList();
+    private static List<Hex> hexStack = new ArrayList();
     public List<Hex> getHexStack(){
         return this.hexStack;
     }
@@ -17,7 +17,7 @@ public class HexManager{
     }
     
     //Gets array of adjacent coordinates
-    public Hex[] findAdj(Hex hex){
+    public static Hex[] findAdj(Hex hex){
         int[] coord = hex.getCoord();
         Hex[] adjHex = new Hex[6];
         adjHex[0] = new Hex(coord[0]-1, coord[1]+1, coord[2]);
