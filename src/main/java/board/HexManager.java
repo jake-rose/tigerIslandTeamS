@@ -1,7 +1,7 @@
 import src.main.java.board.Hex;
 import java.util.List;
 
-class HexManager(){
+public class HexManager{
     private List<Hex> hexStack = new ArrayList<>();
     public List<Hex> getHexStack(){
         return this.hexStack;

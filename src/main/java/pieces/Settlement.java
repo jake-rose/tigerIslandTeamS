@@ -2,7 +2,7 @@ import java.util.*;
 import src.main.java.pieces;
 import src.main.java.board;
 
-class Settlement(){
+public class Settlement{
     private List<Piece> pieces;
     private int sNum;
     private boolean hasTotoro;
@@ -103,7 +103,7 @@ class Settlement(){
     }
 
     public void mergeSettlements(Settlement s1, Settlement s2){
-        s1.addAll(s2);
+        s1.getPieces().addAll(s2.getPieces());
         s2 = null;
     }
 }

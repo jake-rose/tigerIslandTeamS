@@ -1,7 +1,7 @@
 import src.main.java.board;
 import java.util.*;
 
-class Board(){
+public class Board{
     
     private HexManager hexManager;
     //During initialization we should have the default tile

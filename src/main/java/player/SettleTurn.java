@@ -1,3 +1,3 @@
-class SettleTurn(){
+public class SettleTurn{
     //this is a placeholder
 }

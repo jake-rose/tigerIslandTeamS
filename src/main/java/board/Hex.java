@@ -1,4 +1,4 @@
-class Hex(){
+public class Hex{
     int[] coord;
     int tile;
     int level;
