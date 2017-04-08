@@ -1,5 +1,5 @@
 import java.util.*;
-import board;
+import src.main.java.board;
 
 class Piece(){
     //0=meeple, 1=totoro, 2=tiger

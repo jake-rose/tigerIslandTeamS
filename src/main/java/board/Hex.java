@@ -1,8 +1,9 @@
-class Hex(int[] coord){
+class Hex(){
     int[] coord;
     int tile;
     int level;
-    int terrain; //Can change to enum, unsure of implementation
+    int terrain; //1=volcano, 2=jungle, 3=lake, 4=grass, 5=rock
+
     public void setCoord(int x, int y, int z){
         this.coord[0] = x;
         this.coord[1] = y;
