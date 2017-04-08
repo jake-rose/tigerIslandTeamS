@@ -12,14 +12,15 @@ public class TileTurn{
 
     public TileTurn(){
         board = new Board();
-        hexManager = new HexManager();
+        List<Hex> hexStack = new ArrayList<Hex>();
+        hexManager = new HexManager(hexStack);
         ourSettlements = new SettlementManager();
         theirSettlements = new SettlementManager();
     }
 
     private boolean validPlacement(Hex h1, Hex h2, Hex h3){
-        if(hexManager.validTileHexes(hex1,hex2,hex3)){
-            if(!(ourSettlements.isCovered(h1,h2,h3) || theirSettlements.isCovered(h1,h2,h3))
+        if(hexManager.validTileHexes(h1,h2,h3)){
+            if(!(ourSettlements.isCovered(h1,h2,h3) || theirSettlements.isCovered(h1,h2,h3)))
                 return true;
             else
                 return false;
