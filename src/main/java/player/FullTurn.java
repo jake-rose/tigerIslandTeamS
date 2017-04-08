@@ -1,3 +1,3 @@
-class FullTurn(){
+public class FullTurn{
     //this is a placeholder
 }

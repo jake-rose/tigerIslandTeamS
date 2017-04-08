@@ -1,3 +1,3 @@
-class TileTurn(){
+public class TileTurn{
     //This is a placeholder
 }
