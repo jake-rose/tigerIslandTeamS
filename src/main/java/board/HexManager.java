@@ -14,7 +14,7 @@ class HexManager(){
         this.hexStack = hexStack;
     }
     
-    //Get list of adjacent coordinates
+    //Gets array of adjacent coordinates
     public Hex[] findAdj(Hex hex){
         int[] coord = hex.getCoord();
         Hex[] adjHex = new Hex[6];
@@ -26,7 +26,7 @@ class HexManager(){
         adjHex[5] = new Hex(coord[0]-1, coord[1], coord[2]+1);
         return adjHex;
     }
-
+    //Gets list of existing adjacent hexes
     public List<Hex> findAdjPlaced(Hex hex){
         List<Hex> hexes = new ArrayList<>();
         Hex[] adjHex = findAdj(hex);
