@@ -31,6 +31,15 @@ public class SettlementManager{
         settlements.remove(settlements.indexOf(s2));
         s1 = s2 = null;
     }
+
+    public boolean isOccupied(Hex location){
+        Piece temp = new Piece(location);
+        for(Settlement s: settlements){
+            if(s.getPieces.contains(temp))
+                return true;
+        }
+        return false;
+    }
     
     //When settlements are nuked, call split to handle new settlements
     public List<Settlement> splitSettlement(Settlement initial){
