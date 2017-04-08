@@ -51,4 +51,20 @@ public class SettlementManager{
         }
         return fragments;
     }
+
+    public boolean isCovered(Hex h1, Hex h2, Hex h3){
+        for(Settlement s: settlements){
+            int covered=0;
+            if(s.findPiece(h1))
+                covered++;
+            if(s.findPiece(h2))
+                covered++;
+            if(s.findPiece(h3))
+                covered++;
+            if(s.size()<covered)
+                return true
+        }
+        return false;
+    }
+
 }
