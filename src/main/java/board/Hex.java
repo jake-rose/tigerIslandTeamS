@@ -1,3 +1,5 @@
+package board;
+
 public class Hex{
     int[] coord;
     int tile;
@@ -17,7 +19,7 @@ public class Hex{
         return this.coord;
     }
 
-    public void setTile(int tile);
+    public void setTile(int tile){
         this.tile = tile;
     }
     public int getTile(){
@@ -54,7 +56,7 @@ public class Hex{
     }
     @Override
     public boolean equals(Object obj){//Override equals method for sake of contains() method
-        if(!obj instanceof Hex) 
+        if(!(obj instanceof Hex))
             return false;
         Hex other = (Hex)obj;
         //Only examine hexes using the coordinates

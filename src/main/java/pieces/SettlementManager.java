@@ -1,4 +1,7 @@
-import src.main.java.pieces
+package pieces;
+
+import board.*;
+import pieces.*;
 import java.util.*;
 
 public class SettlementManager{
@@ -11,7 +14,7 @@ public class SettlementManager{
     }
 
     public void expandSettlement(Piece piece, int sNum){
-        settlements.get(settlements.indexOf(new Settlement(sNum))).add(piece);
+        settlements.get(settlements.indexOf(new Settlement(sNum))).addPiece(piece);
     }
 
     public List<Settlement> getSettlements(){
@@ -24,15 +27,15 @@ public class SettlementManager{
     public void mergeSettlements(int sNum1, int sNum2){
         Settlement s1 = new Settlement(sNum1);
         Settlement s2 = new Settlement(sNum1);
-        settlements.get(settlements.indexOf(s1)).addAll(settlements.get(settlements.indexOf(s2)));
+        settlements.get(settlements.indexOf(s1)).addPieces(settlements.get(settlements.indexOf(s2)).getPieces());
         settlements.remove(settlements.indexOf(s2));
         s1 = s2 = null;
     }
     
     //When settlements are nuked, call split to handle new settlements
     public List<Settlement> splitSettlement(Settlement initial){
-        List<Settlement> fragments = new ArrayList<>();
-        for(Piece p: initial){
+        List<Settlement> fragments = new ArrayList();
+        for(Piece p: initial.getPieces()){
             Settlement temp = new Settlement(sNumIterator,p);
             if(p.getType()==1)
                 temp.setTotoro(true);
@@ -41,10 +44,11 @@ public class SettlementManager{
             sNumIterator++;
             fragments.add(temp);
             for(Settlement s: fragments){
-                if(!s.findPieces(Hex.findAdjPlaced(p.getLocation())).isEmpty()){
-                    Settlement.mergeSettlements(s,temp);
+                if(!s.findPieces(HexManager.findAdjPlaced(p.getLocation())).isEmpty()){
+                    initial.mergeSettlements(s,temp);
                 }
             }
         }
+        return fragments;
     }
 }

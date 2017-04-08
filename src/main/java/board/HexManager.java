@@ -1,8 +1,10 @@
-import src.main.java.board.Hex;
+package board;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class HexManager{
-    private List<Hex> hexStack = new ArrayList<>();
+    private List<Hex> hexStack = new ArrayList();
     public List<Hex> getHexStack(){
         return this.hexStack;
     }
@@ -27,13 +29,14 @@ public class HexManager{
         return adjHex;
     }
     //Gets list of existing adjacent hexes
-    public List<Hex> findAdjPlaced(Hex hex){
-        List<Hex> hexes = new ArrayList<>();
+    public static List<Hex> findAdjPlaced(Hex hex){
+        List<Hex> hexes = new ArrayList();
         Hex[] adjHex = findAdj(hex);
-        for(int i=0, i<adjHex.length, i++){
+        for(int i=0; i<adjHex.length;i++){
             if(hexStack.contains(adjHex[i]))
                 hexes.add(hexStack.get(hexStack.indexOf(adjHex[i])));
         }
+        return hexes;
     }
 
     //Add full hex
