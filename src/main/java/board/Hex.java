@@ -57,6 +57,6 @@ class Hex(int[] coord){
             return false;
         Hex other = (Hex)obj;
         //Only examine hexes using the coordinates
-        return coord[0]=other.coord[0] && coord[1]=other.coord[1] && coord[2]=other.coord[2];
+        return coord[0]==other.coord[0] && coord[1]==other.coord[1] && coord[2]==other.coord[2];
     }
 }

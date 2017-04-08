@@ -44,6 +44,26 @@ class Settlement(){
         return pieces.contains(temp);
     }
 
+    @Override
+    public boolean equals(Object obj){
+        if(!obj instanceorf Settlement)
+            return false;
+        Settlement other = (Settlement)obj;
+        return sNum==other.sNum;
+    }
+
+    public List<Hex> findPieces(Hex[] hexes){
+        List<Hex> occupied = new List<>();
+        for(int i=0, i<hexes.length, i++){
+            Piece temp = new Piece(1,hexes[i]);
+            if(pieces.contains(temp){
+                occupied.add(hexes[i]);
+            }
+            temp = null;
+        }
+        return occupied;
+    }
+
     public void mergeSettlements(Settlement s1, Settlement s2){
         s1.addAll(s2);
         s2 = null;
