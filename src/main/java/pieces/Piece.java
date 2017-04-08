@@ -1,5 +1,8 @@
+package pieces;
+
 import java.util.*;
-import src.main.java.board;
+
+import board.*;
 
 public class Piece{
     //0=meeple, 1=totoro, 2=tiger
@@ -22,7 +25,7 @@ public class Piece{
     
     public Piece(int type, Hex hex){
         this.type = type;
-        this.hex = hex;
+        this.location = hex;
     }
 
     public Piece(int type, int x, int y, int z){
@@ -33,10 +36,10 @@ public class Piece{
 
     @Override
     public boolean equals(Object obj){//Override equals method for sake of contains() method
-        if(!obj instanceof Piece) 
+        if(!(obj instanceof Piece))
             return false;
         Piece other = (Piece)obj;
         //Only examine pieces using the coordinates
-        return location.getCoord()=other.location.getCoord();
+        return location.getCoord()==other.location.getCoord();
     }
 }
