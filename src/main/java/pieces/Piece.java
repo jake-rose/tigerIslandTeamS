@@ -1,7 +1,7 @@
 import java.util.*;
 import src.main.java.board;
 
-class Piece(){
+public class Piece{
     //0=meeple, 1=totoro, 2=tiger
     private int type;
     private Hex location;

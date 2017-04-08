@@ -1,7 +1,7 @@
 import src.main.java.pieces
 import java.util.*;
 
-class SettlementManager(){
+public class SettlementManager{
     private List<Settlement> settlements;
     private int sNumIterator=0;
 
@@ -28,8 +28,23 @@ class SettlementManager(){
         settlements.remove(settlements.indexOf(s2));
         s1 = s2 = null;
     }
-
-    public void splitSettlement(Settlement initial){
-        //
+    
+    //When settlements are nuked, call split to handle new settlements
+    public List<Settlement> splitSettlement(Settlement initial){
+        List<Settlement> fragments = new ArrayList<>();
+        for(Piece p: initial){
+            Settlement temp = new Settlement(sNumIterator,p);
+            if(p.getType()==1)
+                temp.setTotoro(true);
+            if(p.getType()==2)
+                temp.setTiger(true);
+            sNumIterator++;
+            fragments.add(temp);
+            for(Settlement s: fragments){
+                if(!s.findPieces(Hex.findAdjPlaced(p.getLocation())).isEmpty()){
+                    Settlement.mergeSettlements(s,temp);
+                }
+            }
+        }
     }
 }
