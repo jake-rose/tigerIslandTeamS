@@ -85,6 +85,7 @@ class HexManager(){
         return hex1.getTile()==hex2.getTile();
     }
     //Check that all hexes of tile are at same level & volcano is on volcano & not covering only 1 tile
+    //another idea:Check that all hexes of tile are at same level & volcano is on volcano & have different orientation
     public boolean validTileHexes(Hex hex1, Hex hex2, Hex hex3){
         return sameLevel(hex1,hex2) && sameLevel(hex2,hex3) && sameLevel(hex3,hex1) && hex1.getTerrain()==1 && !(sameTile(hex1,hex2) && sameTile(hex2,hex3) && sameTile(hex1,hex3));
     }
