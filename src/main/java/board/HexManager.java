@@ -1,4 +1,4 @@
-import Hex.java;
+import src.main.java.board.Hex;
 import java.util.List;
 
 class HexManager(){
@@ -44,7 +44,7 @@ class HexManager(){
     public Hex findHex(Hex hex){
         if(hexStack.contains(hex))
             return hexStack.get(hexStack.indexOf(hex));
-        else return void;
+        else return null;
     }
 
     //Find hex in stack and replace with updated information
