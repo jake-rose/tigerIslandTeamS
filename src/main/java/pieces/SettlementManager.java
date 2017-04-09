@@ -62,7 +62,7 @@ public class SettlementManager{
             if(s.findPiece(h3))
                 covered++;
             if(s.size()<covered)
-                return true
+                return true;
         }
         return false;
     }

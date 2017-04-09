@@ -1,3 +1,3 @@
-class Client(){
+public class Client{
     //Have fun Trey
 }
