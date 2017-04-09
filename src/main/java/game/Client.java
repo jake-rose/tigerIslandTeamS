@@ -8,7 +8,7 @@ import java.util.*;
 public class Client {
 
     public static void main(String[] args) throws Exception {
-
+        //This is a change
         int challenges, gid, orientation, pid, rid, rounds, score, moveNum;
 
         String cid = args[0]; //client ID
