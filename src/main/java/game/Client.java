@@ -1,17 +1,20 @@
 package game;
 
-import java.io.*;
-import java.net.*;
-import java.lang.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.Scanner;
 
 public class Client {
 
-    public static void main(String[] args) throws Exception {
-        //This is a change
+    public static void main(String[] args) throws UnknownHostException, Exception {
+
         int challenges, gid, orientation, pid, rid, rounds, score, moveNum;
 
-        String cid = args[0]; //client ID
+        String cid; //client ID
 
         String ip = "localhost";
         int port = 9999;
@@ -40,6 +43,19 @@ public class Client {
         out.println(username);
         out.println(password);
         os.flush();
+
+
+        // All build options will be done here
+//        int buildOption;
+        //      switch (buildOption){
+        //        case 0: out.println("GAME "+gid +" MOVE " +moveNum+" PLACE " + /*tile+*/ " AT "+ /*xyz& orientation+*/ " FOUND SETTLEMENT AT " /*+XYZ+*/ ) ;
+        //      case 1: out.println("GAME "+gid +" MOVE " +moveNum+" PLACE " + /*tile+*/ " AT "+ /*xyz& orientation+*/ " EXPAND SETTLEMENT AT " /*+XYZ<TERRIAN>+*/ ) ;
+        //    case 2: out.println("GAME "+gid +" MOVE " +moveNum+" PLACE " + /*tile+*/ " AT "+ /*xyz& orientation+*/ " BUILD TOTORO SANCTUARY AT " /*+XYZ+*/ ) ;
+        //  case 3: out.println("GAME "+gid +" MOVE " +moveNum+" PLACE " + /*tile+*/ " AT "+ /*xyz& orientation+*/ " BUILD TIGER PLAYGROUND AT " /*+XYZ+*/ ) ;
+        //case 4: out.println("GAME "+gid +" MOVE " +moveNum+" PLACE " + /*tile+*/ " AT "+ /*xyz& orientation+*/ " UNABLE TO BUILD ") ;
+
+        // }
+
 
         System.out.println("Information sent to Server");
 
