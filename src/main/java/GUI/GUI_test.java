@@ -1,5 +1,5 @@
-package com.company;
 
+package com.company;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.Ellipse2D;
@@ -1379,7 +1379,7 @@ class ImageFrame7 extends JFrame {
                                                     IsPlaced[PlacedCounter][0] = 1;
                                                     IsPlaced[PlacedCounter][1] = x - 1;
                                                     IsPlaced[PlacedCounter][2] = y + 1;
-                                                    IsPlaced[PlacedCounter++][3] = z;
+                                                    IsPlaced[PlacedCounter][3] = z;
                                                     hex2 = FindHex(x - 1, y, z + 1);
                                                     hex3 = FindHex(x - 1, y + 1, z);
                                                     if (test3 == "volcano")
@@ -1791,6 +1791,13 @@ class ImageFrame7 extends JFrame {
                                                                     check4=CheckTotora(x,y-1,z+1);
                                                                     check5=CheckTotora(x-1,y,z+1);
                                                                     check6=CheckTotora(x-1,y+1,z);
+                                                                    System.out.println(check1);
+                                                                    System.out.println(check2);
+                                                                    System.out.println(check3);
+                                                                    System.out.println(check4);
+                                                                    System.out.println(check5);
+                                                                    System.out.println(check6);
+
                                                                     if(check1>=5)
                                                                     {
                                                                         player2score+=200;
@@ -2356,7 +2363,7 @@ class ImageFrame7 extends JFrame {
             {
                 for(int i=0;i<array.length;i++)
                 {
-                    if(IsPlaced[j][9]==i)
+                    if(IsPlaced[j][9]==i && i!=0)
                         array[i]+=1;
                 }
             }
