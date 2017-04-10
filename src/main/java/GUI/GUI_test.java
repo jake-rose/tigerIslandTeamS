@@ -1725,7 +1725,7 @@ class ImageFrame7 extends JFrame {
                                             {
 
                                                 int t=Integer.parseInt(input5);
-                                                setSettlementForP1(x,y,z,t);
+                                                setSettlementForP1(x,y,z,t,0);
                                                 counter++;
                                                 player1roundsEnd=true;
                                                 player2roundsEnd=false;
@@ -2055,7 +2055,7 @@ class ImageFrame7 extends JFrame {
         return 0;
     }
 
-    public void setSettlementForP1(int x, int y, int z, int t)
+    public void setSettlementForP1(int x, int y, int z, int t, int w)
     {
         boolean check1,check2,check3,check4,check5,check6;
         check1=CheckSettlement(x,y+1,z-1,t);
@@ -2077,7 +2077,7 @@ class ImageFrame7 extends JFrame {
             }
         }
 
-        if(check1 && ValidMove(x,y+1,z-1)==0)
+        if(check1 && ValidMove(x,y+1,z-1)==0 && w!=1)
         {
             for(int i=0;i<PlacedCounter;i++)
             {
@@ -2091,14 +2091,14 @@ class ImageFrame7 extends JFrame {
                             player1score=1*IsPlaced[i][7]+player1score;
                             IsPlaced[i][5]=1;
                             IsPlaced[i][9]=settlementIndex;
-                            setSettlementForP1(x,y+1,z-1,t);
+                            setSettlementForP1(x,y+1,z-1,t,4);
                         }
                     }
                 }
             }
         }
         check2=CheckSettlement(x+1,y,z-1,t);
-        if(check2 && ValidMove(x+1,y,z-1)==0)
+        if(check2 && ValidMove(x+1,y,z-1)==0 && w!=2)
         {
             for(int i=0;i<PlacedCounter;i++)
             {
@@ -2112,14 +2112,14 @@ class ImageFrame7 extends JFrame {
                             player1score=1*IsPlaced[i][7]+player1score;
                             IsPlaced[i][5]=1;
                             IsPlaced[i][9]=settlementIndex;
-                            setSettlementForP1(x+1,y,z-1,t);
+                            setSettlementForP1(x+1,y,z-1,t,5);
                         }
                     }
                 }
             }
         }
         check3=CheckSettlement(x+1,y-1,z,t);
-        if(check3 && ValidMove(x+1,y-1,z)==0)
+        if(check3 && ValidMove(x+1,y-1,z)==0 && w!=3)
         {
             for(int i=0;i<PlacedCounter;i++)
             {
@@ -2133,14 +2133,14 @@ class ImageFrame7 extends JFrame {
                             player1score=1*IsPlaced[i][7]+player1score;
                             IsPlaced[i][5]=1;
                             IsPlaced[i][9]=settlementIndex;
-                            setSettlementForP1(x+1,y,z-1,t);
+                            setSettlementForP1(x+1,y,z-1,t,6);
                         }
                     }
                 }
             }
         }
         check4=CheckSettlement(x,y-1,z+1,t);
-        if(check4 && ValidMove(x,y-1,z+1)==0)
+        if(check4 && ValidMove(x,y-1,z+1)==0 & w!=4)
         {
             for(int i=0;i<PlacedCounter;i++)
             {
@@ -2154,14 +2154,14 @@ class ImageFrame7 extends JFrame {
                             player1score=1*IsPlaced[i][7]+player1score;
                             IsPlaced[i][5]=1;
                             IsPlaced[i][9]=settlementIndex;
-                            setSettlementForP1(x,y-1,z+1,t);
+                            setSettlementForP1(x,y-1,z+1,t,1);
                         }
                     }
                 }
             }
         }
         check5=CheckSettlement(x-1,y,z+1,t);
-        if(check5 && ValidMove(x-1,y,z+1)==0)
+        if(check5 && ValidMove(x-1,y,z+1)==0 && w!=2)
         {
             for(int i=0;i<PlacedCounter;i++)
             {
@@ -2175,14 +2175,14 @@ class ImageFrame7 extends JFrame {
                             player1score=1*IsPlaced[i][7]+player1score;
                             IsPlaced[i][5]=1;
                             IsPlaced[i][9]=settlementIndex;
-                            setSettlementForP1(x-1,y,z+1,t);
+                            setSettlementForP1(x-1,y,z+1,t,2);
                         }
                     }
                 }
             }
         }
         check6=CheckSettlement(x-1,y+1,z,t);
-        if(check6 && ValidMove(x-1,y+1,z)==0)
+        if(check6 && ValidMove(x-1,y+1,z)==0 && w!=3)
         {
             for(int i=0;i<PlacedCounter;i++)
             {
@@ -2196,7 +2196,7 @@ class ImageFrame7 extends JFrame {
                             player1score=1*IsPlaced[i][7]+player1score;
                             IsPlaced[i][5]=1;
                             IsPlaced[i][9]=settlementIndex;
-                            setSettlementForP1(x-1,y+1,z,t);
+                            setSettlementForP1(x-1,y+1,z,t,6);
                         }
                     }
                 }
@@ -2204,7 +2204,7 @@ class ImageFrame7 extends JFrame {
         }
     }
 
-    public void setSettlementForP2(int x,int y,int z,int t)
+    public void setSettlementForP2(int x,int y,int z,int t, int w)
     {
         {
             boolean check1,check2,check3,check4,check5,check6;
@@ -2227,7 +2227,7 @@ class ImageFrame7 extends JFrame {
                 }
             }
 
-            if(check1 && ValidMove(x,y+1,z-1)==0)
+            if(check1 && ValidMove(x,y+1,z-1)==0 && w!=1)
             {
                 for(int i=0;i<PlacedCounter;i++)
                 {
@@ -2241,14 +2241,14 @@ class ImageFrame7 extends JFrame {
                                 player2score=1*IsPlaced[i][7]+player2score;
                                 IsPlaced[i][5]=5;
                                 IsPlaced[i][9]=settlementIndex;
-                                setSettlementForP1(x,y+1,z-1,t);
+                                setSettlementForP1(x,y+1,z-1,t,4);
                             }
                         }
                     }
                 }
             }
             check2=CheckSettlement(x+1,y,z-1,t);
-            if(check2 && ValidMove(x+1,y,z-1)==0)
+            if(check2 && ValidMove(x+1,y,z-1)==0 && w!=2)
             {
                 for(int i=0;i<PlacedCounter;i++)
                 {
@@ -2262,14 +2262,14 @@ class ImageFrame7 extends JFrame {
                                 player2score=1*IsPlaced[i][7]+player2score;
                                 IsPlaced[i][5]=5;
                                 IsPlaced[i][9]=settlementIndex;
-                                setSettlementForP1(x+1,y,z-1,t);
+                                setSettlementForP1(x+1,y,z-1,t,5);
                             }
                         }
                     }
                 }
             }
             check3=CheckSettlement(x+1,y-1,z,t);
-            if(check3 && ValidMove(x+1,y-1,z)==0)
+            if(check3 && ValidMove(x+1,y-1,z)==0 && w!=3)
             {
                 for(int i=0;i<PlacedCounter;i++)
                 {
@@ -2283,14 +2283,14 @@ class ImageFrame7 extends JFrame {
                                 player2score=1*IsPlaced[i][7]+player2score;
                                 IsPlaced[i][5]=5;
                                 IsPlaced[i][9]=settlementIndex;
-                                setSettlementForP1(x+1,y,z-1,t);
+                                setSettlementForP1(x+1,y,z-1,t,6);
                             }
                         }
                     }
                 }
             }
             check4=CheckSettlement(x,y-1,z+1,t);
-            if(check4 && ValidMove(x,y-1,z+1)==0)
+            if(check4 && ValidMove(x,y-1,z+1)==0 && w!=4)
             {
                 for(int i=0;i<PlacedCounter;i++)
                 {
@@ -2304,14 +2304,14 @@ class ImageFrame7 extends JFrame {
                                 player2score=1*IsPlaced[i][7]+player2score;
                                 IsPlaced[i][5]=5;
                                 IsPlaced[i][9]=settlementIndex;
-                                setSettlementForP1(x,y-1,z+1,t);
+                                setSettlementForP1(x,y-1,z+1,t,1);
                             }
                         }
                     }
                 }
             }
             check5=CheckSettlement(x-1,y,z+1,t);
-            if(check5 && ValidMove(x-1,y,z+1)==0)
+            if(check5 && ValidMove(x-1,y,z+1)==0 && w!=5)
             {
                 for(int i=0;i<PlacedCounter;i++)
                 {
@@ -2325,14 +2325,14 @@ class ImageFrame7 extends JFrame {
                                 player2score=1*IsPlaced[i][7]+player2score;
                                 IsPlaced[i][5]=5;
                                 IsPlaced[i][9]=settlementIndex;
-                                setSettlementForP1(x-1,y,z+1,t);
+                                setSettlementForP1(x-1,y,z+1,t,2);
                             }
                         }
                     }
                 }
             }
             check6=CheckSettlement(x-1,y+1,z,t);
-            if(check6 && ValidMove(x-1,y+1,z)==0)
+            if(check6 && ValidMove(x-1,y+1,z)==0 && w!=6)
             {
                 for(int i=0;i<PlacedCounter;i++)
                 {
@@ -2346,7 +2346,7 @@ class ImageFrame7 extends JFrame {
                                 player2score=1*IsPlaced[i][7]+player2score;
                                 IsPlaced[i][5]=5;
                                 IsPlaced[i][9]=settlementIndex;
-                                setSettlementForP1(x-1,y+1,z,t);
+                                setSettlementForP1(x-1,y+1,z,t,3);
                             }
                         }
                     }
