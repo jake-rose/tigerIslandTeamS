@@ -7,6 +7,13 @@ import java.util.*;
 public class Board{
 
     private HexManager hexManager;
+    
+    public HexManager getHexManager(){
+        return hexManager;
+    }
+    public void setHexManager(HexManager hexManager){
+        this.hexManager = hexManager;
+    }
     //During initialization we should have the default tile
     public Board(){
         List<Hex> tile0 = new ArrayList();
