@@ -5,20 +5,11 @@ import pieces.*;
 import java.util.*;
 
 public class OurTurn{
-    private Board board;
-    private SettlementManager ourSettlements;
-    private SettlementManager theirSettlements;
 
-    public OurTurn(){
-        board = new Board();
-        ourSettlements = new SettlementManager();
-        theirSettlements = new SettlementManager();
-    }
-    
     //Check for underlying hexes as well as wiping out settlements
     private boolean validTile(Hex h1, Hex h2, Hex h3){
         if(board.getHexManager().validTileHexes(hex1,hex2,hex3)){
-            if(!(ourSettlements.isCovered(h1,h2,h3) || theirSettlements.isCovered(h1,h2,h3))
+            if(!(sManager.isCovered(h1,h2,h3) || theirSettlements.isCovered(h1,h2,h3))
                 return true;
             else
                 return false;
@@ -28,7 +19,7 @@ public class OurTurn{
     }
 
     //Validate then put tile in stack
-    public boolean placeTile(Hex h1, Hex h2, Hex h3){
+    public boolean placeTile(Board board, Hex h1, Hex h2, Hex h3){
         if(validTile(h1,h2,h3)){
             board.placeTile(h1,h2,h3);
             return true;
@@ -39,7 +30,7 @@ public class OurTurn{
 
     //Check for occupied spaces as well as terrain & tiger level
     private boolean validPiece(Piece piece){
-        if(!(ourSettlements.isOccupied(piece.getLocation()))){
+        if(!(sManager.isOccupied(piece.getLocation()))){
             if(!(theirSettlements.isOccupied(piece.getLocation()))){
                 if(board.getHexManager().findHex(piece.getLocation()).getTerrain!=1){
                     if(piece.getType()==3){
@@ -63,33 +54,33 @@ public class OurTurn{
             return false;
     }
     
-    private boolean validTotoro(Piece piece){
+    private boolean validTotoro(Board board, SettlementManager sManager, Piece piece){
         if(piece.getType()!=2)
             return true;
         List<Hex> adjHexes = board.getHexManager().findAdjPlaced(piece.getLocation());
         for(Hex h:adjHexes){
-            if(ourSettlements.isOccupied(piece.getLocation())){
-                if(ourSettlements.findSettlement(h).size() >=5)
+            if(sManager.isOccupied(piece.getLocation())){
+                if(sManager.findSettlement(h).size() >=5)
                     return true;
             }
         }
         return false;
     }
 
-    public boolean placePiece(Piece piece){
+    public boolean placePiece(Board board, SettlementManager sManager, Piece piece){
         if(validPiece(piece)){
             
-            settlementManager.newSettlement(piece);
+            sManager.newSettlement(piece);
             List<Hex> adjHexes = board.getHexManager().findAdjPlaced(piece.getLocation());
             for(Hex h:adjHexes){
-                if(ourSettlements.isOccupied(piece.getLocation())){
-                    int s1 = ourSettlements.findSettlement(piece.getLocation).getSNum();
-                    int s2 = ourSettlements.findSettlement(h).getSNum();
-                    settlementManager.mergeSettlements(s1,s2);
+                if(sManager.isOccupied(piece.getLocation())){
+                    int s1 = sManager.findSettlement(piece.getLocation).getSNum();
+                    int s2 = sManager.findSettlement(h).getSNum();
+                    sManager.mergeSettlements(s1,s2);
                     if(piece.getType()==2)
-                        settlementManager.findSettlement(h).setTotoro(true);
+                        sManager.findSettlement(h).setTotoro(true);
                     if(piece.getType()==3)
-                        settlementManager.findSettlement(h).setTiger(true);
+                        sManager.findSettlement(h).setTiger(true);
                 }
             }
         }

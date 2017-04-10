@@ -26,7 +26,7 @@ public class SettlementManager{
 
     public void mergeSettlements(int sNum1, int sNum2){
         Settlement s1 = new Settlement(sNum1);
-        Settlement s2 = new Settlement(sNum1);
+        Settlement s2 = new Settlement(sNum2);
         settlements.get(settlements.indexOf(s1)).addPieces(settlements.get(settlements.indexOf(s2)).getPieces());
         settlements.remove(settlements.indexOf(s2));
         s1 = s2 = null;
