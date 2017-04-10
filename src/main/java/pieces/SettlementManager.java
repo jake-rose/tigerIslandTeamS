@@ -40,6 +40,15 @@ public class SettlementManager{
         }
         return false;
     }
+    public Settlement findSettlement(Hex location){
+        Piece temp = new Piece(location);
+        for(Settlement s: settlements){
+            if(s.getPieces.contains(temp)){
+                return s;
+            }
+        }
+        return null;
+    }
     
     //When settlements are nuked, call split to handle new settlements
     public List<Settlement> splitSettlement(Settlement initial){
