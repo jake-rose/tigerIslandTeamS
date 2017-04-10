@@ -51,6 +51,8 @@ public class Settlement{
     public void setSNum(int sNum){
         this.sNum=sNum;
     }
+    //create a size function that return the size of pieces
+    public int size(){return pieces.size();}
 
     public boolean getTotoro(){
         return this.hasTotoro;
