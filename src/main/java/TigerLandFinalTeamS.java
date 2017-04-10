@@ -3,7 +3,7 @@ import com.company.tile;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-
+import java.util.Scanner;
 /**
  * Created by caichangzhou on 4/10/17.
  */
@@ -35,8 +35,21 @@ public class TigerLandFinalTeamS {
 
     public static void main (String [] args)
     {
+        Preload();
+        int x, y, z, o;
+        String a, b;
+do {
+    Scanner scanner = new Scanner(System.in);
+    System.out.println("Input x, y ,z, o, a, b: ");
+    x = scanner.nextInt();
+    y = scanner.nextInt();
+    z = scanner.nextInt();
+    o = scanner.nextInt();
+    a = scanner.next();
+    b = scanner.next();
 
-            Preload();
+    placeTile(x, y, z, o, a, b);
+}while(x != 999);
 
     }
 
@@ -109,7 +122,7 @@ public class TigerLandFinalTeamS {
     }
 
    private static void placeTile(int x, int y, int z, int o,String t1, String t2)
-       {
+   {
        {
 
 
