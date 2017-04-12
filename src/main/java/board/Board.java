@@ -40,9 +40,18 @@ public class Board{
     //Find adjacent terrain for sake of settlements
     public List<Hex> adjTerrain(Hex h1){
         List<Hex> adjHex = hexManager.findAdjPlaced(h1);
-        for(Hex h: adjHex)
+        for(Hex h: adjHex){
             if(!(h.getTerrain()==h1.getTerrain()))
                 adjHex.remove(h);
+        }
+        return adjHex;
+    }
+    public List<Hex> adjTerrain(Hex h1, int terrain){
+        List<Hex> adjHex = hexManager.findAdjPlace(h1);
+        for(Hex h: adjHex){
+            if(!(h.getTerrain()==terrain))
+                adjHex.remove(h);
+        }
         return adjHex;
     }
 }
