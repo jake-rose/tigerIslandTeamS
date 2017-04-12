@@ -1,9 +1,9 @@
 package game;
 
 import java.util.*;
-import player;
-import board;
-import pieces;
+//import player.*;
+import board.*;
+import pieces.*;
 
 public class Game{
     private int gid;
