@@ -1,9 +1,9 @@
 import com.company.tile;
 
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.Scanner;
 
 /**
  * Created by caichangzhou on 4/10/17.
@@ -20,7 +20,7 @@ public class TigerLandFinalTeamS {
     private static boolean adj= false;
     private static int meeple = 20;
     private static int totora = 3;
-    private static int tiger =2;
+    private static  int tiger =2;
     private static int meeple1 = 20;
     private static int totora1 = 3;
     private static int tiger1 =2;
@@ -36,31 +36,11 @@ public class TigerLandFinalTeamS {
     private static int op1;  //tiger
     private static int op2;  // meeple
     private static int x,y,z,o1;
-    public static void main (String [] args)
+    private static int Mx,My,Mz;
+    private static int Sx,Sy,Sz;
+
+    public TigerLandFinalTeamS()
     {
-        int x,y,z,o,w;
-        String a,b;
-
-        Preload();
-        do {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Input x, y ,z, o, a, b: ");
-            x = scanner.nextInt();
-            y = scanner.nextInt();
-            z = scanner.nextInt();
-            o = scanner.nextInt();
-            a = scanner.next();
-            b = scanner.next();
-
-            placeTile(x, y, z, o, a, b);
-
-//            x
-            System.out.println("Input ");
-        }while(x != 999);
-
-
-
-
 
     }
 
@@ -349,10 +329,11 @@ public class TigerLandFinalTeamS {
             }
 
         }
+
         x=array[0];
         y=array[1];
         z=array[2];
-        o1=o;
+        o1=array[3];
         placeTile(array[0],array[1],array[2],o,t1,t2);
 
         op1=0;
@@ -364,8 +345,11 @@ public class TigerLandFinalTeamS {
                 array[0]=IsPlaced[i][1];
                 array[1]=IsPlaced[i][2];
                 array[2]=IsPlaced[i][3];
+                Sx=array[0];
+                Sy=array[1];
+                Sz=array[2];
                 op1=1;
-                op2=2;
+
             }
         }
 
@@ -375,6 +359,9 @@ public class TigerLandFinalTeamS {
                     array[0] = IsPlaced[i][1];
                     array[1] = IsPlaced[i][2];
                     array[2] = IsPlaced[i][3];
+                    Mx=array[0];
+                    My=array[1];
+                    Mz=array[2];
                     op2=1;
                 }
             }
@@ -389,26 +376,58 @@ public class TigerLandFinalTeamS {
 
     }
 
-    public int AImoveX()
+    public int AIMoveX()
     {
         return x;
-
     }
-    public int AImoveY()
+
+    public int AIMoveY()
     {
         return y;
-
     }
-    public int AImoveZ()
+
+    public int AIMoveZ()
     {
         return z;
-
     }
-    public int AImoveO()
+
+    public int AIMoveO()
     {
         return o1;
-
     }
+
+    public int AIMeepleMoveX()
+    {
+        return Mx;
+    }
+
+    public int AIMeepleMoveY()
+    {
+        return My;
+    }
+
+    public int AIMeepleMoveZ()
+    {
+        return Mz;
+    }
+
+
+    public int AITigerMoveX()
+    {
+        return Sx;
+    }
+
+    public int AITigerMoveY()
+    {
+        return Sy;
+    }
+
+    public int AITigerMoveZ()
+    {
+        return Sz;
+    }
+
+
 
     public  int  AIop()
     {
