@@ -32,9 +32,16 @@ public class Board{
     
     //Validate and place new tiles
     public void placeTile(Hex h1, Hex h2, Hex h3){
-        hexManager.addHex(h1);
-        hexManager.addHex(h2);
-        hexManager.addHex(h3);
+        if(hexManager.getHexStack().contains(h1) || hexManager.getHexStack().contains(h2) || hexManager.getHexStack.contains(h3)){
+            hexManager.updateHex(h1);
+            hexManager.updateHex(h2);
+            hexManager.updateHex(h3);
+        }
+        else{
+            hexManager.addHex(h1);
+            hexManager.addHex(h2);
+            hexManager.addHex(h3);
+        }
     }
 
     //Find adjacent terrain for sake of settlements
