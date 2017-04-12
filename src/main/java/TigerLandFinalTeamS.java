@@ -35,7 +35,7 @@ public class TigerLandFinalTeamS {
     private static boolean EndGame=false;
     private static int op1;  //tiger
     private static int op2;  // meeple
-
+    private static int x,y,z,o1;
     public static void main (String [] args)
     {
         int x,y,z,o,w;
@@ -349,7 +349,10 @@ public class TigerLandFinalTeamS {
             }
 
         }
-
+        x=array[0];
+        y=array[1];
+        z=array[2];
+        o1=o;
         placeTile(array[0],array[1],array[2],o,t1,t2);
 
         op1=0;
@@ -383,6 +386,27 @@ public class TigerLandFinalTeamS {
 
         else if (op2==1)
             piecePlace(array[0],array[1],array[2],1,0);
+
+    }
+
+    public int AImoveX()
+    {
+        return x;
+
+    }
+    public int AImoveY()
+    {
+        return y;
+
+    }
+    public int AImoveZ()
+    {
+        return z;
+
+    }
+    public int AImoveO()
+    {
+        return o1;
 
     }
 
