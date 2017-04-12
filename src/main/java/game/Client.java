@@ -8,7 +8,7 @@ import java.net.Socket;
 
 public class Client {
 
-    Socket s;
+    static Socket s;
 
     public Client(String serverName, int portNumber){
         try{
@@ -20,7 +20,7 @@ public class Client {
         }
     }
 
-    public BufferedReader getDataInputStream(){
+    public static BufferedReader getDataInputStream(){
         BufferedReader dataInputStream = null;
         try{
             dataInputStream = new BufferedReader(new InputStreamReader(s.getInputStream()));
@@ -30,7 +30,7 @@ public class Client {
         return dataInputStream;
     }
 
-    public PrintWriter getDataOutputStream(){
+    public static PrintWriter getDataOutputStream(){
         PrintWriter dataOutputStream = null;
         try{
             dataOutputStream = new PrintWriter(s.getOutputStream(), true);
