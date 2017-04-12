@@ -54,7 +54,7 @@ public class TigerLandFinalTeamS {
 
             placeTile(x, y, z, o, a, b);
 
-            x
+//            x
             System.out.println("Input ");
         }while(x != 999);
 

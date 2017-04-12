@@ -30,46 +30,47 @@ public class Game{
     }
 
     public void theirTile(int orientation, int a, int b, int x, int y, int z){
+        Hex h1, h2, h3;
         switch(orientation){
             case 1:
-                Hex h1 = new Hex(x,y,z,theirTileNum,1);
-                Hex h2 = new Hex(x,y+1,z-1,theirTileNum,a);
-                Hex h3 = new Hex(x+1,y,z-1,theirTileNum,b);
+                h1 = new Hex(x,y,z,theirTileNum,1);
+                h2 = new Hex(x,y+1,z-1,theirTileNum,a);
+                h3 = new Hex(x+1,y,z-1,theirTileNum,b);
                 PlaceTile.placeTile(this.board,h1,h2,h3,this.theirPieces,this.ourPieces);
                 this.theirTileNum+=2;
                 break;
             case 2:
-                Hex h1 = new Hex(x,y,z,theirTileNum,1);
-                Hex h2 = new Hex(x+1,y,z-1,theirTileNum,a);
-                Hex h3 = new Hex(x+1,y-1,z,theirTileNum,b);
+                h1 = new Hex(x,y,z,theirTileNum,1);
+                h2 = new Hex(x+1,y,z-1,theirTileNum,a);
+                h3 = new Hex(x+1,y-1,z,theirTileNum,b);
                 PlaceTile.placeTile(this.board,h1,h2,h3,this.theirPieces,this.ourPieces);
                 this.theirTileNum+=2;
                 break;
             case 3:
-                Hex h1 = new Hex(x,y,z,theirTileNum,1);
-                Hex h2 = new Hex(x+1,y-1,z,theirTileNum,a);
-                Hex h3 = new Hex(x,y-1,z+1,theirTileNum,b);
+                h1 = new Hex(x,y,z,theirTileNum,1);
+                h2 = new Hex(x+1,y-1,z,theirTileNum,a);
+                h3 = new Hex(x,y-1,z+1,theirTileNum,b);
                 PlaceTile.placeTile(this.board,h1,h2,h3,this.theirPieces,this.ourPieces);
                 this.theirTileNum+=2;
                 break;
             case 4:
-                Hex h1 = new Hex(x,y,z,theirTileNum,1);
-                Hex h2 = new Hex(x,y-1,z+1,theirTileNum,a);
-                Hex h3 = new Hex(x-1,y,z+1,theirTileNum,b);
+                h1 = new Hex(x,y,z,theirTileNum,1);
+                h2 = new Hex(x,y-1,z+1,theirTileNum,a);
+                h3 = new Hex(x-1,y,z+1,theirTileNum,b);
                 PlaceTile.placeTile(this.board,h1,h2,h3,this.theirPieces,this.ourPieces);
                 this.theirTileNum+=2;
                 break;
             case 5:
-                Hex h1 = new Hex(x,y,z,theirTileNum,1);
-                Hex h2 = new Hex(x-1,y,z+1,theirTileNum,a);
-                Hex h3 = new Hex(x-1,y+1,z,theirTileNum,b);
+                h1 = new Hex(x,y,z,theirTileNum,1);
+                h2 = new Hex(x-1,y,z+1,theirTileNum,a);
+                h3 = new Hex(x-1,y+1,z,theirTileNum,b);
                 PlaceTile.placeTile(this.board,h1,h2,h3,this.theirPieces,this.ourPieces);
                 this.theirTileNum+=2;
                 break;
             case 6:
-                Hex h1 = new Hex(x,y,z,theirTileNum,1);
-                Hex h2 = new Hex(x-1,y+1,z,theirTileNum,a);
-                Hex h3 = new Hex(x,y+1,z-1,theirTileNum,b);
+                h1 = new Hex(x,y,z,theirTileNum,1);
+                h2 = new Hex(x-1,y+1,z,theirTileNum,a);
+                h3 = new Hex(x,y+1,z-1,theirTileNum,b);
                 PlaceTile.placeTile(this.board,h1,h2,h3,this.theirPieces,this.ourPieces);
                 this.theirTileNum+=2;
                 break;
@@ -93,7 +94,7 @@ public class Game{
     public void theirTotoro(int x, int y, int z){
         Piece temp = new Piece(1,x,y,z);
         Hex location = new Hex(x,y,z);
-        List<Hex> adjHexes = board.findAdjPlaced(location);
+        List<Hex> adjHexes = board.getHexManager().findAdjPlaced(location);
         for(Hex h:adjHexes){
             if(theirPieces.findSettlement(h)!=null){
                 location=h;
@@ -107,7 +108,7 @@ public class Game{
     public void theirTiger(int x, int y, int z){
         Piece temp = new Piece(2,x,y,z);
         Hex location = new Hex(x,y,z);
-        List<Hex> adjHexes = board.findAdjPlaced(location);
+        List<Hex> adjHexes = board.getHexManager().findAdjPlaced(location);
         for(Hex h:adjHexes){
             if(theirPieces.findSettlement(h)!=null){
                 location=h;
@@ -120,11 +121,11 @@ public class Game{
 
     public int[] ourTile(int a, int b){
         Hex h = ai.tilePlacement(this.board,1,a,b,ourPieces,theirPieces);
-        int[4] tile = {1,h.getCoord()[0],h.getCoord()[1],h.getCoord()[2]};
+        int[] tile = {1,h.getCoord()[0],h.getCoord()[1],h.getCoord()[2]};
         return tile;
     }
 
     public int[] ourPiece(){
-        return piecePlacement(this.board, this.ourPieces, this.theirPieces);
+        return ai.piecePlacement(this.board, this.ourPieces, this.theirPieces);
     }
 }
