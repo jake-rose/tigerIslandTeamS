@@ -7,14 +7,42 @@ import java.util.*;
 public class SettlementManager{
     private List<Settlement> settlements;
     private int sNumIterator=0;
+    private int totoros=3;
+    private int tigers=2;
+    private int meeples=20;
 
-    public void newSettlement(Piece piece){
+    public void newSettlement(Piece piece, int usedMeeples){
         settlements.add(new Settlement(sNumIterator,piece));
+        this.meeples=this.meeples-usedMeeples;
         sNumIterator++;
+    }
+
+    public int getMeeples(){
+        return this.meeples;
+    }
+    public void setMeeples(int meeples){
+        this.meeples = meeples;
+    }
+
+    public int getTotoros(){
+        return this.totoros;
+    }
+    public int getTigers(){
+        return this.tigers;
     }
 
     public void expandSettlement(Piece piece, int sNum){
         settlements.get(settlements.indexOf(new Settlement(sNum))).addPiece(piece);
+    }
+
+    public void addTotoroToSettlement(Piece piece, int sNum){
+        settlements.get(settlements.indexOf(new Settlement(sNum))).addPiece(piece);
+        settlement.get(settlements.indexOf(new Settlement(sNum))).setTotoro(true);
+    }
+
+    public void addTigerToSettlement(Piece piece, int sNum){
+        settlements.get(settlements.indexOf(new Settlement(sNum))).addPiece(piece);
+        settlement.get(settlements.indexOf(new Settlement(sNum))).setTiger(true);
     }
 
     public List<Settlement> getSettlements(){
@@ -35,7 +63,7 @@ public class SettlementManager{
     public boolean isOccupied(Hex location){
         Piece temp = new Piece(location);
         for(Settlement s: settlements){
-            if(s.getPieces.contains(temp))
+            if(s.getPieces().contains(temp))
                 return true;
         }
         return false;
@@ -43,11 +71,14 @@ public class SettlementManager{
     public Settlement findSettlement(Hex location){
         Piece temp = new Piece(location);
         for(Settlement s: settlements){
-            if(s.getPieces.contains(temp)){
+            if(s.getPieces().contains(temp)){
                 return s;
             }
         }
         return null;
+    }
+    public Settlement findSettlement(int sNum){
+        return settlements.get(settlements.indexOf(sNum));
     }
     
     //When settlements are nuked, call split to handle new settlements
@@ -79,6 +110,9 @@ public class SettlementManager{
                 covered++;
             if(s.findPiece(h3))
                 covered++;
+            //Also check for tiger playgrounds
+            if(s.findPiece(h1).getType()==2 || s.findPiece(h2).getType()==2 || s.findPiece(h3).getType()==2)
+                return true;
             if(s.size()<covered)
                 return true;
         }

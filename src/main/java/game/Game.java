@@ -19,6 +19,11 @@ public class Game{
     }
 
     public Game(int gid){
-        
+       board = new Board();
+       ourPieces = new SettlementManager();
+       theirPieces = new SettlementManager();
+       this.gid = gid;
     }
+
+
 }
