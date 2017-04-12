@@ -37,12 +37,12 @@ public class SettlementManager{
 
     public void addTotoroToSettlement(Piece piece, int sNum){
         settlements.get(settlements.indexOf(new Settlement(sNum))).addPiece(piece);
-        settlement.get(settlements.indexOf(new Settlement(sNum))).setTotoro(true);
+        settlements.get(settlements.indexOf(new Settlement(sNum))).setTotoro(true);
     }
 
     public void addTigerToSettlement(Piece piece, int sNum){
         settlements.get(settlements.indexOf(new Settlement(sNum))).addPiece(piece);
-        settlement.get(settlements.indexOf(new Settlement(sNum))).setTiger(true);
+        settlements.get(settlements.indexOf(new Settlement(sNum))).setTiger(true);
     }
 
     public List<Settlement> getSettlements(){
@@ -61,7 +61,7 @@ public class SettlementManager{
     }
 
     public boolean isOccupied(Hex location){
-        Piece temp = new Piece(location);
+        Piece temp = new Piece(0,location);
         for(Settlement s: settlements){
             if(s.getPieces().contains(temp))
                 return true;
@@ -69,7 +69,7 @@ public class SettlementManager{
         return false;
     }
     public Settlement findSettlement(Hex location){
-        Piece temp = new Piece(location);
+        Piece temp = new Piece(0,location);
         for(Settlement s: settlements){
             if(s.getPieces().contains(temp)){
                 return s;
@@ -111,7 +111,7 @@ public class SettlementManager{
             if(s.findPiece(h3))
                 covered++;
             //Also check for tiger playgrounds
-            if(s.findPiece(h1).getType()==2 || s.findPiece(h2).getType()==2 || s.findPiece(h3).getType()==2)
+            if(s.getPiece(h1).getType()==2 || s.getPiece(h2).getType()==2 || s.getPiece(h3).getType()==2)
                 return true;
             if(s.size()<covered)
                 return true;

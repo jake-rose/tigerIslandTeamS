@@ -36,7 +36,7 @@ public class AI{
     }
     
     public Hex tilePlacement(Board board, int t1, int t2, int t3, SettlementManager ours, SettlementManager theirs){
-        List<Hex> potentialHex = board.getHexManager().getHexes();
+        List<Hex> potentialHex = board.getHexManager().getHexStack();
         int x, y, z;
         this.tileNum+=2;
         if(prevHex!=null){
@@ -75,6 +75,7 @@ public class AI{
                 return h1;
             }
         }
+        return null;
     }
 
     public int[] piecePlacement(Board board, SettlementManager ours, SettlementManager theirs){
@@ -84,14 +85,14 @@ public class AI{
                     if(s.getPieces().size()>=5){
                         List<Hex> adjHexes = new ArrayList();
                         for(Piece p:s.getPieces()){
-                            adjHexes.addAll(board.findAdjPlaced(p));
+                            adjHexes.addAll(board.getHexManager().findAdjPlaced(p.getLocation()));
                             for(Hex h: adjHexes){
                                 Piece temp = new Piece(1,h);
                                 if(PlacePieces.placeTotoro(board, ours, theirs, temp, s.getSNum())){
                                     int x = h.getCoord()[0];
                                     int y = h.getCoord()[1];
                                     int z = h.getCoord()[2];
-                                    int[4] returnThis = {1,x,y,z};
+                                    int[] returnThis = {1,x,y,z};
                                     this.newSettlement = true;
                                     return returnThis;
                                 }
@@ -103,22 +104,22 @@ public class AI{
         }
         if(this.newSettlement){
             this.newSettlement = false;
-            Piece temp = new Piece(this.prevHex,0);
+            Piece temp = new Piece(0,this.prevHex);
             if(PlacePieces.placeSettlement(board,ours,theirs,temp)){
-                int x = h.getCoord()[0];
-                int y = h.getCoord()[1];
-                int z = h.getCoord()[2];
-                int[4] returnThis = {0,x,y,z};
+                int x = prevHex.getCoord()[0];
+                int y = prevHex.getCoord()[1];
+                int z = prevHex.getCoord()[2];
+                int[] returnThis = {0,x,y,z};
                 return returnThis;
             }
             else{
-                for(Hex h:board.getHexManager().getHexes()){
-                    temp = new Piece(h,0);
+                for(Hex h:board.getHexManager().getHexStack()){
+                    temp = new Piece(0,h);
                     if(PlacePieces.placeSettlement(board,ours,theirs,temp)){
                         int x = h.getCoord()[0];
                         int y = h.getCoord()[1];
                         int z = h.getCoord()[2];
-                        int[4] returnThis = {0,x,y,z};
+                        int[] returnThis = {0,x,y,z};
                         return returnThis;
                     }
                 }
@@ -131,12 +132,12 @@ public class AI{
                     int x = tempHex.getCoord()[0];
                     int y = tempHex.getCoord()[1];
                     int z = tempHex.getCoord()[2];
-                    int[5] returnThis = {2,x,y,z,i};
+                    int[] returnThis = {2,x,y,z,i};
                     return returnThis;
                 }
             }
         }
-
+            return null;
     }
 
 }

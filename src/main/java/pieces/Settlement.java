@@ -45,6 +45,11 @@ public class Settlement{
         this.pieces.add(piece);
     }
 
+    public Piece getPiece(Hex location){
+        Piece temp = new Piece(0,location);
+        return pieces.get(pieces.indexOf(temp));
+    }
+
     public int getSNum(){
         return this.sNum;
     }

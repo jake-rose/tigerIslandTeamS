@@ -54,30 +54,29 @@ public class PlacePieces{
             return false;
     }
 
-    public static boolean expandSettlement(Board board, SettlementManager ours, SettlementManager theirs, int terrain, int sNum){
+    public static boolean expandSettlement(Board board, SettlementManager ours, SettlementManager theirs, int terrain, int sNum) {
         Settlement temp = ours.findSettlement(sNum);
         List<Hex> adjTerrain = new ArrayList();
-        for(Piece p:temp.getPieces()){
-            adjTerrain.addAll(board.adjTerrain(p,terrain));
+        for (Piece p : temp.getPieces()) {
+            adjTerrain.addAll(board.adjTerrain(p.getLocation(), terrain));
         }
         List<Hex> expandToThese = new ArrayList();
-        for(Hex h:adjTerrain){
-            if(!(theirs.isOccupied(h) || ours.isOccupied(h) || expandToThese.contains(h)))
+        for (Hex h : adjTerrain) {
+            if (!(theirs.isOccupied(h) || ours.isOccupied(h) || expandToThese.contains(h)))
                 expandToThese.add(adjTerrain.get(adjTerrain.indexOf(h)));
         }
         int meeples = 0;
-        for(Hex h:expandToThese){
+        for (Hex h : expandToThese) {
             meeples += h.getLevel();
         }
-        if(meeples<=ours.getMeeples()){
-            for(Hex h:expandToThese){
-                Piece p = new Piece(0,h);
-                ours.expandSettlement(p,sNum);
+        if (meeples <= ours.getMeeples()) {
+            for (Hex h : expandToThese) {
+                Piece p = new Piece(0, h);
+                ours.expandSettlement(p, sNum);
             }
             return true;
-        }
-        else
+        } else
             return false;
 
-
+    }
 }
