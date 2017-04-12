@@ -496,7 +496,7 @@ public class TigerLandFinalTeamS {
 
    private static void placeTile(int x, int y, int z, int o,String t1, String t2)
    {
-       {
+
 
 
            String test1 = "volcano";
@@ -842,13 +842,11 @@ public class TigerLandFinalTeamS {
 
 
                            } else {
-                               JOptionPane.showMessageDialog(null, "Please place higher level tile onto two different base tile", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
+                               System.out.println("Please place higher level tile onto two different base tile");
                            }
 
                        } else {
-                           JOptionPane.showMessageDialog(null, "Please place higher level on occupied hex", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
+                           System.out.println("Please place higher level on occupied hex");
                        }
                    } else if (o == 4 && CheckVolcano(x, y, z) == 0) {
                        if (ValidMove(x, y - 1, z + 1) == 1 && ValidMove(x - 1, y, z + 1) == 1) {
@@ -954,13 +952,11 @@ public class TigerLandFinalTeamS {
 
 
                            } else {
-                               JOptionPane.showMessageDialog(null, "Please place higher level tile onto two different base tile", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
+                                System.out.println("Please place higher level tile onto two different base tile");
                            }
 
                        } else {
-                           JOptionPane.showMessageDialog(null, "Please place higher level on occupied hex", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
+                            System.out.println("Please place higher level on occupied hex");
                        }
                    } else if (o == 5 && CheckVolcano(x, y, z) == 0) {
                        if (ValidMove(x - 1, y, z + 1) == 1 && ValidMove(x - 1, y + 1, z) == 1) {
@@ -1066,12 +1062,11 @@ public class TigerLandFinalTeamS {
 
 
                            } else {
-                               JOptionPane.showMessageDialog(null, "Please place higher level tile onto two different base tile", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
+                                System.out.println("Please place higher level tile onto two different base tile");
                            }
 
                        } else {
-                           JOptionPane.showMessageDialog(null, "Please place higher level on occupied hex", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
+                           System.out.println("Please place higher level on occupied hex");
 
                        }
                    } else if (o == 6 && CheckVolcano(x, y, z) == 0) {
@@ -1178,13 +1173,11 @@ public class TigerLandFinalTeamS {
 
 
                            } else {
-                               JOptionPane.showMessageDialog(null, "Please place higher level tile onto two different base tile", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
+                                System.out.println("Please place higher level tile onto two different base tile");
                            }
 
                        } else {
-                           JOptionPane.showMessageDialog(null, "Please place higher level on occupied hex", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
+                            System.out.println("Please place higher level on occupied hex");
                        }
                    }
 
@@ -1217,12 +1210,10 @@ public class TigerLandFinalTeamS {
 
                            adj = true;
                        } else {
-                           JOptionPane.showMessageDialog(null, "Please place hex on empty place", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
+                            System.out.println("Please place hex on empty place");
                        }
                    } else {
-                       JOptionPane.showMessageDialog(null, "New tile has to be adjacen of pervious tile", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
+                       System.out.println("New tile has to be adjacen of pervious tile");
                    }
 
 
@@ -1274,13 +1265,11 @@ public class TigerLandFinalTeamS {
                            } else {
 
                                SetIsplaced(x, y, z);
-                               JOptionPane.showMessageDialog(null, "Please place hex on empty place", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
+                                System.out.println("Please place hex on empty place");
                            }
                        } else {
 
-                           JOptionPane.showMessageDialog(null, "New tile has to be adjacen of pervious tile", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
+                           System.out.println("New tile has to be adjacen of pervious tile");
                        }
 
                    } else if (o == 2) {
@@ -1329,13 +1318,12 @@ public class TigerLandFinalTeamS {
                                adj = false;
                            } else {
                                SetIsplaced(x, y, z);
-                               JOptionPane.showMessageDialog(null, "Please place hex on empty place", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
+                               System.out.println("Please place hex on empty place");
 
                            }
                        } else {
 
-                           JOptionPane.showMessageDialog(null, "New tile has to be adjacen of pervious tile", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
+                           System.out.println("New tile has to be adjacen of pervious tile");
                        }
 
                    } else if (o == 3) {
@@ -1384,12 +1372,11 @@ public class TigerLandFinalTeamS {
                                adj = false;
                            } else {
                                SetIsplaced(x, y, z);
-                               JOptionPane.showMessageDialog(null, "Please place hex on empty place", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
+                                System.out.println("Please place hex on empty place");
                            }
                        } else {
 
-                           JOptionPane.showMessageDialog(null, "New tile has to be adjacen of pervious tile", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
+                           System.out.println("New tile has to be adjacen of pervious tile");
 
                        }
                    } else if (o == 4) {
@@ -1438,12 +1425,12 @@ public class TigerLandFinalTeamS {
                                adj = false;
                            } else {
                                SetIsplaced(x, y, z);
-                               JOptionPane.showMessageDialog(null, "Please place hex on empty place", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
+                               System.out.println("Please place hex on empty place");
 
                            }
                        } else {
 
-                           JOptionPane.showMessageDialog(null, "New tile has to be adjacen of pervious tile", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
+                           System.out.println("New tile has to be adjacen of pervious tile");
 
                        }
 
@@ -1494,12 +1481,12 @@ public class TigerLandFinalTeamS {
                                adj = false;
                            } else {
                                SetIsplaced(x, y, z);
-                               JOptionPane.showMessageDialog(null, "Please place hex on empty place", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
+                               System.out.println("Please place hex on empty place");
 
                            }
                        } else {
 
-                           JOptionPane.showMessageDialog(null, "New tile has to be adjacen of pervious tile", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
+                           System.out.println("New tile has to be adjacen of pervious tile");
 
                        }
 
@@ -1552,12 +1539,11 @@ public class TigerLandFinalTeamS {
                                adj = false;
                            } else {
                                SetIsplaced(x, y, z);
-                               JOptionPane.showMessageDialog(null, "Please place hex on empty place", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
+                               System.out.println("Please place hex on empty place");
                            }
                        } else {
 
-                           JOptionPane.showMessageDialog(null, "New tile has to be adjacen of pervious tile", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
+                           System.out.println("New tile has to be adjacen of pervious tile");
 
                        }
                    }
@@ -1566,12 +1552,11 @@ public class TigerLandFinalTeamS {
            }
            else
            {
-               JOptionPane.showMessageDialog(null, "Player turn is completed or &Game is finished", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
+               System.out.println("Player turn is completed or &Game is finished");
            }
 
 
-       }
+
    }
 
    private static void piecePlace(int x, int y, int z, int o, int w)
@@ -1601,8 +1586,7 @@ public class TigerLandFinalTeamS {
                                    }
                                    else
                                    {
-                                       JOptionPane.showMessageDialog(null, "Something already on the Hex", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
+                                       System.out.println("Something already on the Hex");
                                    }
                                }
                            }
@@ -1726,8 +1710,7 @@ public class TigerLandFinalTeamS {
                                    }
                                    else
                                    {
-                                       JOptionPane.showMessageDialog(null, "Something already on the Hex", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
+                                        System.out.println("Something already on the Hex");
                                    }
                                }
                            }
@@ -1757,7 +1740,7 @@ public class TigerLandFinalTeamS {
                                    }
                                    else
                                    {
-                                       JOptionPane.showMessageDialog(null, "Something already on the Hex or lower than level 3", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
+                                       System.out.println("Something already on the Hex or lower than level 3");
 
                                    }
                                }
@@ -1769,8 +1752,7 @@ public class TigerLandFinalTeamS {
                {
 
                        int t=w;
-                       setSettlementForP1(x,y,z,t,0);
-                       counter++;
+                       setSettlementForP1(x,y,z,t);
                        player1roundsEnd=true;
                        player2roundsEnd=false;
                        Endtrun();
@@ -1779,8 +1761,7 @@ public class TigerLandFinalTeamS {
                }
                else
                {
-                   JOptionPane.showMessageDialog(null, "Invalid move", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
+                   System.out.println("Invalid move");
                }
            }
            else if(EndGame==false && piecePlaced==false && player2roundsEnd==false && tilePlaced==true)
@@ -1808,8 +1789,7 @@ public class TigerLandFinalTeamS {
                                        }
                                        else
                                        {
-                                           JOptionPane.showMessageDialog(null, "Something already on the Hex", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
+                                           System.out.println("Something already on the Hex");
                                        }
                                    }
                                }
@@ -1936,8 +1916,7 @@ public class TigerLandFinalTeamS {
                                        }
                                        else
                                        {
-                                           JOptionPane.showMessageDialog(null, "Something already on the Hex", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
+                                           System.out.println("Something already on the Hex");
                                        }
                                    }
                                }
@@ -1967,8 +1946,7 @@ public class TigerLandFinalTeamS {
                                        }
                                        else
                                        {
-                                           JOptionPane.showMessageDialog(null, "Something already on the Hex or lower than level 3", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
+                                           System.out.println("Something already on the Hex or lower than level 3");
                                        }
                                    }
                                }
@@ -1978,22 +1956,20 @@ public class TigerLandFinalTeamS {
                    else if(o==4)
                    {
                            int t=w;
-                           setSettlementForP2(x,y,z,t,0);
-                           counter++;
+                           setSettlementForP2(x,y,z,t);
                            player1roundsEnd=false;
                            player2roundsEnd=true;
                            Endtrun();
                    }
                    else
                    {
-                       JOptionPane.showMessageDialog(null, "Invalid move", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
+                       System.out.println("Invalid move");
                    }
                }
            }
            else
            {
-               JOptionPane.showMessageDialog(null, "player's turn is completed &&Game is finished", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
+               System.out.println("player's turn is completed &&Game is finished");
            }
 
    }
@@ -2118,305 +2094,8 @@ public class TigerLandFinalTeamS {
         return 0;
     }
 
-    public static void setSettlementForP1(int x, int y, int z, int t, int w)
-    {
-        boolean check1,check2,check3,check4,check5,check6;
-        check1=CheckSettlement(x,y+1,z-1,t);
-
-        for (int i =0 ;i<IsPlaced.length;i++)
-        {
-            if(IsPlaced[i][1]==x)
-            {
-                if(IsPlaced[i][2]==y)
-                {
-                    if(IsPlaced[i][3]==z)
-                    {
-                        settlementIndex=IsPlaced[i][9];
 
 
-                    }
-                    else settlementIndex=counter;
-                }
-            }
-        }
-
-        if(check1 && ValidMove(x,y+1,z-1)==0 && w!=1)
-        {
-            for(int i=0;i<PlacedCounter;i++)
-            {
-                if(IsPlaced[i][1]==x)
-                {
-                    if(IsPlaced[i][2]==y+1)
-                    {
-                        if(IsPlaced[i][3]==z-1)
-                        {
-                            meeple--;
-                            player1score=1*IsPlaced[i][7]+player1score;
-                            IsPlaced[i][5]=1;
-                            IsPlaced[i][9]=settlementIndex;
-                            setSettlementForP1(x,y+1,z-1,t,4);
-                        }
-                    }
-                }
-            }
-        }
-        check2=CheckSettlement(x+1,y,z-1,t);
-        if(check2 && ValidMove(x+1,y,z-1)==0 && w!=2)
-        {
-            for(int i=0;i<PlacedCounter;i++)
-            {
-                if(IsPlaced[i][1]==x+1)
-                {
-                    if(IsPlaced[i][2]==y)
-                    {
-                        if(IsPlaced[i][3]==z-1)
-                        {
-                            meeple--;
-                            player1score=1*IsPlaced[i][7]+player1score;
-                            IsPlaced[i][5]=1;
-                            IsPlaced[i][9]=settlementIndex;
-                            setSettlementForP1(x+1,y,z-1,t,5);
-                        }
-                    }
-                }
-            }
-        }
-        check3=CheckSettlement(x+1,y-1,z,t);
-        if(check3 && ValidMove(x+1,y-1,z)==0 && w!=3)
-        {
-            for(int i=0;i<PlacedCounter;i++)
-            {
-                if(IsPlaced[i][1]==x+1)
-                {
-                    if(IsPlaced[i][2]==y-1)
-                    {
-                        if(IsPlaced[i][3]==z)
-                        {
-                            meeple--;
-                            player1score=1*IsPlaced[i][7]+player1score;
-                            IsPlaced[i][5]=1;
-                            IsPlaced[i][9]=settlementIndex;
-                            setSettlementForP1(x+1,y,z-1,t,6);
-                        }
-                    }
-                }
-            }
-        }
-        check4=CheckSettlement(x,y-1,z+1,t);
-        if(check4 && ValidMove(x,y-1,z+1)==0 & w!=4)
-        {
-            for(int i=0;i<PlacedCounter;i++)
-            {
-                if(IsPlaced[i][1]==x)
-                {
-                    if(IsPlaced[i][2]==y-1)
-                    {
-                        if(IsPlaced[i][3]==z+1)
-                        {
-                            meeple--;
-                            player1score=1*IsPlaced[i][7]+player1score;
-                            IsPlaced[i][5]=1;
-                            IsPlaced[i][9]=settlementIndex;
-                            setSettlementForP1(x,y-1,z+1,t,1);
-                        }
-                    }
-                }
-            }
-        }
-        check5=CheckSettlement(x-1,y,z+1,t);
-        if(check5 && ValidMove(x-1,y,z+1)==0 && w!=2)
-        {
-            for(int i=0;i<PlacedCounter;i++)
-            {
-                if(IsPlaced[i][1]==x-1)
-                {
-                    if(IsPlaced[i][2]==y)
-                    {
-                        if(IsPlaced[i][3]==z+1)
-                        {
-                            meeple--;
-                            player1score=1*IsPlaced[i][7]+player1score;
-                            IsPlaced[i][5]=1;
-                            IsPlaced[i][9]=settlementIndex;
-                            setSettlementForP1(x-1,y,z+1,t,2);
-                        }
-                    }
-                }
-            }
-        }
-        check6=CheckSettlement(x-1,y+1,z,t);
-        if(check6 && ValidMove(x-1,y+1,z)==0 && w!=3)
-        {
-            for(int i=0;i<PlacedCounter;i++)
-            {
-                if(IsPlaced[i][1]==x-1)
-                {
-                    if(IsPlaced[i][2]==y+1)
-                    {
-                        if(IsPlaced[i][3]==z)
-                        {
-                            meeple--;
-                            player1score=1*IsPlaced[i][7]+player1score;
-                            IsPlaced[i][5]=1;
-                            IsPlaced[i][9]=settlementIndex;
-                            setSettlementForP1(x-1,y+1,z,t,6);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    public static void setSettlementForP2(int x,int y,int z,int t, int w)
-    {
-
-            boolean check1,check2,check3,check4,check5,check6;
-            check1=CheckSettlement(x,y+1,z-1,t);
-
-            for (int i =0 ;i<IsPlaced.length;i++)
-            {
-                if(IsPlaced[i][1]==x)
-                {
-                    if(IsPlaced[i][2]==y)
-                    {
-                        if(IsPlaced[i][3]==z)
-                        {
-                            settlementIndex=IsPlaced[i][9];
-
-
-                        }
-                        else settlementIndex=counter;
-                    }
-                }
-            }
-
-            if(check1 && ValidMove(x,y+1,z-1)==0 && w!=1)
-            {
-                for(int i=0;i<PlacedCounter;i++)
-                {
-                    if(IsPlaced[i][1]==x)
-                    {
-                        if(IsPlaced[i][2]==y+1)
-                        {
-                            if(IsPlaced[i][3]==z-1)
-                            {
-                                meeple1--;
-                                player2score=1*IsPlaced[i][7]+player2score;
-                                IsPlaced[i][5]=5;
-                                IsPlaced[i][9]=settlementIndex;
-                                setSettlementForP1(x,y+1,z-1,t,4);
-                            }
-                        }
-                    }
-                }
-            }
-            check2=CheckSettlement(x+1,y,z-1,t);
-            if(check2 && ValidMove(x+1,y,z-1)==0 && w!=2)
-            {
-                for(int i=0;i<PlacedCounter;i++)
-                {
-                    if(IsPlaced[i][1]==x+1)
-                    {
-                        if(IsPlaced[i][2]==y)
-                        {
-                            if(IsPlaced[i][3]==z-1)
-                            {
-                                meeple1--;
-                                player2score=1*IsPlaced[i][7]+player2score;
-                                IsPlaced[i][5]=5;
-                                IsPlaced[i][9]=settlementIndex;
-                                setSettlementForP1(x+1,y,z-1,t,5);
-                            }
-                        }
-                    }
-                }
-            }
-            check3=CheckSettlement(x+1,y-1,z,t);
-            if(check3 && ValidMove(x+1,y-1,z)==0 && w!=3)
-            {
-                for(int i=0;i<PlacedCounter;i++)
-                {
-                    if(IsPlaced[i][1]==x+1)
-                    {
-                        if(IsPlaced[i][2]==y-1)
-                        {
-                            if(IsPlaced[i][3]==z)
-                            {
-                                meeple1--;
-                                player2score=1*IsPlaced[i][7]+player2score;
-                                IsPlaced[i][5]=5;
-                                IsPlaced[i][9]=settlementIndex;
-                                setSettlementForP1(x+1,y,z-1,t,6);
-                            }
-                        }
-                    }
-                }
-            }
-            check4=CheckSettlement(x,y-1,z+1,t);
-            if(check4 && ValidMove(x,y-1,z+1)==0 && w!=4)
-            {
-                for(int i=0;i<PlacedCounter;i++)
-                {
-                    if(IsPlaced[i][1]==x)
-                    {
-                        if(IsPlaced[i][2]==y-1)
-                        {
-                            if(IsPlaced[i][3]==z+1)
-                            {
-                                meeple1--;
-                                player2score=1*IsPlaced[i][7]+player2score;
-                                IsPlaced[i][5]=5;
-                                IsPlaced[i][9]=settlementIndex;
-                                setSettlementForP1(x,y-1,z+1,t,1);
-                            }
-                        }
-                    }
-                }
-            }
-            check5=CheckSettlement(x-1,y,z+1,t);
-            if(check5 && ValidMove(x-1,y,z+1)==0 && w!=5)
-            {
-                for(int i=0;i<PlacedCounter;i++)
-                {
-                    if(IsPlaced[i][1]==x-1)
-                    {
-                        if(IsPlaced[i][2]==y)
-                        {
-                            if(IsPlaced[i][3]==z+1)
-                            {
-                                meeple1--;
-                                player2score=1*IsPlaced[i][7]+player2score;
-                                IsPlaced[i][5]=5;
-                                IsPlaced[i][9]=settlementIndex;
-                                setSettlementForP1(x-1,y,z+1,t,2);
-                            }
-                        }
-                    }
-                }
-            }
-            check6=CheckSettlement(x-1,y+1,z,t);
-            if(check6 && ValidMove(x-1,y+1,z)==0 && w!=6)
-            {
-                for(int i=0;i<PlacedCounter;i++)
-                {
-                    if(IsPlaced[i][1]==x-1)
-                    {
-                        if(IsPlaced[i][2]==y+1)
-                        {
-                            if(IsPlaced[i][3]==z)
-                            {
-                                meeple1--;
-                                player2score=1*IsPlaced[i][7]+player2score;
-                                IsPlaced[i][5]=5;
-                                IsPlaced[i][9]=settlementIndex;
-                                setSettlementForP1(x-1,y+1,z,t,3);
-                            }
-                        }
-                    }
-                }
-            }
-
-    }
 
     public static void SetSettlementSize()
     {
@@ -2493,14 +2172,386 @@ public class TigerLandFinalTeamS {
     }
 
 
-    private void  GameBoardInin()
+    public static void setSettlementForP1(int x, int y, int z, int t)
+    {
+        int sindex=0;
+        boolean go=false;
+
+        for (int i =0 ;i<IsPlaced.length;i++)
+        {
+            if(IsPlaced[i][1]==x)
+            {
+                if(IsPlaced[i][2]==y)
+                {
+                    if(IsPlaced[i][3]==z && IsPlaced[i][5]==1)  {
+                        sindex = IsPlaced[i][9];
+                        System.out.println("find settlment index for P1: " + sindex);
+                        go=true;
+                        break;
+
+                    }
+                    else
+                    {
+                        System.out.println("This is not your settlment, or not a settlment");
+
+                    }
+                }
+            }
+        }
+
+        if(go) {
+            for (int i = 0; i < PlacedCounter; i++) {
+
+                if (IsPlaced[i][9] == sindex) {
+                    System.out.println("looking for new emtpy settlment for P1: " + sindex);
+                    settlmentAdj(IsPlaced[i][1], IsPlaced[i][2], IsPlaced[i][3], t, 0, sindex);
+
+                }
+
+
+            }
+        }
+
+
+    }
+
+    public static void setSettlementForP2(int x,int y,int z,int t)
+    {        int sindex=0;
+        boolean go =false;
+        for (int i =0 ;i<IsPlaced.length;i++)
+        {
+            if(IsPlaced[i][1]==x)
+            {
+                if(IsPlaced[i][2]==y)
+                {
+                    if(IsPlaced[i][3]==z && IsPlaced[i][5]==4) {
+                        sindex = IsPlaced[i][9];
+                        System.out.println("find settlment index for P2: " + sindex);
+                        go=true;
+                        break;
+
+                    }
+                    else
+                    {
+                        System.out.println("This is not your settlment, or not a settlment");
+                    }
+                }
+            }
+        }
+        if(go) {
+            for (int i = 0; i < PlacedCounter; i++) {
+
+                if (IsPlaced[i][9] == sindex) {
+                    System.out.println("looking for new emtpy settlment for P1: " + sindex);
+                    settlmentAdj1(IsPlaced[i][1], IsPlaced[i][2], IsPlaced[i][3], t, 0, sindex);
+                }
+
+
+            }
+        }
+    }
+
+    public static void settlmentAdj(int x, int y, int z ,int t, int w, int sindex)
     {
 
-//        for(int i =0; i<IsPlaced.length;i++)
-//            IsPlaced[i]=fa
+        boolean check1,check2,check3,check4,check5,check6;
+        check1=CheckSettlement(x,y+1,z-1,t);
+        if(check1 && CheckPiece(x,y+1,z-1)==0 && w!=1)
+        {
+            for(int i=0;i<PlacedCounter;i++)
+            {
+                if(IsPlaced[i][1]==x)
+                {
+                    if(IsPlaced[i][2]==y+1)
+                    {
+                        if(IsPlaced[i][3]==z-1)
+                        {
 
+                            System.out.println("expansion@ 1");
+                            meeple=meeple-IsPlaced[i][7];
+                            player1score=1*IsPlaced[i][7]+player1score;
+                            IsPlaced[i][5]=1;
+                            IsPlaced[i][9]=sindex;
+                            settlmentAdj(x,y+1,z-1,t,4,sindex);
+                        }
+                    }
+                }
+            }
+        }
+        check2=CheckSettlement(x+1,y,z-1,t);
+        if(check2 && CheckPiece(x+1,y,z-1)==0 && w!=2)
+        {
+            for(int i=0;i<PlacedCounter;i++)
+            {
+                if(IsPlaced[i][1]==x+1)
+                {
+                    if(IsPlaced[i][2]==y)
+                    {
+                        if(IsPlaced[i][3]==z-1)
+                        {
+                            System.out.println("expansion@ 2");
+                            meeple=meeple-IsPlaced[i][7];
+                            player1score=1*IsPlaced[i][7]+player1score;
+                            IsPlaced[i][5]=1;
+                            IsPlaced[i][9]=sindex;
+                            settlmentAdj(x+1,y,z-1,t,5,sindex);
+                        }
+                    }
+                }
+            }
+        }
+        check3=CheckSettlement(x+1,y-1,z,t);
+        if(check3 && CheckPiece(x+1,y-1,z)==0 && w!=3)
+        {
+            for(int i=0;i<PlacedCounter;i++)
+            {
+                if(IsPlaced[i][1]==x+1)
+                {
+                    if(IsPlaced[i][2]==y-1)
+                    {
+                        if(IsPlaced[i][3]==z)
+                        {
+                            System.out.println("expansion@ 3");
+                            meeple=meeple-IsPlaced[i][7];
+                            player1score=1*IsPlaced[i][7]+player1score;
+                            IsPlaced[i][5]=1;
+                            IsPlaced[i][9]=sindex;
+                            settlmentAdj(x+1,y,z-1,t,6,sindex);
+                        }
+                    }
+                }
+            }
+        }
+        check4=CheckSettlement(x,y-1,z+1,t);
+        if(check4 && CheckPiece(x,y-1,z+1)==0 & w!=4)
+        {
+            for(int i=0;i<PlacedCounter;i++)
+            {
+                if(IsPlaced[i][1]==x)
+                {
+                    if(IsPlaced[i][2]==y-1)
+                    {
+                        if(IsPlaced[i][3]==z+1)
+                        {
+                            System.out.println("expansion@ 4");
+                            meeple=meeple-IsPlaced[i][7];
+                            player1score=1*IsPlaced[i][7]+player1score;
+                            IsPlaced[i][5]=1;
+                            IsPlaced[i][9]=sindex;
+                            settlmentAdj(x,y-1,z+1,t,1,sindex);
+                        }
+                    }
+                }
+            }
+        }
+        check5=CheckSettlement(x-1,y,z+1,t);
+        if(check5 && CheckPiece(x-1,y,z+1)==0 && w!=2)
+        {
+            for(int i=0;i<PlacedCounter;i++)
+            {
+                if(IsPlaced[i][1]==x-1)
+                {
+                    if(IsPlaced[i][2]==y)
+                    {
+                        if(IsPlaced[i][3]==z+1)
+                        {
+                            System.out.println("expansion@ 5");
+                            meeple=meeple-IsPlaced[i][7];
+                            player1score=1*IsPlaced[i][7]+player1score;
+                            IsPlaced[i][5]=1;
+                            IsPlaced[i][9]=sindex;
+                            settlmentAdj(x-1,y,z+1,t,2,sindex);
+                        }
+                    }
+                }
+            }
+        }
+        check6=CheckSettlement(x-1,y+1,z,t);
+        if(check6 && CheckPiece(x-1,y+1,z)==0 && w!=3)
+        {
+            for(int i=0;i<PlacedCounter;i++)
+            {
+                if(IsPlaced[i][1]==x-1)
+                {
+                    if(IsPlaced[i][2]==y+1)
+                    {
+                        if(IsPlaced[i][3]==z)
+                        {
+                            System.out.println("expansion@ 6");
+                            meeple=meeple-IsPlaced[i][7];
+                            player1score=1*IsPlaced[i][7]+player1score;
+                            IsPlaced[i][5]=1;
+                            IsPlaced[i][9]=sindex;
+                            settlmentAdj(x-1,y+1,z,t,6,sindex);
+                        }
+                    }
+                }
+            }
+        }
+        System.out.println("Check 1 : " + check1);
+        System.out.println("Check 2 : " + check2);
+        System.out.println("Check 3 : " + check3);
+        System.out.println("Check 4 : " + check4);
+        System.out.println("Check 5 : " + check5);
+        System.out.println("Check 6 : " + check6);
 
 
 
     }
+    public static void settlmentAdj1(int x, int y, int z ,int t, int w, int sindex)
+    {
+
+        boolean check1,check2,check3,check4,check5,check6;
+        check1=CheckSettlement(x,y+1,z-1,t);
+        if(check1 && CheckPiece(x,y+1,z-1)==0 && w!=1)
+        {
+            for(int i=0;i<PlacedCounter;i++)
+            {
+                if(IsPlaced[i][1]==x)
+                {
+                    if(IsPlaced[i][2]==y+1)
+                    {
+                        if(IsPlaced[i][3]==z-1)
+                        {
+                            System.out.println("expansion@ 1 for p2");
+                            meeple1=meeple1-IsPlaced[i][7];
+                            player2score=1*IsPlaced[i][7]+player2score;
+                            IsPlaced[i][5]=4;
+                            IsPlaced[i][9]=sindex;
+                            settlmentAdj1(x,y+1,z-1,t,4,sindex);
+                        }
+                    }
+                }
+            }
+        }
+        check2=CheckSettlement(x+1,y,z-1,t);
+        if(check2 && CheckPiece(x+1,y,z-1)==0 && w!=2)
+        {
+            for(int i=0;i<PlacedCounter;i++)
+            {
+                if(IsPlaced[i][1]==x+1)
+                {
+                    if(IsPlaced[i][2]==y)
+                    {
+                        if(IsPlaced[i][3]==z-1)
+                        {
+                            System.out.println("expansion@ 2 for p2");
+                            meeple1=meeple1-IsPlaced[i][7];
+                            player2score=1*IsPlaced[i][7]+player2score;
+                            IsPlaced[i][5]=4;
+                            IsPlaced[i][9]=sindex;
+                            settlmentAdj1(x+1,y,z-1,t,5,sindex);
+                        }
+                    }
+                }
+            }
+        }
+        check3=CheckSettlement(x+1,y-1,z,t);
+        if(check3 && CheckPiece(x+1,y-1,z)==0 && w!=3)
+        {
+            for(int i=0;i<PlacedCounter;i++)
+            {
+                if(IsPlaced[i][1]==x+1)
+                {
+                    if(IsPlaced[i][2]==y-1)
+                    {
+                        if(IsPlaced[i][3]==z)
+                        {
+                            System.out.println("expansion@ 2 for p2");
+                            meeple1=meeple1-IsPlaced[i][7];
+                            player2score=1*IsPlaced[i][7]+player2score;
+                            IsPlaced[i][5]=4;
+                            IsPlaced[i][9]=sindex;
+                            settlmentAdj1(x+1,y,z-1,t,6,sindex);
+                        }
+                    }
+                }
+            }
+        }
+        check4=CheckSettlement(x,y-1,z+1,t);
+        if(check4 && CheckPiece(x,y-1,z+1)==0 & w!=4)
+        {
+            for(int i=0;i<PlacedCounter;i++)
+            {
+                if(IsPlaced[i][1]==x)
+                {
+                    if(IsPlaced[i][2]==y-1)
+                    {
+                        if(IsPlaced[i][3]==z+1)
+                        {
+                            System.out.println("expansion@ 4 for p2");
+                            meeple1=meeple1-IsPlaced[i][7];
+                            player2score=1*IsPlaced[i][7]+player2score;
+                            IsPlaced[i][5]=4;
+                            IsPlaced[i][9]=sindex;
+                            settlmentAdj1(x,y-1,z+1,t,1,sindex);
+                        }
+                    }
+                }
+            }
+        }
+        check5=CheckSettlement(x-1,y,z+1,t);
+        if(check5 && CheckPiece(x-1,y,z+1)==0 && w!=2)
+        {
+            for(int i=0;i<PlacedCounter;i++)
+            {
+                if(IsPlaced[i][1]==x-1)
+                {
+                    if(IsPlaced[i][2]==y)
+                    {
+                        if(IsPlaced[i][3]==z+1)
+                        {
+                            System.out.println("expansion@ 5 for p2");
+                            meeple1=meeple1-IsPlaced[i][7];
+                            player2score=1*IsPlaced[i][7]+player2score;
+                            IsPlaced[i][5]=4;
+                            IsPlaced[i][9]=sindex;
+                            settlmentAdj1(x-1,y,z+1,t,2,sindex);
+                        }
+                    }
+                }
+            }
+        }
+        check6=CheckSettlement(x-1,y+1,z,t);
+        if(check6 && CheckPiece(x-1,y+1,z)==0 && w!=3)
+        {
+            for(int i=0;i<PlacedCounter;i++)
+            {
+                if(IsPlaced[i][1]==x-1)
+                {
+                    if(IsPlaced[i][2]==y+1)
+                    {
+                        if(IsPlaced[i][3]==z)
+                        {
+                            System.out.println("expansion@ 6 for p2");
+                            meeple1=meeple1-IsPlaced[i][7];
+                            player2score=1*IsPlaced[i][7]+player2score;
+                            IsPlaced[i][5]=4;
+                            IsPlaced[i][9]=sindex;
+                            settlmentAdj1(x-1,y+1,z,t,6,sindex);
+                        }
+                    }
+                }
+            }
+        }
+
+
+    }
+
+    public static int CheckPiece(int x, int y, int z)
+    {
+        for(int i=0;i<PlacedCounter;i++)
+        {
+            if(IsPlaced[i][1]==x)
+            {
+                if(IsPlaced[i][2]==y)
+                {
+                    if(IsPlaced[i][3]==z)
+                        return IsPlaced[i][5];
+                }
+            }
+        }
+        return 0;
+    }
+
 }
