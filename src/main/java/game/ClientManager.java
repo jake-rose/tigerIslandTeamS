@@ -4,9 +4,22 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.regex.Matcher;
+import java.lang.*;
+
+import static game.FrequentlyUsedPatterns.PlayerIDPattern;
 
 
 public class ClientManager {
+
+    private static Game game1;
+    private static Game game2;
+
+    public static void main(String[] args) throws Exception{
+        ClientManager clientManager = new ClientManager();
+
+         clientManager.TournamentProtocol();
+
+    }
 
     public ClientManager(){
 
@@ -31,6 +44,7 @@ public class ClientManager {
         Scanner scanner = new Scanner(System.in);
 
         String tournamentPassword = "heygang";
+
     }
 
 
@@ -55,6 +69,7 @@ public class ClientManager {
             while (!authenticated) {
                 authenticated = AuthenticationProtocol(dataInputStream, dataOutputStream);
             }
+            System.out.println("Client: Authentication was approved we are back in Tournament Pro.");
 
             ChallengeProtocol(dataInputStream, dataOutputStream);
 
@@ -87,20 +102,24 @@ public class ClientManager {
             System.out.println("Server: " + incomingMessage);
 
             //I AM username password
-            outgoingMessage = "I AM" + username + " " + password;
+            outgoingMessage = "I AM " + username;
+            outgoingMessage+= " ";
+            outgoingMessage+= password;
             out.println(outgoingMessage);
             System.out.println("Client: " + outgoingMessage);
 
             //WAIT FOR THE TOURNAMENT TO BEGIN pid
             incomingMessage = in.readLine();
             System.out.println("Server: " + incomingMessage);
-            Matcher PlayerIDMatcher = FrequentlyUsedPatterns.PlayerIDPattern.matcher(incomingMessage);
+            Matcher PlayerIDMatcher = PlayerIDPattern.matcher(incomingMessage);
+            System.out.println("PlayerIDMatcher: "+PlayerIDPattern);
             if (PlayerIDMatcher.matches()) {
                 int playerID = Integer.parseInt(PlayerIDMatcher.group(1));
+                System.out.println("Player ID was a MATCH!!");
                 authenticated = true;
             } else
                 throw new IOException();
-            System.out.println("Client: Authentication is succesful!!!");
+            System.out.println("Client: Authentication is successful!!!");
         } catch (IOException ex) {
             System.out.println("Client: Failed to Authenticate.");
         }
@@ -114,10 +133,13 @@ public class ClientManager {
         int challengeId, numberOfRounds = 0;
         try {
             while (nextGame) {
+                System.out.println("Client: We are in the nextGame while loop.");
                 //NEW CHALLENGE cid YOU WILL PLAY rounds MATCH(ES)
                 serverMessage = in.readLine();
+                System.out.println("ChallengeProtocol~ Server Message: "+ serverMessage);
                 System.out.println("Server: " + serverMessage);
                 Matcher ChallengeMatcher = FrequentlyUsedPatterns.ChallengePattern.matcher(serverMessage);
+                System.out.println("ChallengeMatcher: "+ChallengeMatcher);
                 if (ChallengeMatcher.matches()) {
                     challengeId = Integer.parseInt(ChallengeMatcher.group(1));
                     numberOfRounds = Integer.parseInt(ChallengeMatcher.group(2));
@@ -165,24 +187,29 @@ public class ClientManager {
         String clientMessage = "";
 
         int messageOutOut = 0;
-        /*
+
         try {
             //NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER pid
             serverMessage = in.readLine();
             System.out.println("Server: " + serverMessage);
             Matcher NewMatchMatcher = FrequentlyUsedPatterns.NewMatchPattern.matcher(serverMessage);
+            Matcher PlayerIDMatcher = FrequentlyUsedPatterns.PlayerIDPattern.matcher(serverMessage);
+            Matcher GameOverMatcher = FrequentlyUsedPatterns.GameOverPattern.matcher(serverMessage);
+
+
             if (NewMatchMatcher.matches()) {
-                opponentID = Integer.parseInt(NewMatchMatcher.group(1));
-                game1 = new Game(playerID, opponentID);
-                game2 = new Game(opponentID, playerID);
-                game1ID = null;
-                game2ID = null;
+                int opponentID = Integer.parseInt(NewMatchMatcher.group(1));
+                int playerID = Integer.parseInt(PlayerIDMatcher.group(1));
+                int game1ID = Integer.parseInt(GameOverMatcher.group(1));
+                int game2ID = Integer.parseInt(GameOverMatcher.group(1));
+                this.game1 = new Game(playerID, opponentID, game1ID);
+                this.game2 = new Game(playerID, opponentID, game2ID);
 
-                game1.begin();
-                game2.begin();
 
-                for (int i = 0; (!game1.isGameOver() || !game2.isGamerOver()) && i < 48; i++) {
-                    MoveProtocol(in, out);
+
+                for (int i = 0; i < 48; i++) {
+                    MoveProtocol(in, out, this.game1);
+                    MoveProtocol(in, out, this.game2);
                 }
 
                 //game1 score Message: GAME gid OVER PLAYER pid score PLAYER pid score
@@ -197,19 +224,20 @@ public class ClientManager {
         } catch (IOException ex) {
             System.out.println("Client: Failed to connect with Match Protocol");
         }
-        */
+
     }
 
 
     // MoveProtocol
-    public void MoveProtocol(BufferedReader in, PrintWriter out) {
+    public void MoveProtocol(BufferedReader in, PrintWriter out,Game game) {
         String serverMessage = "";
         String clientMessage = "";
         String placeddAndBuildMsg = "";
         String gameID, moveNumber;
+        String game1ID=null, game2ID=null;
         int pid;
         String tileGiven;
-        /*
+
         try {
             //GAME gid MOVE # PLAYER pid move
             serverMessage = in.readLine();
@@ -222,56 +250,151 @@ public class ClientManager {
                 gameID = serverPromptMatcher.group(1);
                 if (game1ID == null) {
                     game1ID = gameID;
-                } else if (game2ID = null) {
+                }
+                else if (game2ID == null) {
                     game2ID = gameID;
                 }
                 moveNumber = serverPromptMatcher.group(3);
                 tileGiven = serverPromptMatcher.group(4);
+                int hex1=1, hex2=2;
+                System.out.println("this is the tileGiven: "+tileGiven);
+
+
 
                 //place and build message from the AI
                 if (gameID.equals(game1ID)) {
+                    clientMessage = "GAME " + gameID + " MOVE " + moveNumber + " PLACE "+tileGiven + " AT "+ game.ourTile(hex1, hex2);
+                    int[] MoveBuildOption = game.ourPiece();
+                    switch (MoveBuildOption[0]) {
+                        case 0:
+                            //new settlement
+                            clientMessage+=" FOUND SETTLEMENT AT ";
+                            clientMessage+= MoveBuildOption[1]+" "+ MoveBuildOption[2]+" "+MoveBuildOption[3];
+                            break;
+                        case 1:
+                            //place totoro
+                            clientMessage+=" BUILD TOTORO SANCTUARY AT ";
+                            clientMessage+= MoveBuildOption[1]+" "+ MoveBuildOption[2]+" "+MoveBuildOption[3];
+                            break;
+                        case 2:
+                            //expand settlement
+                            clientMessage+=" EXPAND SETTLEMENT AT ";
+                            clientMessage+= MoveBuildOption[1]+" "+ MoveBuildOption[2]+" "+MoveBuildOption[3]+" "+MoveBuildOption[4];
+                            break;
+                        case 3:
+                            //place tiger
+                            clientMessage+=" BUILD TIGER PLAYGROUND AT ";
+                            clientMessage+= MoveBuildOption[1]+" "+ MoveBuildOption[2]+" "+MoveBuildOption[3];
+                            break;
+                    }
 
-                } else {//play for game2}
+
+
+                } else {//play for game2
+                    clientMessage = "GAME " + gameID + " MOVE " + moveNumber + " PLACE "+tileGiven + " AT "+ game.ourTile(hex1, hex2);
+                    int[] MoveBuildOption = game.ourPiece();
+                    switch (MoveBuildOption[0]) {
+                        case 0:
+                            //new settlement
+                            clientMessage+=" FOUND SETTLEMENT AT ";
+                            clientMessage+= MoveBuildOption[1]+" "+ MoveBuildOption[2]+" "+MoveBuildOption[3];
+                            break;
+                        case 1:
+                            //place totoro
+                            clientMessage+=" BUILD TOTORO SANCTUARY AT ";
+                            clientMessage+= MoveBuildOption[1]+" "+ MoveBuildOption[2]+" "+MoveBuildOption[3];
+                            break;
+                        case 2:
+                            //expand settlement
+                            clientMessage+=" EXPAND SETTLEMENT AT ";
+                            clientMessage+= MoveBuildOption[1]+" "+ MoveBuildOption[2]+" "+MoveBuildOption[3]+" "+MoveBuildOption[4];
+                            break;
+                        case 3:
+                            //place tiger
+                            clientMessage+=" BUILD TIGER PLAYGROUND AT ";
+                            clientMessage+= MoveBuildOption[1]+" "+ MoveBuildOption[2]+" "+MoveBuildOption[3];
+                            break;
+                    }
                 }
 
-                clientMessage = "GAME " + gameID + " MOVE " + moveNumber + " ";
-                //add more to the client message with +=
                 out.println(clientMessage);
                 System.out.println("Client: " + clientMessage);
             } else if (gameForfeitedMatcher.matches()) {
                 gameID = gameForfeitedMatcher.group(1);
                 pid = Integer.parseInt(gameForfeitedMatcher.group(3));
                 String opponentForfeitMessage = gameForfeitedMatcher.group(4);
-                if (gameID.equals(game1ID) && (!game1.isGameOver())) {
-                    game1.setGameOver();
+                if (gameID.equals(game1ID))
+                {
+                    this.game1=null;
                 } else {
-                    game2.setGameOver();
+                    this.game2 = null;
                 }
             } else if (gameLostMatcher.matches()) {
                 gameID = gameLostMatcher.group(1);
                 pid = Integer.parseInt(gameLostMatcher.group(3));
                 String opponentLostMessage = gameLostMatcher.group(4);
-                if (gameID.equals(game1ID) && (!game1.isGameover())) {
-                    game1.setGameOver();
+                if (gameID.equals(game1ID)) {
+                    this.game1 = null;
                 } else {
-                    game2.setGameOver();
+                    this.game2 = null;
                 }
             } else if (gameMovePlayerMatcher.matches()) {
                 gameID = gameMovePlayerMatcher.group(1);
                 pid = Integer.parseInt(gameMovePlayerMatcher.group(3));
                 String opponentMoveMessage = gameMovePlayerMatcher.group(4);
-                if (pid != playerID) {
+                if (pid != game1.getPlayerID()) {
                     if (gameID.equals(game1ID)) {
-                        game1.opponentPlayerMove(opponentMoveMessage);
+
+                        Matcher PlacementMatcher = FrequentlyUsedPatterns.PlacementPattern.matcher(serverMessage);
+                        Matcher BuildMatcher = FrequentlyUsedPatterns.BuildPattern.matcher(serverMessage);
+                        String s = PlacementMatcher.group(1);
+                        if (s.equals("FOUND SETTLEMENT")) {//new settlement
+                            game.theirNewSettlement(Integer.parseInt(BuildMatcher.group(2)), Integer.parseInt(PlacementMatcher.group(3)), Integer.parseInt(PlacementMatcher.group(4)));
+
+                        } else if (s.equals("BUILD TOTORO SANCTUARY")) {//place totoro
+                            game.theirTiger(Integer.parseInt(BuildMatcher.group(2)), Integer.parseInt(PlacementMatcher.group(3)), Integer.parseInt(PlacementMatcher.group(4)));
+
+                        } else if (s.equals("EXPAND SETTLEMENT")) {//expand settlement
+                            game.theirExpandSettlement(Integer.parseInt(BuildMatcher.group(2)), Integer.parseInt(PlacementMatcher.group(3)), Integer.parseInt(PlacementMatcher.group(4)), Integer.parseInt(PlacementMatcher.group(5)));
+
+                        } else if (s.equals("BUILD TIGER PLAYGROUND")) {//place tiger
+                            game.theirTiger(Integer.parseInt(BuildMatcher.group(2)), Integer.parseInt(PlacementMatcher.group(3)), Integer.parseInt(PlacementMatcher.group(4)));
+
+                        }
+                        game1.theirTile((Integer.parseInt(PlacementMatcher.group(5))),
+                                1,2,            Integer.parseInt(PlacementMatcher.group(2)),
+                                                Integer.parseInt(PlacementMatcher.group(3)),
+                                                Integer.parseInt(PlacementMatcher.group(4)));
                     } else {
-                        game2.oppentPlayerMove(opponentMoveMessage);
+
+                        Matcher PlacementMatcher = FrequentlyUsedPatterns.PlacementPattern.matcher(serverMessage);
+                        Matcher BuildMatcher = FrequentlyUsedPatterns.BuildPattern.matcher(serverMessage);
+                        String s = PlacementMatcher.group(1);
+                        if (s.equals("FOUND SETTLEMENT")) {//new settlement
+                            game.theirNewSettlement(Integer.parseInt(BuildMatcher.group(2)), Integer.parseInt(PlacementMatcher.group(3)), Integer.parseInt(PlacementMatcher.group(4)));
+
+                        } else if (s.equals("BUILD TOTORO SANCTUARY")) {//place totoro
+                            game.theirTiger(Integer.parseInt(BuildMatcher.group(2)), Integer.parseInt(PlacementMatcher.group(3)), Integer.parseInt(PlacementMatcher.group(4)));
+
+                        } else if (s.equals("EXPAND SETTLEMENT")) {//expand settlement
+                            game.theirExpandSettlement(Integer.parseInt(BuildMatcher.group(2)), Integer.parseInt(PlacementMatcher.group(3)), Integer.parseInt(PlacementMatcher.group(4)), Integer.parseInt(PlacementMatcher.group(5)));
+
+                        } else if (s.equals("BUILD TIGER PLAYGROUND")) {//place tiger
+                            game.theirTiger(Integer.parseInt(BuildMatcher.group(2)), Integer.parseInt(PlacementMatcher.group(3)), Integer.parseInt(PlacementMatcher.group(4)));
+
+
+                            game2.theirTile((Integer.parseInt(PlacementMatcher.group(5))),
+                                1,2,            Integer.parseInt(PlacementMatcher.group(2)),
+                                Integer.parseInt(PlacementMatcher.group(3)),
+                                Integer.parseInt(PlacementMatcher.group(4)));
+                        }
                     }
                 }
             }
             System.out.println("Client: End of Move Protocol.");
         } catch (IOException ex) {
             System.out.println("Client: The Move Protocol has failed to connect to server.");
-        }*/
+        }
         System.out.println("Information sent to Server");
     }
 }
