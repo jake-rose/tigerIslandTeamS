@@ -455,7 +455,7 @@ public class TigerLandFinalTeamS {
         IsPlaced[PlacedCounter][1] = 0;
         IsPlaced[PlacedCounter][2] = 1;
         IsPlaced[PlacedCounter][3] = -1;
-        IsPlaced[PlacedCounter][4] = 2;  //jungle
+        IsPlaced[PlacedCounter][4] = 2;  //JUNGLE
         IsPlaced[PlacedCounter][5] = 0;
         IsPlaced[PlacedCounter][6] = TileIndex;
         IsPlaced[PlacedCounter++][7] = 1;
@@ -466,7 +466,7 @@ public class TigerLandFinalTeamS {
         IsPlaced[PlacedCounter][1] = 1;
         IsPlaced[PlacedCounter][2] = 0;
         IsPlaced[PlacedCounter][3] = -1;
-        IsPlaced[PlacedCounter][4] = 3;  //lake
+        IsPlaced[PlacedCounter][4] = 3;  //LAKE
         IsPlaced[PlacedCounter][5] = 0;
         IsPlaced[PlacedCounter][6] = TileIndex;
         IsPlaced[PlacedCounter++][7] = 1;
@@ -553,13 +553,13 @@ public class TigerLandFinalTeamS {
                                            if (IsPlaced[i][3] == z) {
                                                if (test1 == "volcano")
                                                    IsPlaced[i][4] = 0;
-                                               else if (test1 == "rocks")
+                                               else if (test1 == "ROCK")
                                                    IsPlaced[i][4] = 1;
-                                               else if (test1 == "jungle")
+                                               else if (test1 == "JUNGLE")
                                                    IsPlaced[i][4] = 2;
-                                               else if (test1 == "lake")
+                                               else if (test1 == "LAKE")
                                                    IsPlaced[i][4] = 3;
-                                               else if (test1 == "grassland")
+                                               else if (test1 == "GRASS")
                                                    IsPlaced[i][4] = 4;
                                                IsPlaced[i][5]=0;
                                                IsPlaced[i][7] = IsPlaced[i][7] + 1;
@@ -576,13 +576,13 @@ public class TigerLandFinalTeamS {
                                            if (IsPlaced[i][3] == z - 1) {
                                                if (test2 == "volcano")
                                                    IsPlaced[i][4] = 0;
-                                               else if (test2 == "rocks")
+                                               else if (test2 == "ROCK")
                                                    IsPlaced[i][4] = 1;
-                                               else if (test2 == "jungle")
+                                               else if (test2 == "JUNGLE")
                                                    IsPlaced[i][4] = 2;
-                                               else if (test2 == "lake")
+                                               else if (test2 == "LAKE")
                                                    IsPlaced[i][4] = 3;
-                                               else if (test2 == "grassland")
+                                               else if (test2 == "GRASS")
                                                    IsPlaced[i][4] = 4;
                                                IsPlaced[i][5]=0;
                                                IsPlaced[i][7] = IsPlaced[i][7] + 1;
@@ -599,13 +599,13 @@ public class TigerLandFinalTeamS {
                                            if (IsPlaced[i][3] == z - 1) {
                                                if (test3 == "volcano")
                                                    IsPlaced[i][4] = 0;
-                                               else if (test3 == "rocks")
+                                               else if (test3 == "ROCK")
                                                    IsPlaced[i][4] = 1;
-                                               else if (test3 == "jungle")
+                                               else if (test3 == "JUNGLE")
                                                    IsPlaced[i][4] = 2;
-                                               else if (test3 == "lake")
+                                               else if (test3 == "LAKE")
                                                    IsPlaced[i][4] = 3;
-                                               else if (test3 == "grassland")
+                                               else if (test3 == "GRASS")
                                                    IsPlaced[i][4] = 4;
                                                IsPlaced[i][5]=0;
                                                IsPlaced[i][7] = IsPlaced[i][7] + 1;
@@ -667,13 +667,13 @@ public class TigerLandFinalTeamS {
                                            if (IsPlaced[i][3] == z) {
                                                if (test1 == "volcano")
                                                    IsPlaced[i][4] = 0;
-                                               else if (test1 == "rocks")
+                                               else if (test1 == "ROCK")
                                                    IsPlaced[i][4] = 1;
-                                               else if (test1 == "jungle")
+                                               else if (test1 == "JUNGLE")
                                                    IsPlaced[i][4] = 2;
-                                               else if (test1 == "lake")
+                                               else if (test1 == "LAKE")
                                                    IsPlaced[i][4] = 3;
-                                               else if (test1 == "grassland")
+                                               else if (test1 == "GRASS")
                                                    IsPlaced[i][4] = 4;
                                                IsPlaced[i][5]=0;
                                                IsPlaced[i][7] = IsPlaced[i][7] + 1;
@@ -690,13 +690,13 @@ public class TigerLandFinalTeamS {
                                            if (IsPlaced[i][3] == z - 1) {
                                                if (test2 == "volcano")
                                                    IsPlaced[i][4] = 0;
-                                               else if (test2 == "rocks")
+                                               else if (test2 == "ROCK")
                                                    IsPlaced[i][4] = 1;
-                                               else if (test2 == "jungle")
+                                               else if (test2 == "JUNGLE")
                                                    IsPlaced[i][4] = 2;
-                                               else if (test2 == "lake")
+                                               else if (test2 == "LAKE")
                                                    IsPlaced[i][4] = 3;
-                                               else if (test2 == "grassland")
+                                               else if (test2 == "GRASS")
                                                    IsPlaced[i][4] = 4;
                                                IsPlaced[i][5]=0;
                                                IsPlaced[i][7] = IsPlaced[i][7] + 1;
@@ -713,13 +713,13 @@ public class TigerLandFinalTeamS {
                                            if (IsPlaced[i][3] == z) {
                                                if (test3 == "volcano")
                                                    IsPlaced[i][4] = 0;
-                                               else if (test3 == "rocks")
+                                               else if (test3 == "ROCK")
                                                    IsPlaced[i][4] = 1;
-                                               else if (test3 == "jungle")
+                                               else if (test3 == "JUNGLE")
                                                    IsPlaced[i][4] = 2;
-                                               else if (test3 == "lake")
+                                               else if (test3 == "LAKE")
                                                    IsPlaced[i][4] = 3;
-                                               else if (test3 == "grassland")
+                                               else if (test3 == "GRASS")
                                                    IsPlaced[i][4] = 4;
                                                IsPlaced[i][5]=0;
                                                IsPlaced[i][7] = IsPlaced[i][7] + 1;
@@ -777,13 +777,13 @@ public class TigerLandFinalTeamS {
                                            if (IsPlaced[i][3] == z) {
                                                if (test1 == "volcano")
                                                    IsPlaced[i][4] = 0;
-                                               else if (test1 == "rocks")
+                                               else if (test1 == "ROCK")
                                                    IsPlaced[i][4] = 1;
-                                               else if (test1 == "jungle")
+                                               else if (test1 == "JUNGLE")
                                                    IsPlaced[i][4] = 2;
-                                               else if (test1 == "lake")
+                                               else if (test1 == "LAKE")
                                                    IsPlaced[i][4] = 3;
-                                               else if (test1 == "grassland")
+                                               else if (test1 == "GRASS")
                                                    IsPlaced[i][4] = 4;
                                                IsPlaced[i][5]=0;
                                                IsPlaced[i][7] = IsPlaced[i][7] + 1;
@@ -800,13 +800,13 @@ public class TigerLandFinalTeamS {
                                            if (IsPlaced[i][3] == z) {
                                                if (test2 == "volcano")
                                                    IsPlaced[i][4] = 0;
-                                               else if (test2 == "rocks")
+                                               else if (test2 == "ROCK")
                                                    IsPlaced[i][4] = 1;
-                                               else if (test2 == "jungle")
+                                               else if (test2 == "JUNGLE")
                                                    IsPlaced[i][4] = 2;
-                                               else if (test2 == "lake")
+                                               else if (test2 == "LAKE")
                                                    IsPlaced[i][4] = 3;
-                                               else if (test2 == "grassland")
+                                               else if (test2 == "GRASS")
                                                    IsPlaced[i][4] = 4;
                                                IsPlaced[i][5]=0;
                                                IsPlaced[i][7] = IsPlaced[i][7] + 1;
@@ -823,13 +823,13 @@ public class TigerLandFinalTeamS {
                                            if (IsPlaced[i][3] == z + 1) {
                                                if (test3 == "volcano")
                                                    IsPlaced[i][4] = 0;
-                                               else if (test3 == "rocks")
+                                               else if (test3 == "ROCK")
                                                    IsPlaced[i][4] = 1;
-                                               else if (test3 == "jungle")
+                                               else if (test3 == "JUNGLE")
                                                    IsPlaced[i][4] = 2;
-                                               else if (test3 == "lake")
+                                               else if (test3 == "LAKE")
                                                    IsPlaced[i][4] = 3;
-                                               else if (test3 == "grassland")
+                                               else if (test3 == "GRASS")
                                                    IsPlaced[i][4] = 4;
                                                IsPlaced[i][5]=0;
                                                IsPlaced[i][7] = IsPlaced[i][7] + 1;
@@ -887,13 +887,13 @@ public class TigerLandFinalTeamS {
                                            if (IsPlaced[i][3] == z) {
                                                if (test1 == "volcano")
                                                    IsPlaced[i][4] = 0;
-                                               else if (test1 == "rocks")
+                                               else if (test1 == "ROCK")
                                                    IsPlaced[i][4] = 1;
-                                               else if (test1 == "jungle")
+                                               else if (test1 == "JUNGLE")
                                                    IsPlaced[i][4] = 2;
-                                               else if (test1 == "lake")
+                                               else if (test1 == "LAKE")
                                                    IsPlaced[i][4] = 3;
-                                               else if (test1 == "grassland")
+                                               else if (test1 == "GRASS")
                                                    IsPlaced[i][4] = 4;
                                                IsPlaced[i][5]=0;
                                                IsPlaced[i][7] = IsPlaced[i][7] + 1;
@@ -910,13 +910,13 @@ public class TigerLandFinalTeamS {
                                            if (IsPlaced[i][3] == z + 1) {
                                                if (test2 == "volcano")
                                                    IsPlaced[i][4] = 0;
-                                               else if (test2 == "rocks")
+                                               else if (test2 == "ROCK")
                                                    IsPlaced[i][4] = 1;
-                                               else if (test2 == "jungle")
+                                               else if (test2 == "JUNGLE")
                                                    IsPlaced[i][4] = 2;
-                                               else if (test2 == "lake")
+                                               else if (test2 == "LAKE")
                                                    IsPlaced[i][4] = 3;
-                                               else if (test2 == "grassland")
+                                               else if (test2 == "GRASS")
                                                    IsPlaced[i][4] = 4;
                                                IsPlaced[i][5]=0;
                                                IsPlaced[i][7] = IsPlaced[i][7] + 1;
@@ -933,13 +933,13 @@ public class TigerLandFinalTeamS {
                                            if (IsPlaced[i][3] == z + 1) {
                                                if (test3 == "volcano")
                                                    IsPlaced[i][4] = 0;
-                                               else if (test3 == "rocks")
+                                               else if (test3 == "ROCK")
                                                    IsPlaced[i][4] = 1;
-                                               else if (test3 == "jungle")
+                                               else if (test3 == "JUNGLE")
                                                    IsPlaced[i][4] = 2;
-                                               else if (test3 == "lake")
+                                               else if (test3 == "LAKE")
                                                    IsPlaced[i][4] = 3;
-                                               else if (test3 == "grassland")
+                                               else if (test3 == "GRASS")
                                                    IsPlaced[i][4] = 4;
                                                IsPlaced[i][5]=0;
                                                IsPlaced[i][7] = IsPlaced[i][7] + 1;
@@ -997,13 +997,13 @@ public class TigerLandFinalTeamS {
                                            if (IsPlaced[i][3] == z) {
                                                if (test1 == "volcano")
                                                    IsPlaced[i][4] = 0;
-                                               else if (test1 == "rocks")
+                                               else if (test1 == "ROCK")
                                                    IsPlaced[i][4] = 1;
-                                               else if (test1 == "jungle")
+                                               else if (test1 == "JUNGLE")
                                                    IsPlaced[i][4] = 2;
-                                               else if (test1 == "lake")
+                                               else if (test1 == "LAKE")
                                                    IsPlaced[i][4] = 3;
-                                               else if (test1 == "grassland")
+                                               else if (test1 == "GRASS")
                                                    IsPlaced[i][4] = 4;
                                                IsPlaced[i][5]=0;
                                                IsPlaced[i][7] = IsPlaced[i][7] + 1;
@@ -1020,13 +1020,13 @@ public class TigerLandFinalTeamS {
                                            if (IsPlaced[i][3] == z + 1) {
                                                if (test2 == "volcano")
                                                    IsPlaced[i][4] = 0;
-                                               else if (test2 == "rocks")
+                                               else if (test2 == "ROCK")
                                                    IsPlaced[i][4] = 1;
-                                               else if (test2 == "jungle")
+                                               else if (test2 == "JUNGLE")
                                                    IsPlaced[i][4] = 2;
-                                               else if (test2 == "lake")
+                                               else if (test2 == "LAKE")
                                                    IsPlaced[i][4] = 3;
-                                               else if (test2 == "grassland")
+                                               else if (test2 == "GRASS")
                                                    IsPlaced[i][4] = 4;
                                                IsPlaced[i][5]=0;
                                                IsPlaced[i][7] = IsPlaced[i][7] + 1;
@@ -1043,13 +1043,13 @@ public class TigerLandFinalTeamS {
                                            if (IsPlaced[i][3] == z) {
                                                if (test3 == "volcano")
                                                    IsPlaced[i][4] = 0;
-                                               else if (test3 == "rocks")
+                                               else if (test3 == "ROCK")
                                                    IsPlaced[i][4] = 1;
-                                               else if (test3 == "jungle")
+                                               else if (test3 == "JUNGLE")
                                                    IsPlaced[i][4] = 2;
-                                               else if (test3 == "lake")
+                                               else if (test3 == "LAKE")
                                                    IsPlaced[i][4] = 3;
-                                               else if (test3 == "grassland")
+                                               else if (test3 == "GRASS")
                                                    IsPlaced[i][4] = 4;
                                                IsPlaced[i][5]=0;
                                                IsPlaced[i][7] = IsPlaced[i][7] + 1;
@@ -1108,13 +1108,13 @@ public class TigerLandFinalTeamS {
                                            if (IsPlaced[i][3] == z) {
                                                if (test1 == "volcano")
                                                    IsPlaced[i][4] = 0;
-                                               else if (test1 == "rocks")
+                                               else if (test1 == "ROCK")
                                                    IsPlaced[i][4] = 1;
-                                               else if (test1 == "jungle")
+                                               else if (test1 == "JUNGLE")
                                                    IsPlaced[i][4] = 2;
-                                               else if (test1 == "lake")
+                                               else if (test1 == "LAKE")
                                                    IsPlaced[i][4] = 3;
-                                               else if (test1 == "grassland")
+                                               else if (test1 == "GRASS")
                                                    IsPlaced[i][4] = 4;
                                                IsPlaced[i][5]=0;
                                                IsPlaced[i][7] = IsPlaced[i][7] + 1;
@@ -1131,13 +1131,13 @@ public class TigerLandFinalTeamS {
                                            if (IsPlaced[i][3] == z) {
                                                if (test2 == "volcano")
                                                    IsPlaced[i][4] = 0;
-                                               else if (test2 == "rocks")
+                                               else if (test2 == "ROCK")
                                                    IsPlaced[i][4] = 1;
-                                               else if (test2 == "jungle")
+                                               else if (test2 == "JUNGLE")
                                                    IsPlaced[i][4] = 2;
-                                               else if (test2 == "lake")
+                                               else if (test2 == "LAKE")
                                                    IsPlaced[i][4] = 3;
-                                               else if (test2 == "grassland")
+                                               else if (test2 == "GRASS")
                                                    IsPlaced[i][4] = 4;
                                                IsPlaced[i][5]=0;
                                                IsPlaced[i][7] = IsPlaced[i][7] + 1;
@@ -1154,13 +1154,13 @@ public class TigerLandFinalTeamS {
                                            if (IsPlaced[i][3] == z - 1) {
                                                if (test3 == "volcano")
                                                    IsPlaced[i][4] = 0;
-                                               else if (test3 == "rocks")
+                                               else if (test3 == "ROCK")
                                                    IsPlaced[i][4] = 1;
-                                               else if (test3 == "jungle")
+                                               else if (test3 == "JUNGLE")
                                                    IsPlaced[i][4] = 2;
-                                               else if (test3 == "lake")
+                                               else if (test3 == "LAKE")
                                                    IsPlaced[i][4] = 3;
-                                               else if (test3 == "grassland")
+                                               else if (test3 == "GRASS")
                                                    IsPlaced[i][4] = 4;
                                                IsPlaced[i][5]=0;
                                                IsPlaced[i][7] = IsPlaced[i][7] + 1;
@@ -1193,13 +1193,13 @@ public class TigerLandFinalTeamS {
                            IsPlaced[PlacedCounter][3] = z;
                            if (test1 == "volcano")
                                IsPlaced[PlacedCounter][4] = 0;
-                           else if (test1 == "rocks")
+                           else if (test1 == "ROCK")
                                IsPlaced[PlacedCounter][4] = 1;
-                           else if (test1 == "jungle")
+                           else if (test1 == "JUNGLE")
                                IsPlaced[PlacedCounter][4] = 2;
-                           else if (test1 == "lake")
+                           else if (test1 == "LAKE")
                                IsPlaced[PlacedCounter][4] = 3;
-                           else if (test1 == "grassland")
+                           else if (test1 == "GRASS")
                                IsPlaced[PlacedCounter][4] = 4;
                            IsPlaced[PlacedCounter][7] = 1;
                            IsPlaced[PlacedCounter][5] = 0;
@@ -1227,13 +1227,13 @@ public class TigerLandFinalTeamS {
                                IsPlaced[PlacedCounter][3] = z - 1;
                                if (test2 == "volcano")
                                    IsPlaced[PlacedCounter][4] = 0;
-                               else if (test2 == "rocks")
+                               else if (test2 == "ROCK")
                                    IsPlaced[PlacedCounter][4] = 1;
-                               else if (test2 == "jungle")
+                               else if (test2 == "JUNGLE")
                                    IsPlaced[PlacedCounter][4] = 2;
-                               else if (test2 == "lake")
+                               else if (test2 == "LAKE")
                                    IsPlaced[PlacedCounter][4] = 3;
-                               else if (test2 == "grassland")
+                               else if (test2 == "GRASS")
                                    IsPlaced[PlacedCounter][4] = 4;
                                IsPlaced[PlacedCounter][7] = 1;
                                IsPlaced[PlacedCounter][5] = 0;
@@ -1247,13 +1247,13 @@ public class TigerLandFinalTeamS {
                                IsPlaced[PlacedCounter][3] = z - 1;
                                if (test3 == "volcano")
                                    IsPlaced[PlacedCounter][4] = 0;
-                               else if (test3 == "rocks")
+                               else if (test3 == "ROCK")
                                    IsPlaced[PlacedCounter][4] = 1;
-                               else if (test3 == "jungle")
+                               else if (test3 == "JUNGLE")
                                    IsPlaced[PlacedCounter][4] = 2;
-                               else if (test3 == "lake")
+                               else if (test3 == "LAKE")
                                    IsPlaced[PlacedCounter][4] = 3;
-                               else if (test3 == "grassland")
+                               else if (test3 == "GRASS")
                                    IsPlaced[PlacedCounter][4] = 4;
                                IsPlaced[PlacedCounter][7] = 1;
                                IsPlaced[PlacedCounter][5] = 0;
@@ -1282,13 +1282,13 @@ public class TigerLandFinalTeamS {
                                IsPlaced[PlacedCounter][3] = z - 1;
                                if (test2 == "volcano")
                                    IsPlaced[PlacedCounter][4] = 0;
-                               else if (test2 == "rocks")
+                               else if (test2 == "ROCK")
                                    IsPlaced[PlacedCounter][4] = 1;
-                               else if (test2 == "jungle")
+                               else if (test2 == "JUNGLE")
                                    IsPlaced[PlacedCounter][4] = 2;
-                               else if (test2 == "lake")
+                               else if (test2 == "LAKE")
                                    IsPlaced[PlacedCounter][4] = 3;
-                               else if (test2 == "grassland")
+                               else if (test2 == "GRASS")
                                    IsPlaced[PlacedCounter][4] = 4;
                                IsPlaced[PlacedCounter][7] = 1;
                                IsPlaced[PlacedCounter][5] = 0;
@@ -1301,13 +1301,13 @@ public class TigerLandFinalTeamS {
                                IsPlaced[PlacedCounter][3] = z;
                                if (test3 == "volcano")
                                    IsPlaced[PlacedCounter][4] = 0;
-                               else if (test3 == "rocks")
+                               else if (test3 == "ROCK")
                                    IsPlaced[PlacedCounter][4] = 1;
-                               else if (test3 == "jungle")
+                               else if (test3 == "JUNGLE")
                                    IsPlaced[PlacedCounter][4] = 2;
-                               else if (test3 == "lake")
+                               else if (test3 == "LAKE")
                                    IsPlaced[PlacedCounter][4] = 3;
-                               else if (test3 == "grassland")
+                               else if (test3 == "GRASS")
                                    IsPlaced[PlacedCounter][4] = 4;
                                IsPlaced[PlacedCounter][7] = 1;
                                IsPlaced[PlacedCounter][5] = 0;
@@ -1336,13 +1336,13 @@ public class TigerLandFinalTeamS {
                                IsPlaced[PlacedCounter][3] = z - 1;
                                if (test2 == "volcano")
                                    IsPlaced[PlacedCounter][4] = 0;
-                               else if (test2 == "rocks")
+                               else if (test2 == "ROCK")
                                    IsPlaced[PlacedCounter][4] = 1;
-                               else if (test2 == "jungle")
+                               else if (test2 == "JUNGLE")
                                    IsPlaced[PlacedCounter][4] = 2;
-                               else if (test2 == "lake")
+                               else if (test2 == "LAKE")
                                    IsPlaced[PlacedCounter][4] = 3;
-                               else if (test2 == "grassland")
+                               else if (test2 == "GRASS")
                                    IsPlaced[PlacedCounter][4] = 4;
                                IsPlaced[PlacedCounter][7] = 1;
                                IsPlaced[PlacedCounter][5] = 0;
@@ -1355,13 +1355,13 @@ public class TigerLandFinalTeamS {
                                IsPlaced[PlacedCounter][3] = z - 1;
                                if (test3 == "volcano")
                                    IsPlaced[PlacedCounter][4] = 0;
-                               else if (test3 == "rocks")
+                               else if (test3 == "ROCK")
                                    IsPlaced[PlacedCounter][4] = 1;
-                               else if (test3 == "jungle")
+                               else if (test3 == "JUNGLE")
                                    IsPlaced[PlacedCounter][4] = 2;
-                               else if (test3 == "lake")
+                               else if (test3 == "LAKE")
                                    IsPlaced[PlacedCounter][4] = 3;
-                               else if (test3 == "grassland")
+                               else if (test3 == "GRASS")
                                    IsPlaced[PlacedCounter][4] = 4;
                                IsPlaced[PlacedCounter][7] = 1;
                                IsPlaced[PlacedCounter][5] = 0;
@@ -1389,13 +1389,13 @@ public class TigerLandFinalTeamS {
                                IsPlaced[PlacedCounter][3] = z + 1;
                                if (test2 == "volcano")
                                    IsPlaced[PlacedCounter][4] = 0;
-                               else if (test2 == "rocks")
+                               else if (test2 == "ROCK")
                                    IsPlaced[PlacedCounter][4] = 1;
-                               else if (test2 == "jungle")
+                               else if (test2 == "JUNGLE")
                                    IsPlaced[PlacedCounter][4] = 2;
-                               else if (test2 == "lake")
+                               else if (test2 == "LAKE")
                                    IsPlaced[PlacedCounter][4] = 3;
-                               else if (test2 == "grassland")
+                               else if (test2 == "GRASS")
                                    IsPlaced[PlacedCounter][4] = 4;
                                IsPlaced[PlacedCounter][7] = 1;
                                IsPlaced[PlacedCounter][5] = 0;
@@ -1408,13 +1408,13 @@ public class TigerLandFinalTeamS {
                                IsPlaced[PlacedCounter][3] = z + 1;
                                if (test3 == "volcano")
                                    IsPlaced[PlacedCounter][4] = 0;
-                               else if (test3 == "rocks")
+                               else if (test3 == "ROCK")
                                    IsPlaced[PlacedCounter][4] = 1;
-                               else if (test3 == "jungle")
+                               else if (test3 == "JUNGLE")
                                    IsPlaced[PlacedCounter][4] = 2;
-                               else if (test3 == "lake")
+                               else if (test3 == "LAKE")
                                    IsPlaced[PlacedCounter][4] = 3;
-                               else if (test3 == "grassland")
+                               else if (test3 == "GRASS")
                                    IsPlaced[PlacedCounter][4] = 4;
                                IsPlaced[PlacedCounter][7] = 1;
                                IsPlaced[PlacedCounter][5] = 0;
@@ -1444,13 +1444,13 @@ public class TigerLandFinalTeamS {
                                IsPlaced[PlacedCounter][3] = z + 1;
                                if (test2 == "volcano")
                                    IsPlaced[PlacedCounter][4] = 0;
-                               else if (test2 == "rocks")
+                               else if (test2 == "ROCK")
                                    IsPlaced[PlacedCounter][4] = 1;
-                               else if (test2 == "jungle")
+                               else if (test2 == "JUNGLE")
                                    IsPlaced[PlacedCounter][4] = 2;
-                               else if (test2 == "lake")
+                               else if (test2 == "LAKE")
                                    IsPlaced[PlacedCounter][4] = 3;
-                               else if (test2 == "grassland")
+                               else if (test2 == "GRASS")
                                    IsPlaced[PlacedCounter][4] = 4;
                                IsPlaced[PlacedCounter][7] = 1;
                                IsPlaced[PlacedCounter][5] = 0;
@@ -1464,13 +1464,13 @@ public class TigerLandFinalTeamS {
 
                                if (test3 == "volcano")
                                    IsPlaced[PlacedCounter][4] = 0;
-                               else if (test3 == "rocks")
+                               else if (test3 == "ROCK")
                                    IsPlaced[PlacedCounter][4] = 1;
-                               else if (test3 == "jungle")
+                               else if (test3 == "JUNGLE")
                                    IsPlaced[PlacedCounter][4] = 2;
-                               else if (test3 == "lake")
+                               else if (test3 == "LAKE")
                                    IsPlaced[PlacedCounter][4] = 3;
-                               else if (test3 == "grassland")
+                               else if (test3 == "GRASS")
                                    IsPlaced[PlacedCounter][4] = 4;
                                IsPlaced[PlacedCounter][7] = 1;
                                IsPlaced[PlacedCounter][5] = 0;
@@ -1500,13 +1500,13 @@ public class TigerLandFinalTeamS {
                                IsPlaced[PlacedCounter][3] = z;
                                if (test2 == "volcano")
                                    IsPlaced[PlacedCounter][4] = 0;
-                               else if (test2 == "rocks")
+                               else if (test2 == "ROCK")
                                    IsPlaced[PlacedCounter][4] = 1;
-                               else if (test2 == "jungle")
+                               else if (test2 == "JUNGLE")
                                    IsPlaced[PlacedCounter][4] = 2;
-                               else if (test2 == "lake")
+                               else if (test2 == "LAKE")
                                    IsPlaced[PlacedCounter][4] = 3;
-                               else if (test2 == "grassland")
+                               else if (test2 == "GRASS")
                                    IsPlaced[PlacedCounter][4] = 4;
                                IsPlaced[PlacedCounter][7] = 1;
                                IsPlaced[PlacedCounter][5] = 0;
@@ -1521,13 +1521,13 @@ public class TigerLandFinalTeamS {
 
                                if (test3 == "volcano")
                                    IsPlaced[PlacedCounter][4] = 0;
-                               else if (test3 == "rocks")
+                               else if (test3 == "ROCK")
                                    IsPlaced[PlacedCounter][4] = 1;
-                               else if (test3 == "jungle")
+                               else if (test3 == "JUNGLE")
                                    IsPlaced[PlacedCounter][4] = 2;
-                               else if (test3 == "lake")
+                               else if (test3 == "LAKE")
                                    IsPlaced[PlacedCounter][4] = 3;
-                               else if (test3 == "grassland")
+                               else if (test3 == "GRASS")
                                    IsPlaced[PlacedCounter][4] = 4;
                                IsPlaced[PlacedCounter][7] = 1;
                                IsPlaced[PlacedCounter][5] = 0;
