@@ -29,7 +29,7 @@ public class ClientManager {
         String cid; //client ID
 
         //Connects to server
-        String ip = "localhost";
+        String ip = "10.136.88.175";
         int port = 6969;
         Client s = new Client(ip, port);
 
@@ -238,6 +238,7 @@ public class ClientManager {
         int pid;
         String tileGiven;
 
+
         try {
             //GAME gid MOVE # PLAYER pid move
             serverMessage = in.readLine();
@@ -256,7 +257,10 @@ public class ClientManager {
                 }
                 moveNumber = serverPromptMatcher.group(3);
                 tileGiven = serverPromptMatcher.group(4);
-                int hex1=1, hex2=2;
+                int temp=tileGiven.indexOf("+");
+                String t1=tileGiven.substring(0,temp);
+                String t2=tileGiven.substring(temp+1,tileGiven.length());
+                int hex1=Integer.parseInt(t1), hex2=Integer.parseInt(t2);
                 System.out.println("this is the tileGiven: "+tileGiven);
 
 
