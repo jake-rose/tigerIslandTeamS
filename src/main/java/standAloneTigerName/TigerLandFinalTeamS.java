@@ -1,9 +1,6 @@
-import com.company.tile;
+package standAloneTigerName;
 
-
-import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 /**
  * Created by caichangzhou on 4/10/17.
@@ -43,8 +40,8 @@ public class TigerLandFinalTeamS {
 
     public TigerLandFinalTeamS(int pid, int oid)
     {
-            this.pid=pid;
-            this.oid=oid;
+        this.pid=pid;
+        this.oid=oid;
     }
 
 
@@ -389,59 +386,70 @@ public class TigerLandFinalTeamS {
             piecePlace(array[0],array[1],array[2],1,0);
 
     }
-
-    public int AIMoveX()
+    // for tile
+    public static int AIMoveX()
     {
         return x;
     }
 
-    public int AIMoveY()
+    public static int AIMoveY()
     {
         return y;
     }
 
-    public int AIMoveZ()
+    public static int AIMoveZ()
     {
         return z;
     }
 
-    public int AIMoveO()
+    public static int AIMoveO()
     {
         return o1;
     }
 
-    public int AIMeepleMoveX()
+
+    // meeple move
+    public static int AIMeepleMoveX()
     {
         return Mx;
     }
 
-    public int AIMeepleMoveY()
+    public static int AIMeepleMoveY()
     {
         return My;
     }
 
-    public int AIMeepleMoveZ()
+    public static int AIMeepleMoveZ()
     {
         return Mz;
     }
 
 
-    public int AITigerMoveX()
+    // standAloneTigerName move
+    public static int AITigerMoveX()
     {
         return Sx;
     }
 
-    public int AITigerMoveY()
+    public static int AITigerMoveY()
     {
         return Sy;
     }
 
-    public int AITigerMoveZ()
+    public static int AITigerMoveZ()
     {
         return Sz;
     }
 
+    public static int AIChooseTiger()
+    {
+        return op1;
+    }
 
+    public static int AIChooseMeelple()
+    {
+        return op2;
+    }
 
     public  int  AIop()
     {
@@ -508,8 +516,8 @@ public class TigerLandFinalTeamS {
         IsPlaced[PlacedCounter++][7] = 1;
     }
 
-   private static void placeTile(int x, int y, int z, int o,String t1, String t2)
-   {
+   public static void placeTile(int x, int y, int z, int o,String t1, String t2)
+       {
 
 
 
@@ -1573,7 +1581,7 @@ public class TigerLandFinalTeamS {
 
    }
 
-   private static void piecePlace(int x, int y, int z, int o, int w)
+   public static void piecePlace(int x, int y, int z, int o, int w)
    {
 
            if(EndGame==false && piecePlaced==false && player1roundsEnd==false && tilePlaced==true)
