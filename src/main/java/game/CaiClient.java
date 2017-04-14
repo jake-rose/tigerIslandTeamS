@@ -21,9 +21,9 @@ public class CaiClient {
 
     private static TigerLandFinalTeamS game1;
     private static TigerLandFinalTeamS game2;
-
+    private int playerID;
     public static void main(String[] args) throws Exception{
-        ClientManager clientManager = new ClientManager();
+        CaiClient clientManager = new CaiClient();
 
         clientManager.TournamentProtocol();
 
@@ -120,9 +120,10 @@ public class CaiClient {
             incomingMessage = in.readLine();
             System.out.println("Server: " + incomingMessage);
             Matcher PlayerIDMatcher = PlayerIDPattern.matcher(incomingMessage);
+            PlayerIDMatcher.matches();
             System.out.println("PlayerIDMatcher: "+PlayerIDPattern);
             if (PlayerIDMatcher.matches()) {
-                int playerID = Integer.parseInt(PlayerIDMatcher.group(1));
+                playerID = Integer.parseInt(PlayerIDMatcher.group(1));
                 System.out.println("Player ID was a MATCH!!");
                 authenticated = true;
             } else
@@ -147,6 +148,7 @@ public class CaiClient {
                 System.out.println("ChallengeProtocol~ Server Message: "+ serverMessage);
                 System.out.println("Server: " + serverMessage);
                 Matcher ChallengeMatcher = FrequentlyUsedPatterns.ChallengePattern.matcher(serverMessage);
+                ChallengeMatcher.matches();
                 System.out.println("ChallengeMatcher: "+ChallengeMatcher);
                 if (ChallengeMatcher.matches()) {
                     challengeId = Integer.parseInt(ChallengeMatcher.group(1));
@@ -203,7 +205,9 @@ public class CaiClient {
             Matcher NewMatchMatcher = FrequentlyUsedPatterns.NewMatchPattern.matcher(serverMessage);
             Matcher PlayerIDMatcher = FrequentlyUsedPatterns.PlayerIDPattern.matcher(serverMessage);
             Matcher GameOverMatcher = FrequentlyUsedPatterns.GameOverPattern.matcher(serverMessage);
-
+            NewMatchMatcher.matches();
+            PlayerIDMatcher.matches();
+            GameOverMatcher.matches();
 
             if (NewMatchMatcher.matches()) {
                 int opponentID = Integer.parseInt(NewMatchMatcher.group(1));
@@ -256,6 +260,10 @@ public class CaiClient {
             Matcher gameMovePlayerMatcher = FrequentlyUsedPatterns.GameMovePlayerPattern.matcher(serverMessage);
             Matcher gameForfeitedMatcher = FrequentlyUsedPatterns.GameForfeitedPattern.matcher(serverMessage);
             Matcher gameLostMatcher = FrequentlyUsedPatterns.GameLostPattern.matcher(serverMessage);
+            serverPromptMatcher.matches();
+            gameMovePlayerMatcher.matches();
+            gameForfeitedMatcher.matches();
+            gameLostMatcher.matches();
             if (serverPromptMatcher.matches()) {
                 gameID = serverPromptMatcher.group(1);
                 if (game1ID == null) {
@@ -272,6 +280,7 @@ public class CaiClient {
                 int hex1=Integer.parseInt(t1), hex2=Integer.parseInt(t2);
                 System.out.println("this is the tileGiven: "+tileGiven);
 
+                TigerLandFinalTeamS.AI(t1,t2);
 
 
                 //place and build message from the AI
@@ -336,6 +345,8 @@ public class CaiClient {
                 if (pid != game1.getPid()) {
                     Matcher PlacementMatcher = FrequentlyUsedPatterns.PlacementPattern.matcher(serverMessage);
                     Matcher BuildMatcher = FrequentlyUsedPatterns.BuildPattern.matcher(serverMessage);
+                    PlacementMatcher.matches();
+                    BuildMatcher.matches();
                     String s = PlacementMatcher.group(1);
                     String temp = PlacementMatcher.group(5);
                     int w= 0;
