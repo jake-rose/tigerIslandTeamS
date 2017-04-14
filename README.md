@@ -1,5 +1,7 @@
 # tigerIslandTeamS
 
+This repo features two independant programs, one run from src/main/java/game/ClientManager.java and one from src/main/java/standAloneTigerGame/CaiClient.java. There was a slight team divide.
+
 Note: must change CucumberRunTest.java file feature directory
 ## DO NOT COMMIT CHANGES TO CucumberRunTest.java
 ****
