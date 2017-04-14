@@ -1,27 +1,35 @@
 package game;
+
+/**
+ * Created by TK on 2017/4/12.
+ */
+
+import org.omg.CORBA.TIMEOUT;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.regex.Matcher;
-import java.lang.*;
 
 import static game.FrequentlyUsedPatterns.PlayerIDPattern;
+import java.lang.*;
 
 
-public class ClientManager {
 
-    private static Game game1;
-    private static Game game2;
+public class CaiClient {
+
+    private static TigerLandFinalTeamS game1;
+    private static TigerLandFinalTeamS game2;
 
     public static void main(String[] args) throws Exception{
         ClientManager clientManager = new ClientManager();
 
-         clientManager.TournamentProtocol();
+        clientManager.TournamentProtocol();
 
     }
 
-    public ClientManager(){
+    public CaiClient(){
 
         int challenges, gid, orientation, pid, rid, rounds, score, moveNum;
         boolean gameEnded;
@@ -200,10 +208,11 @@ public class ClientManager {
             if (NewMatchMatcher.matches()) {
                 int opponentID = Integer.parseInt(NewMatchMatcher.group(1));
                 int playerID = Integer.parseInt(PlayerIDMatcher.group(1));
+
                 int game1ID = Integer.parseInt(GameOverMatcher.group(1));
                 int game2ID = Integer.parseInt(GameOverMatcher.group(1));
-                this.game1 = new Game(playerID, opponentID, game1ID);
-                this.game2 = new Game(playerID, opponentID, game2ID);
+                this.game1 = new TigerLandFinalTeamS(playerID,opponentID);
+                this.game2 = new TigerLandFinalTeamS(playerID,opponentID);
 
 
 
@@ -229,7 +238,7 @@ public class ClientManager {
 
 
     // MoveProtocol
-    public void MoveProtocol(BufferedReader in, PrintWriter out,Game game) {
+    public void MoveProtocol(BufferedReader in, PrintWriter out,TigerLandFinalTeamS game) {
         String serverMessage = "";
         String clientMessage = "";
         String placeddAndBuildMsg = "";
@@ -237,7 +246,7 @@ public class ClientManager {
         String game1ID=null, game2ID=null;
         int pid;
         String tileGiven;
-
+        String t1 = "",t2 = "";
 
         try {
             //GAME gid MOVE # PLAYER pid move
@@ -258,8 +267,8 @@ public class ClientManager {
                 moveNumber = serverPromptMatcher.group(3);
                 tileGiven = serverPromptMatcher.group(4);
                 int temp=tileGiven.indexOf("+");
-                String t1=tileGiven.substring(0,temp);
-                String t2=tileGiven.substring(temp+1,tileGiven.length());
+                t1=tileGiven.substring(0,temp);
+                t2=tileGiven.substring(temp+1,tileGiven.length());
                 int hex1=Integer.parseInt(t1), hex2=Integer.parseInt(t2);
                 System.out.println("this is the tileGiven: "+tileGiven);
 
@@ -267,57 +276,35 @@ public class ClientManager {
 
                 //place and build message from the AI
                 if (gameID.equals(game1ID)) {
-                    clientMessage = "GAME " + gameID + " MOVE " + moveNumber + " PLACE "+tileGiven + " AT "+ game.ourTile(hex1, hex2);
-                    int[] MoveBuildOption = game.ourPiece();
-                    switch (MoveBuildOption[0]) {
-                        case 0:
+                    clientMessage = "GAME " + gameID + " MOVE " + moveNumber + " PLACE "+tileGiven + " AT "
+                            + TigerLandFinalTeamS.AIMoveX() + TigerLandFinalTeamS.AIMoveY() + TigerLandFinalTeamS.AIMoveZ() + TigerLandFinalTeamS.AIMoveO();
+
+                   if(TigerLandFinalTeamS.AIChooseMeelple() == 1){
                             //new settlement
                             clientMessage+=" FOUND SETTLEMENT AT ";
-                            clientMessage+= MoveBuildOption[1]+" "+ MoveBuildOption[2]+" "+MoveBuildOption[3];
-                            break;
-                        case 1:
-                            //place totoro
-                            clientMessage+=" BUILD TOTORO SANCTUARY AT ";
-                            clientMessage+= MoveBuildOption[1]+" "+ MoveBuildOption[2]+" "+MoveBuildOption[3];
-                            break;
-                        case 2:
-                            //expand settlement
-                            clientMessage+=" EXPAND SETTLEMENT AT ";
-                            clientMessage+= MoveBuildOption[1]+" "+ MoveBuildOption[2]+" "+MoveBuildOption[3]+" "+MoveBuildOption[4];
-                            break;
-                        case 3:
+                            clientMessage+= TigerLandFinalTeamS.AIMeepleMoveX()+" "+ TigerLandFinalTeamS.AIMeepleMoveY()+" "+TigerLandFinalTeamS.AIMeepleMoveZ();
+                            }
+                    if(TigerLandFinalTeamS.AIChooseTiger() == 1){
                             //place tiger
                             clientMessage+=" BUILD TIGER PLAYGROUND AT ";
-                            clientMessage+= MoveBuildOption[1]+" "+ MoveBuildOption[2]+" "+MoveBuildOption[3];
-                            break;
+                            clientMessage+= TigerLandFinalTeamS.AITigerMoveX()+" "+ TigerLandFinalTeamS.AITigerMoveY()+" "+TigerLandFinalTeamS.AITigerMoveZ();
                     }
 
 
 
                 } else {//play for game2
-                    clientMessage = "GAME " + gameID + " MOVE " + moveNumber + " PLACE "+tileGiven + " AT "+ game.ourTile(hex1, hex2);
-                    int[] MoveBuildOption = game.ourPiece();
-                    switch (MoveBuildOption[0]) {
-                        case 0:
-                            //new settlement
-                            clientMessage+=" FOUND SETTLEMENT AT ";
-                            clientMessage+= MoveBuildOption[1]+" "+ MoveBuildOption[2]+" "+MoveBuildOption[3];
-                            break;
-                        case 1:
-                            //place totoro
-                            clientMessage+=" BUILD TOTORO SANCTUARY AT ";
-                            clientMessage+= MoveBuildOption[1]+" "+ MoveBuildOption[2]+" "+MoveBuildOption[3];
-                            break;
-                        case 2:
-                            //expand settlement
-                            clientMessage+=" EXPAND SETTLEMENT AT ";
-                            clientMessage+= MoveBuildOption[1]+" "+ MoveBuildOption[2]+" "+MoveBuildOption[3]+" "+MoveBuildOption[4];
-                            break;
-                        case 3:
-                            //place tiger
-                            clientMessage+=" BUILD TIGER PLAYGROUND AT ";
-                            clientMessage+= MoveBuildOption[1]+" "+ MoveBuildOption[2]+" "+MoveBuildOption[3];
-                            break;
+                    clientMessage = "GAME " + gameID + " MOVE " + moveNumber + " PLACE "+tileGiven + " AT "+
+                            TigerLandFinalTeamS.AIMoveX() + TigerLandFinalTeamS.AIMoveY() + TigerLandFinalTeamS.AIMoveZ() + TigerLandFinalTeamS.AIMoveO();
+
+                    if(TigerLandFinalTeamS.AIChooseMeelple() == 1){
+                        //new settlement
+                        clientMessage+=" FOUND SETTLEMENT AT ";
+                        clientMessage+= TigerLandFinalTeamS.AIMeepleMoveX()+" "+ TigerLandFinalTeamS.AIMeepleMoveY()+" "+TigerLandFinalTeamS.AIMeepleMoveZ();
+                    }
+                    if(TigerLandFinalTeamS.AIChooseTiger() == 1){
+                        //place tiger
+                        clientMessage+=" BUILD TIGER PLAYGROUND AT ";
+                        clientMessage+= TigerLandFinalTeamS.AITigerMoveX()+" "+ TigerLandFinalTeamS.AITigerMoveY()+" "+TigerLandFinalTeamS.AITigerMoveZ();
                     }
                 }
 
@@ -346,52 +333,65 @@ public class ClientManager {
                 gameID = gameMovePlayerMatcher.group(1);
                 pid = Integer.parseInt(gameMovePlayerMatcher.group(3));
                 String opponentMoveMessage = gameMovePlayerMatcher.group(4);
-                if (pid != game1.getPlayerID()) {
+                if (pid != game1.getPid()) {
+                    Matcher PlacementMatcher = FrequentlyUsedPatterns.PlacementPattern.matcher(serverMessage);
+                    Matcher BuildMatcher = FrequentlyUsedPatterns.BuildPattern.matcher(serverMessage);
+                    String s = PlacementMatcher.group(1);
+                    String temp = PlacementMatcher.group(5);
+                    int w= 0;
                     if (gameID.equals(game1ID)) {
+                        if (temp == "ROCK")
+                            w = 1;
+                        else if (temp == "JUNGLE")
+                           w = 2;
+                        else if (temp == "LAKE")
+                            w = 3;
+                        else if (temp == "GRASS")
+                            w = 4;
 
-                        Matcher PlacementMatcher = FrequentlyUsedPatterns.PlacementPattern.matcher(serverMessage);
-                        Matcher BuildMatcher = FrequentlyUsedPatterns.BuildPattern.matcher(serverMessage);
-                        String s = PlacementMatcher.group(1);
                         if (s.equals("FOUND SETTLEMENT")) {//new settlement
-                            game.theirNewSettlement(Integer.parseInt(BuildMatcher.group(2)), Integer.parseInt(PlacementMatcher.group(3)), Integer.parseInt(PlacementMatcher.group(4)));
+                            TigerLandFinalTeamS.piecePlace(Integer.parseInt(BuildMatcher.group(2)), Integer.parseInt(PlacementMatcher.group(3)), Integer.parseInt(PlacementMatcher.group(4)),1,0);
 
                         } else if (s.equals("BUILD TOTORO SANCTUARY")) {//place totoro
-                            game.theirTiger(Integer.parseInt(BuildMatcher.group(2)), Integer.parseInt(PlacementMatcher.group(3)), Integer.parseInt(PlacementMatcher.group(4)));
+                            TigerLandFinalTeamS.piecePlace(Integer.parseInt(BuildMatcher.group(2)), Integer.parseInt(PlacementMatcher.group(3)), Integer.parseInt(PlacementMatcher.group(4)),2,0);
 
                         } else if (s.equals("EXPAND SETTLEMENT")) {//expand settlement
-                            game.theirExpandSettlement(Integer.parseInt(BuildMatcher.group(2)), Integer.parseInt(PlacementMatcher.group(3)), Integer.parseInt(PlacementMatcher.group(4)), Integer.parseInt(PlacementMatcher.group(5)));
+                           TigerLandFinalTeamS.piecePlace(Integer.parseInt(BuildMatcher.group(2)), Integer.parseInt(PlacementMatcher.group(3)), Integer.parseInt(PlacementMatcher.group(4)), 4,w);
 
                         } else if (s.equals("BUILD TIGER PLAYGROUND")) {//place tiger
-                            game.theirTiger(Integer.parseInt(BuildMatcher.group(2)), Integer.parseInt(PlacementMatcher.group(3)), Integer.parseInt(PlacementMatcher.group(4)));
+                            TigerLandFinalTeamS.piecePlace(Integer.parseInt(BuildMatcher.group(2)), Integer.parseInt(PlacementMatcher.group(3)), Integer.parseInt(PlacementMatcher.group(4)),3,0);
 
                         }
-                        game1.theirTile((Integer.parseInt(PlacementMatcher.group(5))),
-                                1,2,            Integer.parseInt(PlacementMatcher.group(2)),
-                                                Integer.parseInt(PlacementMatcher.group(3)),
-                                                Integer.parseInt(PlacementMatcher.group(4)));
-                    } else {
-
-                        Matcher PlacementMatcher = FrequentlyUsedPatterns.PlacementPattern.matcher(serverMessage);
-                        Matcher BuildMatcher = FrequentlyUsedPatterns.BuildPattern.matcher(serverMessage);
-                        String s = PlacementMatcher.group(1);
-                        if (s.equals("FOUND SETTLEMENT")) {//new settlement
-                            game.theirNewSettlement(Integer.parseInt(BuildMatcher.group(2)), Integer.parseInt(PlacementMatcher.group(3)), Integer.parseInt(PlacementMatcher.group(4)));
-
-                        } else if (s.equals("BUILD TOTORO SANCTUARY")) {//place totoro
-                            game.theirTiger(Integer.parseInt(BuildMatcher.group(2)), Integer.parseInt(PlacementMatcher.group(3)), Integer.parseInt(PlacementMatcher.group(4)));
-
-                        } else if (s.equals("EXPAND SETTLEMENT")) {//expand settlement
-                            game.theirExpandSettlement(Integer.parseInt(BuildMatcher.group(2)), Integer.parseInt(PlacementMatcher.group(3)), Integer.parseInt(PlacementMatcher.group(4)), Integer.parseInt(PlacementMatcher.group(5)));
-
-                        } else if (s.equals("BUILD TIGER PLAYGROUND")) {//place tiger
-                            game.theirTiger(Integer.parseInt(BuildMatcher.group(2)), Integer.parseInt(PlacementMatcher.group(3)), Integer.parseInt(PlacementMatcher.group(4)));
-
-
-                            game2.theirTile((Integer.parseInt(PlacementMatcher.group(5))),
-                                1,2,            Integer.parseInt(PlacementMatcher.group(2)),
+                        game1.placeTile( Integer.parseInt(PlacementMatcher.group(2)),
                                 Integer.parseInt(PlacementMatcher.group(3)),
-                                Integer.parseInt(PlacementMatcher.group(4)));
+                                Integer.parseInt(PlacementMatcher.group(4)),(Integer.parseInt(PlacementMatcher.group(5))),
+                               t1,t2);
+                    } else {
+                        if (temp == "ROCK")
+                            w = 1;
+                        else if (temp == "JUNGLE")
+                            w = 2;
+                        else if (temp == "LAKE")
+                            w = 3;
+                        else if (temp == "GRASS")
+                            w = 4;
+
+                        if (s.equals("FOUND SETTLEMENT")) {//new settlement
+                            TigerLandFinalTeamS.piecePlace(Integer.parseInt(BuildMatcher.group(2)), Integer.parseInt(PlacementMatcher.group(3)), Integer.parseInt(PlacementMatcher.group(4)),1,0);
+
+                        } else if (s.equals("BUILD TOTORO SANCTUARY")) {//place totoro
+                            TigerLandFinalTeamS.piecePlace(Integer.parseInt(BuildMatcher.group(2)), Integer.parseInt(PlacementMatcher.group(3)), Integer.parseInt(PlacementMatcher.group(4)),2,0);
+
+                        } else if (s.equals("EXPAND SETTLEMENT")) {//expand settlement
+                            TigerLandFinalTeamS.piecePlace(Integer.parseInt(BuildMatcher.group(2)), Integer.parseInt(PlacementMatcher.group(3)), Integer.parseInt(PlacementMatcher.group(4)), 4,w);
+
+                        } else if (s.equals("BUILD TIGER PLAYGROUND")) {//place tiger
+                            TigerLandFinalTeamS.piecePlace(Integer.parseInt(BuildMatcher.group(2)), Integer.parseInt(PlacementMatcher.group(3)), Integer.parseInt(PlacementMatcher.group(4)),3,0);
                         }
+                        game1.placeTile( Integer.parseInt(PlacementMatcher.group(2)),
+                                Integer.parseInt(PlacementMatcher.group(3)),
+                                Integer.parseInt(PlacementMatcher.group(4)),(Integer.parseInt(PlacementMatcher.group(5))),
+                                t1,t2);
                     }
                 }
             }
