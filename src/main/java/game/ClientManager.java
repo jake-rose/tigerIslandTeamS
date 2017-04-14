@@ -29,7 +29,7 @@ public class ClientManager {
         String cid; //client ID
 
         //Connects to server
-        String ip = "localhost";
+        String ip = "10.136.71.15";
         int port = 6969;
         Client s = new Client(ip, port);
 
@@ -88,8 +88,8 @@ public class ClientManager {
     public boolean AuthenticationProtocol(BufferedReader in, PrintWriter out) {
         boolean authenticated = false;
         String tournamentPassword = "heygang";
-        String username = "S";
-        String password = "S";
+        String username = "P";
+        String password = "P";
         String incomingMessage, outgoingMessage;
         try {
             //ENTER THUNDERDOME *input the tournament password
@@ -286,7 +286,7 @@ public class ClientManager {
                             clientMessage+= MoveBuildOption[1]+" "+ MoveBuildOption[2]+" "+MoveBuildOption[3]+" "+MoveBuildOption[4];
                             break;
                         case 3:
-                            //place tiger
+                            //place standAloneTigerName
                             clientMessage+=" BUILD TIGER PLAYGROUND AT ";
                             clientMessage+= MoveBuildOption[1]+" "+ MoveBuildOption[2]+" "+MoveBuildOption[3];
                             break;
@@ -314,7 +314,7 @@ public class ClientManager {
                             clientMessage+= MoveBuildOption[1]+" "+ MoveBuildOption[2]+" "+MoveBuildOption[3]+" "+MoveBuildOption[4];
                             break;
                         case 3:
-                            //place tiger
+                            //place standAloneTigerName
                             clientMessage+=" BUILD TIGER PLAYGROUND AT ";
                             clientMessage+= MoveBuildOption[1]+" "+ MoveBuildOption[2]+" "+MoveBuildOption[3];
                             break;
@@ -361,7 +361,7 @@ public class ClientManager {
                         } else if (s.equals("EXPAND SETTLEMENT")) {//expand settlement
                             game.theirExpandSettlement(Integer.parseInt(BuildMatcher.group(2)), Integer.parseInt(PlacementMatcher.group(3)), Integer.parseInt(PlacementMatcher.group(4)), Integer.parseInt(PlacementMatcher.group(5)));
 
-                        } else if (s.equals("BUILD TIGER PLAYGROUND")) {//place tiger
+                        } else if (s.equals("BUILD TIGER PLAYGROUND")) {//place standAloneTigerName
                             game.theirTiger(Integer.parseInt(BuildMatcher.group(2)), Integer.parseInt(PlacementMatcher.group(3)), Integer.parseInt(PlacementMatcher.group(4)));
 
                         }
@@ -383,7 +383,7 @@ public class ClientManager {
                         } else if (s.equals("EXPAND SETTLEMENT")) {//expand settlement
                             game.theirExpandSettlement(Integer.parseInt(BuildMatcher.group(2)), Integer.parseInt(PlacementMatcher.group(3)), Integer.parseInt(PlacementMatcher.group(4)), Integer.parseInt(PlacementMatcher.group(5)));
 
-                        } else if (s.equals("BUILD TIGER PLAYGROUND")) {//place tiger
+                        } else if (s.equals("BUILD TIGER PLAYGROUND")) {//place standAloneTigerName
                             game.theirTiger(Integer.parseInt(BuildMatcher.group(2)), Integer.parseInt(PlacementMatcher.group(3)), Integer.parseInt(PlacementMatcher.group(4)));
 
 

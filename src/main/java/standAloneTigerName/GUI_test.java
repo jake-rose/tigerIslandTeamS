@@ -1,5 +1,5 @@
-
 package com.company;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.Ellipse2D;
@@ -48,8 +48,8 @@ class ImageFrame7 extends JFrame {
     private Polygon Boards [] = new Polygon[200];
     private Polygon Game [] =new Polygon[200]; //     0         1  2  3      4            5                     6       7      8                   9
     private int IsPlaced [][]=new int [999][10];// [occupition][x][y][z][landscape][player 1&2 piece type][tileIndex][level][settlement size][settlement index]
-    private int PlacedCounter =0;              //    [piece]  ==> 1= meeple  2= totora  3= tiger else 0=nothing for player 1
-    private int TileIndex=0;                   //    [piece]  ==> 4= meeple  5= totora  6= tiger else 0=nothing for player 2
+    private int PlacedCounter =0;              //    [piece]  ==> 1= meeple  2= totora  3= standAloneTigerName else 0=nothing for player 1
+    private int TileIndex=0;                   //    [piece]  ==> 4= meeple  5= totora  6= standAloneTigerName else 0=nothing for player 2
     private boolean firstTile =true;
     private boolean adj= false;
     private int meeple = 20;
@@ -1546,7 +1546,7 @@ class ImageFrame7 extends JFrame {
                         try {
                             z=Integer.parseInt(input3);
                             //g2d.drawPolygon(FindHex(x,y,z));
-                            String input4 = JOptionPane.showInputDialog("Please give a type of piece (1 for meeple, 2 for totora, 3 for tiger):");
+                            String input4 = JOptionPane.showInputDialog("Please give a type of piece (1 for meeple, 2 for totora, 3 for standAloneTigerName):");
                             try {
                                 o = Integer.parseInt(input4);
                                     if(EndGame==false && piecePlaced==false && player1roundsEnd==false && tilePlaced==true)
@@ -1568,7 +1568,7 @@ class ImageFrame7 extends JFrame {
                                                                 if (meeple == 0) {
                                                                     EndGame = true;
                                                                 }
-                                                                System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                                                System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                                 System.out.println(IsPlaced[i][5]);
                                                                 break;
                                                             }
@@ -1608,7 +1608,7 @@ class ImageFrame7 extends JFrame {
                                                                     if (totora == 0) {
                                                                         EndGame = true;
                                                                     }
-                                                                    System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                                                    System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                                     System.out.println(IsPlaced[i][5]);
                                                                     break;
                                                                 }
@@ -1623,7 +1623,7 @@ class ImageFrame7 extends JFrame {
                                                                     if (totora == 0) {
                                                                         EndGame = true;
                                                                     }
-                                                                    System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                                                    System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                                     System.out.println(IsPlaced[i][5]);
                                                                     break;
                                                                 }
@@ -1638,7 +1638,7 @@ class ImageFrame7 extends JFrame {
                                                                     if (totora == 0) {
                                                                         EndGame = true;
                                                                     }
-                                                                    System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                                                    System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                                     System.out.println(IsPlaced[i][5]);
                                                                     break;
                                                                 }
@@ -1653,7 +1653,7 @@ class ImageFrame7 extends JFrame {
                                                                     if (totora == 0) {
                                                                         EndGame = true;
                                                                     }
-                                                                    System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                                                    System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                                     System.out.println(IsPlaced[i][5]);
                                                                     break;
                                                                 }
@@ -1668,7 +1668,7 @@ class ImageFrame7 extends JFrame {
                                                                     if (totora == 0) {
                                                                         EndGame = true;
                                                                     }
-                                                                    System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                                                    System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                                     System.out.println(IsPlaced[i][5]);
                                                                     break;
                                                                 }
@@ -1683,7 +1683,7 @@ class ImageFrame7 extends JFrame {
                                                                     if (totora == 0) {
                                                                         EndGame = true;
                                                                     }
-                                                                    System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                                                    System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                                     System.out.println(IsPlaced[i][5]);
                                                                     break;
                                                                 }
@@ -1717,7 +1717,7 @@ class ImageFrame7 extends JFrame {
                                                                 if (tiger == 0) {
                                                                     EndGame = true;
                                                                 }
-                                                                System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                                                System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                                 System.out.println(IsPlaced[i][5]);
                                                                 break;
                                                             }
@@ -1778,7 +1778,7 @@ class ImageFrame7 extends JFrame {
                                                                     if (meeple == 0) {
                                                                         EndGame = true;
                                                                     }
-                                                                    System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                                                    System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                                     System.out.println(IsPlaced[i][5]);
                                                                     break;
                                                                 }
@@ -1824,7 +1824,7 @@ class ImageFrame7 extends JFrame {
                                                                         if (totora == 0) {
                                                                             EndGame = true;
                                                                         }
-                                                                        System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                                                        System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                                         System.out.println(IsPlaced[i][5]);
                                                                         break;
                                                                     }
@@ -1839,7 +1839,7 @@ class ImageFrame7 extends JFrame {
                                                                         if (totora == 0) {
                                                                             EndGame = true;
                                                                         }
-                                                                        System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                                                        System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                                         System.out.println(IsPlaced[i][5]);
                                                                         break;
                                                                     }
@@ -1854,7 +1854,7 @@ class ImageFrame7 extends JFrame {
                                                                         if (totora == 0) {
                                                                             EndGame = true;
                                                                         }
-                                                                        System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                                                        System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                                         System.out.println(IsPlaced[i][5]);
                                                                         break;
                                                                     }
@@ -1869,7 +1869,7 @@ class ImageFrame7 extends JFrame {
                                                                         if (totora == 0) {
                                                                             EndGame = true;
                                                                         }
-                                                                        System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                                                        System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                                         System.out.println(IsPlaced[i][5]);
                                                                         break;
                                                                     }
@@ -1884,7 +1884,7 @@ class ImageFrame7 extends JFrame {
                                                                         if (totora == 0) {
                                                                             EndGame = true;
                                                                         }
-                                                                        System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                                                        System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                                         System.out.println(IsPlaced[i][5]);
                                                                         break;
                                                                     }
@@ -1899,7 +1899,7 @@ class ImageFrame7 extends JFrame {
                                                                         if (totora == 0) {
                                                                             EndGame = true;
                                                                         }
-                                                                        System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                                                        System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                                         System.out.println(IsPlaced[i][5]);
                                                                         break;
                                                                     }
@@ -1930,7 +1930,7 @@ class ImageFrame7 extends JFrame {
                                                                             if (tiger == 0) {
                                                                                 EndGame = true;
                                                                             }
-                                                                            System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                                                            System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                                             System.out.println(IsPlaced[i][5]);
                                                                             break;
                                                                 }
@@ -2847,7 +2847,7 @@ class ImageFrame7 extends JFrame {
                                     if (meeple == 0) {
                                         EndGame = true;
                                     }
-                                    System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                    System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                     System.out.println(IsPlaced[i][5]);
 
                                     break;
@@ -2888,7 +2888,7 @@ class ImageFrame7 extends JFrame {
                                         if (totora == 0) {
                                             EndGame = true;
                                         }
-                                        System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                        System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                         System.out.println(IsPlaced[i][5]);
 
                                         break;
@@ -2904,7 +2904,7 @@ class ImageFrame7 extends JFrame {
                                         if (totora == 0) {
                                             EndGame = true;
                                         }
-                                        System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                        System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                         System.out.println(IsPlaced[i][5]);
 
                                         break;
@@ -2920,7 +2920,7 @@ class ImageFrame7 extends JFrame {
                                         if (totora == 0) {
                                             EndGame = true;
                                         }
-                                        System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                        System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                         System.out.println(IsPlaced[i][5]);
 
                                         break;
@@ -2936,7 +2936,7 @@ class ImageFrame7 extends JFrame {
                                         if (totora == 0) {
                                             EndGame = true;
                                         }
-                                        System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                        System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                         System.out.println(IsPlaced[i][5]);
 
                                         break;
@@ -2952,7 +2952,7 @@ class ImageFrame7 extends JFrame {
                                         if (totora == 0) {
                                             EndGame = true;
                                         }
-                                        System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                        System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                         System.out.println(IsPlaced[i][5]);
 
                                         break;
@@ -2968,7 +2968,7 @@ class ImageFrame7 extends JFrame {
                                         if (totora == 0) {
                                             EndGame = true;
                                         }
-                                        System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                        System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                         System.out.println(IsPlaced[i][5]);
 
                                         break;
@@ -3003,7 +3003,7 @@ class ImageFrame7 extends JFrame {
                                     if (tiger == 0) {
                                         EndGame = true;
                                     }
-                                    System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                    System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                     System.out.println(IsPlaced[i][5]);
 
                                     break;
@@ -3054,7 +3054,7 @@ class ImageFrame7 extends JFrame {
                                         if (meeple == 0) {
                                             EndGame = true;
                                         }
-                                        System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                        System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                         System.out.println(IsPlaced[i][5]);
 
                                         break;
@@ -3101,7 +3101,7 @@ class ImageFrame7 extends JFrame {
                                             if (totora == 0) {
                                                 EndGame = true;
                                             }
-                                            System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                            System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                             System.out.println(IsPlaced[i][5]);
 
                                             break;
@@ -3117,7 +3117,7 @@ class ImageFrame7 extends JFrame {
                                             if (totora == 0) {
                                                 EndGame = true;
                                             }
-                                            System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                            System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                             System.out.println(IsPlaced[i][5]);
 
                                             break;
@@ -3133,7 +3133,7 @@ class ImageFrame7 extends JFrame {
                                             if (totora == 0) {
                                                 EndGame = true;
                                             }
-                                            System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                            System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                             System.out.println(IsPlaced[i][5]);
 
                                             break;
@@ -3149,7 +3149,7 @@ class ImageFrame7 extends JFrame {
                                             if (totora == 0) {
                                                 EndGame = true;
                                             }
-                                            System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                            System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                             System.out.println(IsPlaced[i][5]);
 
                                             break;
@@ -3165,7 +3165,7 @@ class ImageFrame7 extends JFrame {
                                             if (totora == 0) {
                                                 EndGame = true;
                                             }
-                                            System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                            System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                             System.out.println(IsPlaced[i][5]);
 
                                             break;
@@ -3181,7 +3181,7 @@ class ImageFrame7 extends JFrame {
                                             if (totora == 0) {
                                                 EndGame = true;
                                             }
-                                            System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                            System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                             System.out.println(IsPlaced[i][5]);
 
                                             break;
@@ -3213,7 +3213,7 @@ class ImageFrame7 extends JFrame {
                                         if (tiger == 0) {
                                             EndGame = true;
                                         }
-                                        System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                        System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                         System.out.println(IsPlaced[i][5]);
 
                                         break;

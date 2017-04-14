@@ -1,4 +1,4 @@
-package game;
+package standAloneTigerName;
 
 import java.awt.*;
 
@@ -11,8 +11,8 @@ public class TigerLandFinalTeamS {
 
                                                         //     0       1  2  3      4            5                     6       7      8                   9
     private static int IsPlaced [][]=new int [999][10];// [occupition][x][y][z][landscape][player 1&2 piece type][tileIndex][level][settlement size][settlement index]
-    private static int PlacedCounter =0;              //    [piece]  ==> 1= meeple  2= totora  3= tiger else 0=nothing for player 1
-    private static int TileIndex=0;                   //    [piece]  ==> 4= meeple  5= totora  6= tiger else 0=nothing for player 2
+    private static int PlacedCounter =0;              //    [piece]  ==> 1= meeple  2= totora  3= standAloneTigerName else 0=nothing for player 1
+    private static int TileIndex=0;                   //    [piece]  ==> 4= meeple  5= totora  6= standAloneTigerName else 0=nothing for player 2
     private static boolean firstTile =true;
     private static boolean adj= false;
     private static int meeple = 20;
@@ -30,7 +30,7 @@ public class TigerLandFinalTeamS {
     private static int settlementIndex;
     private static int counter=0;
     private static boolean EndGame=false;
-    private static int op1;  //tiger
+    private static int op1;  //standAloneTigerName
     private static int op2;  // meeple
     private static int x,y,z,o1;
     private static int Mx,My,Mz;
@@ -425,7 +425,7 @@ public class TigerLandFinalTeamS {
     }
 
 
-    // tiger move
+    // standAloneTigerName move
     public static int AITigerMoveX()
     {
         return Sx;
@@ -1601,7 +1601,7 @@ public class TigerLandFinalTeamS {
                                        if (meeple == 0) {
                                            EndGame = true;
                                        }
-                                       System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                       System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                        System.out.println(IsPlaced[i][5]);
                                        Endtrun();
                                        break;
@@ -1641,7 +1641,7 @@ public class TigerLandFinalTeamS {
                                            if (totora == 0) {
                                                EndGame = true;
                                            }
-                                           System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                           System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                            System.out.println(IsPlaced[i][5]);
                                            Endtrun();
                                            break;
@@ -1657,7 +1657,7 @@ public class TigerLandFinalTeamS {
                                            if (totora == 0) {
                                                EndGame = true;
                                            }
-                                           System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                           System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                            System.out.println(IsPlaced[i][5]);
                                            Endtrun();
                                            break;
@@ -1673,7 +1673,7 @@ public class TigerLandFinalTeamS {
                                            if (totora == 0) {
                                                EndGame = true;
                                            }
-                                           System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                           System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                            System.out.println(IsPlaced[i][5]);
                                            Endtrun();
                                            break;
@@ -1689,7 +1689,7 @@ public class TigerLandFinalTeamS {
                                            if (totora == 0) {
                                                EndGame = true;
                                            }
-                                           System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                           System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                            System.out.println(IsPlaced[i][5]);
                                            Endtrun();
                                            break;
@@ -1705,7 +1705,7 @@ public class TigerLandFinalTeamS {
                                            if (totora == 0) {
                                                EndGame = true;
                                            }
-                                           System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                           System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                            System.out.println(IsPlaced[i][5]);
                                            Endtrun();
                                            break;
@@ -1721,7 +1721,7 @@ public class TigerLandFinalTeamS {
                                            if (totora == 0) {
                                                EndGame = true;
                                            }
-                                           System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                           System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                            System.out.println(IsPlaced[i][5]);
                                            Endtrun();
                                            break;
@@ -1755,7 +1755,7 @@ public class TigerLandFinalTeamS {
                                        if (tiger == 0) {
                                            EndGame = true;
                                        }
-                                       System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                       System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                        System.out.println(IsPlaced[i][5]);
                                        Endtrun();
                                        break;
@@ -1804,7 +1804,7 @@ public class TigerLandFinalTeamS {
                                            if (meeple == 0) {
                                                EndGame = true;
                                            }
-                                           System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                           System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                            System.out.println(IsPlaced[i][5]);
                                            Endtrun();
                                            break;
@@ -1850,7 +1850,7 @@ public class TigerLandFinalTeamS {
                                                if (totora == 0) {
                                                    EndGame = true;
                                                }
-                                               System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                               System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                System.out.println(IsPlaced[i][5]);
                                                Endtrun();
                                                break;
@@ -1866,7 +1866,7 @@ public class TigerLandFinalTeamS {
                                                if (totora == 0) {
                                                    EndGame = true;
                                                }
-                                               System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                               System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                System.out.println(IsPlaced[i][5]);
                                                Endtrun();
                                                break;
@@ -1882,7 +1882,7 @@ public class TigerLandFinalTeamS {
                                                if (totora == 0) {
                                                    EndGame = true;
                                                }
-                                               System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                               System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                System.out.println(IsPlaced[i][5]);
                                                Endtrun();
                                                break;
@@ -1898,7 +1898,7 @@ public class TigerLandFinalTeamS {
                                                if (totora == 0) {
                                                    EndGame = true;
                                                }
-                                               System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                               System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                System.out.println(IsPlaced[i][5]);
                                                Endtrun();
                                                break;
@@ -1914,7 +1914,7 @@ public class TigerLandFinalTeamS {
                                                if (totora == 0) {
                                                    EndGame = true;
                                                }
-                                               System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                               System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                System.out.println(IsPlaced[i][5]);
                                                Endtrun();
                                                break;
@@ -1930,7 +1930,7 @@ public class TigerLandFinalTeamS {
                                                if (totora == 0) {
                                                    EndGame = true;
                                                }
-                                               System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                               System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                System.out.println(IsPlaced[i][5]);
                                                Endtrun();
                                                break;
@@ -1961,7 +1961,7 @@ public class TigerLandFinalTeamS {
                                            if (tiger == 0) {
                                                EndGame = true;
                                            }
-                                           System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                           System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                            System.out.println(IsPlaced[i][5]);
                                            Endtrun();
                                            break;
