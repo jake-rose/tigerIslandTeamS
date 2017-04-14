@@ -1,10 +1,11 @@
-package game;
+package standAloneTigerName;
 
 /**
  * Created by TK on 2017/4/12.
  */
 
-import org.omg.CORBA.TIMEOUT;
+import game.Client;
+import game.FrequentlyUsedPatterns;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -294,7 +295,7 @@ public class CaiClient {
                             clientMessage+= TigerLandFinalTeamS.AIMeepleMoveX()+" "+ TigerLandFinalTeamS.AIMeepleMoveY()+" "+TigerLandFinalTeamS.AIMeepleMoveZ();
                             }
                     if(TigerLandFinalTeamS.AIChooseTiger() == 1){
-                            //place tiger
+                            //place standAloneTigerName
                             clientMessage+=" BUILD TIGER PLAYGROUND AT ";
                             clientMessage+= TigerLandFinalTeamS.AITigerMoveX()+" "+ TigerLandFinalTeamS.AITigerMoveY()+" "+TigerLandFinalTeamS.AITigerMoveZ();
                     }
@@ -311,7 +312,7 @@ public class CaiClient {
                         clientMessage+= TigerLandFinalTeamS.AIMeepleMoveX()+" "+ TigerLandFinalTeamS.AIMeepleMoveY()+" "+TigerLandFinalTeamS.AIMeepleMoveZ();
                     }
                     if(TigerLandFinalTeamS.AIChooseTiger() == 1){
-                        //place tiger
+                        //place standAloneTigerName
                         clientMessage+=" BUILD TIGER PLAYGROUND AT ";
                         clientMessage+= TigerLandFinalTeamS.AITigerMoveX()+" "+ TigerLandFinalTeamS.AITigerMoveY()+" "+TigerLandFinalTeamS.AITigerMoveZ();
                     }
@@ -369,7 +370,7 @@ public class CaiClient {
                         } else if (s.equals("EXPAND SETTLEMENT")) {//expand settlement
                            TigerLandFinalTeamS.piecePlace(Integer.parseInt(BuildMatcher.group(2)), Integer.parseInt(PlacementMatcher.group(3)), Integer.parseInt(PlacementMatcher.group(4)), 4,w);
 
-                        } else if (s.equals("BUILD TIGER PLAYGROUND")) {//place tiger
+                        } else if (s.equals("BUILD TIGER PLAYGROUND")) {//place standAloneTigerName
                             TigerLandFinalTeamS.piecePlace(Integer.parseInt(BuildMatcher.group(2)), Integer.parseInt(PlacementMatcher.group(3)), Integer.parseInt(PlacementMatcher.group(4)),3,0);
 
                         }
@@ -396,7 +397,7 @@ public class CaiClient {
                         } else if (s.equals("EXPAND SETTLEMENT")) {//expand settlement
                             TigerLandFinalTeamS.piecePlace(Integer.parseInt(BuildMatcher.group(2)), Integer.parseInt(PlacementMatcher.group(3)), Integer.parseInt(PlacementMatcher.group(4)), 4,w);
 
-                        } else if (s.equals("BUILD TIGER PLAYGROUND")) {//place tiger
+                        } else if (s.equals("BUILD TIGER PLAYGROUND")) {//place standAloneTigerName
                             TigerLandFinalTeamS.piecePlace(Integer.parseInt(BuildMatcher.group(2)), Integer.parseInt(PlacementMatcher.group(3)), Integer.parseInt(PlacementMatcher.group(4)),3,0);
                         }
                         game1.placeTile( Integer.parseInt(PlacementMatcher.group(2)),

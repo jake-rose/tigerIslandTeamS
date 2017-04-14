@@ -110,7 +110,7 @@ public class SettlementManager{
                 covered++;
             if(s.findPiece(h3))
                 covered++;
-            //Also check for tiger playgrounds
+            //Also check for standAloneTigerName playgrounds
             if(s.getPiece(h1).getType()==2 || s.getPiece(h2).getType()==2 || s.getPiece(h3).getType()==2)
                 return true;
             if(s.size()<covered)
