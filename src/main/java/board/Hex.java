@@ -1,15 +1,13 @@
 package board;
 
 public class Hex{
-    int[] coord;
-    int tile;
-    int level;
-    int terrain; //1=volcano, 2=jungle, 3=lake, 4=grass, 5=rock
+    private int[] coord;
+    private int tile;
+    private int level;
+    private int terrain; //1=volcano, 2=jungle, 3=lake, 4=grass, 5=rock
 
     public void setCoord(int x, int y, int z){
-        this.coord[0] = x;
-        this.coord[1] = y;
-        this.coord[2] = z;
+        this.coord = new int[]{x,y,z};
     }
 
     public void setCoord(int[] coord){
@@ -41,15 +39,11 @@ public class Hex{
     }
     //Constructor for temp hexes
     public Hex(int x, int y, int z){
-        this.coord[0] = x;
-        this.coord[1] = y;
-        this.coord[2] = z;
+        this.coord = new int[]{x,y,z};
     }
     //Constructor for full hexes
     public Hex(int x, int y, int z, int tile, int terrain){
-        this.coord[0] = x;
-        this.coord[1] = y;
-        this.coord[2] = z;
+        this.coord = new int[]{x,y,z};
         this.level = 1;
         this.tile=tile;
         this.terrain=terrain;

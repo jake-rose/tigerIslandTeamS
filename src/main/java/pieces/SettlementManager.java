@@ -1,8 +1,10 @@
 package pieces;
 
-import board.*;
-import pieces.*;
-import java.util.*;
+import board.Hex;
+import board.HexManager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SettlementManager{
     private List<Settlement> settlements;
@@ -12,6 +14,7 @@ public class SettlementManager{
     private int meeples=20;
 
     public void newSettlement(Piece piece, int usedMeeples){
+        settlements = new ArrayList<Settlement>();
         settlements.add(new Settlement(sNumIterator,piece));
         this.meeples=this.meeples-usedMeeples;
         sNumIterator++;
@@ -62,17 +65,21 @@ public class SettlementManager{
 
     public boolean isOccupied(Hex location){
         Piece temp = new Piece(0,location);
-        for(Settlement s: settlements){
-            if(s.getPieces().contains(temp))
-                return true;
+        if(settlements != null) {
+            for (Settlement s : settlements) {
+                if (s.getPieces().contains(temp))
+                    return true;
+            }
         }
         return false;
     }
     public Settlement findSettlement(Hex location){
         Piece temp = new Piece(0,location);
-        for(Settlement s: settlements){
-            if(s.getPieces().contains(temp)){
-                return s;
+        if(settlements != null) {
+            for (Settlement s : settlements) {
+                if (s.getPieces().contains(temp)) {
+                    return s;
+                }
             }
         }
         return null;
@@ -102,19 +109,21 @@ public class SettlementManager{
     }
 
     public boolean isCovered(Hex h1, Hex h2, Hex h3){
-        for(Settlement s: settlements){
-            int covered=0;
-            if(s.findPiece(h1))
-                covered++;
-            if(s.findPiece(h2))
-                covered++;
-            if(s.findPiece(h3))
-                covered++;
-            //Also check for standAloneTigerName playgrounds
-            if(s.getPiece(h1).getType()==2 || s.getPiece(h2).getType()==2 || s.getPiece(h3).getType()==2)
-                return true;
-            if(s.size()<covered)
-                return true;
+        if(settlements != null) {
+            for (Settlement s : settlements) {
+                int covered = 0;
+                if (s.findPiece(h1))
+                    covered++;
+                if (s.findPiece(h2))
+                    covered++;
+                if (s.findPiece(h3))
+                    covered++;
+                //Also check for tiger playgrounds
+                if (s.getPiece(h1).getType() == 2 || s.getPiece(h2).getType() == 2 || s.getPiece(h3).getType() == 2)
+                    return true;
+                if (s.size() < covered)
+                    return true;
+            }
         }
         return false;
     }

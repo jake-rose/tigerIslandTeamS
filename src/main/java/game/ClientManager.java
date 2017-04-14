@@ -13,6 +13,7 @@ public class ClientManager {
 
     private static Game game1;
     private static Game game2;
+    private int playerID;
 
     public static void main(String[] args) throws Exception{
         ClientManager clientManager = new ClientManager();
@@ -34,11 +35,9 @@ public class ClientManager {
         Client s = new Client(ip, port);
 
         //Writes to server
-        //OutputStreamWriter os = new OutputStreamWriter(Client.getDataOutputStream());
         PrintWriter out = Client.getDataOutputStream();
 
         //Reads incoming File
-        //  BufferedReader br = new BufferedReader(new InputStreamReader(s.getDataInputStream()));
         //create a scanner
 
         Scanner scanner = new Scanner(System.in);
@@ -69,7 +68,6 @@ public class ClientManager {
             while (!authenticated) {
                 authenticated = AuthenticationProtocol(dataInputStream, dataOutputStream);
             }
-            System.out.println("Client: Authentication was approved we are back in Tournament Pro.");
 
             ChallengeProtocol(dataInputStream, dataOutputStream);
 
@@ -112,14 +110,12 @@ public class ClientManager {
             incomingMessage = in.readLine();
             System.out.println("Server: " + incomingMessage);
             Matcher PlayerIDMatcher = PlayerIDPattern.matcher(incomingMessage);
-            System.out.println("PlayerIDMatcher: "+PlayerIDPattern);
             if (PlayerIDMatcher.matches()) {
-                int playerID = Integer.parseInt(PlayerIDMatcher.group(1));
-                System.out.println("Player ID was a MATCH!!");
+                playerID = Integer.parseInt(PlayerIDMatcher.group(1));
                 authenticated = true;
             } else
                 throw new IOException();
-            System.out.println("Client: Authentication is successful!!!");
+            System.out.println("Client: Authentication is successful.");
         } catch (IOException ex) {
             System.out.println("Client: Failed to Authenticate.");
         }
@@ -136,10 +132,8 @@ public class ClientManager {
                 System.out.println("Client: We are in the nextGame while loop.");
                 //NEW CHALLENGE cid YOU WILL PLAY rounds MATCH(ES)
                 serverMessage = in.readLine();
-                System.out.println("ChallengeProtocol~ Server Message: "+ serverMessage);
                 System.out.println("Server: " + serverMessage);
                 Matcher ChallengeMatcher = FrequentlyUsedPatterns.ChallengePattern.matcher(serverMessage);
-                System.out.println("ChallengeMatcher: "+ChallengeMatcher);
                 if (ChallengeMatcher.matches()) {
                     challengeId = Integer.parseInt(ChallengeMatcher.group(1));
                     numberOfRounds = Integer.parseInt(ChallengeMatcher.group(2));
@@ -184,26 +178,22 @@ public class ClientManager {
     //Match Protocol
     public void MatchProtocol(BufferedReader in, PrintWriter out) {
         String serverMessage = "";
-        String clientMessage = "";
 
-        int messageOutOut = 0;
 
         try {
             //NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER pid
             serverMessage = in.readLine();
             System.out.println("Server: " + serverMessage);
             Matcher NewMatchMatcher = FrequentlyUsedPatterns.NewMatchPattern.matcher(serverMessage);
-            Matcher PlayerIDMatcher = FrequentlyUsedPatterns.PlayerIDPattern.matcher(serverMessage);
             Matcher GameOverMatcher = FrequentlyUsedPatterns.GameOverPattern.matcher(serverMessage);
 
 
             if (NewMatchMatcher.matches()) {
                 int opponentID = Integer.parseInt(NewMatchMatcher.group(1));
-                int playerID = Integer.parseInt(PlayerIDMatcher.group(1));
-                int game1ID = Integer.parseInt(GameOverMatcher.group(1));
-                int game2ID = Integer.parseInt(GameOverMatcher.group(1));
-                this.game1 = new Game(playerID, opponentID, game1ID);
-                this.game2 = new Game(playerID, opponentID, game2ID);
+                //int game1ID = Integer.parseInt(GameOverMatcher.group(1));
+                //int game2ID = Integer.parseInt(GameOverMatcher.group(1));
+                this.game1 = new Game(playerID, opponentID);
+                this.game2 = new Game(playerID, opponentID);
 
 
 
@@ -235,7 +225,7 @@ public class ClientManager {
         String placeddAndBuildMsg = "";
         String gameID, moveNumber;
         String game1ID=null, game2ID=null;
-        int pid;
+        int pid, hex1 =0, hex2=0;
         String tileGiven;
 
 
@@ -260,14 +250,22 @@ public class ClientManager {
                 int temp=tileGiven.indexOf("+");
                 String t1=tileGiven.substring(0,temp);
                 String t2=tileGiven.substring(temp+1,tileGiven.length());
-                int hex1=Integer.parseInt(t1), hex2=Integer.parseInt(t2);
+                if (t1.contains("JUNGLE")) hex1 =2;
+                else if (t1.contains("LAKE")) hex1 = 3;
+                else if (t1.contains("GRASS")) hex1 = 4;
+                else if (t1.contains("ROCK")) hex1 = 5;
                 System.out.println("this is the tileGiven: "+tileGiven);
+                if (t2.contains("JUNGLE")) hex2 =2;
+                else if (t2.contains("LAKE")) hex2 = 3;
+                else if (t2.contains("GRASS")) hex2 = 4;
+                else if (t2.contains("ROCK")) hex2 = 5;
 
 
 
                 //place and build message from the AI
                 if (gameID.equals(game1ID)) {
-                    clientMessage = "GAME " + gameID + " MOVE " + moveNumber + " PLACE "+tileGiven + " AT "+ game.ourTile(hex1, hex2);
+                    int[] tileMove =  game.ourTile(hex1, hex2);
+                    clientMessage = "GAME " + gameID + " MOVE " + moveNumber + " PLACE "+tileGiven + " AT "+ tileMove[0]+" "+tileMove[1]+" "+tileMove[2]+" "+tileMove[3];
                     int[] MoveBuildOption = game.ourPiece();
                     switch (MoveBuildOption[0]) {
                         case 0:
@@ -366,7 +364,7 @@ public class ClientManager {
 
                         }
                         game1.theirTile((Integer.parseInt(PlacementMatcher.group(5))),
-                                1,2,            Integer.parseInt(PlacementMatcher.group(2)),
+                                hex1,hex2,            Integer.parseInt(PlacementMatcher.group(2)),
                                                 Integer.parseInt(PlacementMatcher.group(3)),
                                                 Integer.parseInt(PlacementMatcher.group(4)));
                     } else {
@@ -388,7 +386,7 @@ public class ClientManager {
 
 
                             game2.theirTile((Integer.parseInt(PlacementMatcher.group(5))),
-                                1,2,            Integer.parseInt(PlacementMatcher.group(2)),
+                                hex1,hex2,            Integer.parseInt(PlacementMatcher.group(2)),
                                 Integer.parseInt(PlacementMatcher.group(3)),
                                 Integer.parseInt(PlacementMatcher.group(4)));
                         }
