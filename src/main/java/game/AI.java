@@ -139,6 +139,28 @@ public class AI{
                 }
             }
         }
+        if(ours.getTigers()>0){
+            if(ours.getSettlements().size()>0){
+                for(Settlement s:ours.getSettlements()){
+                    List<Hex> adjHexes = new ArrayList();
+                    for(Piece p:s.getPieces()){
+                        adjHexes.addAll(board.getHexManager().findAdjPlaced(p.getLocation()));
+                        for(Hex h: adjHexes){
+                            Piece temp = new Piece(2,h);
+                            if(PlacePieces.placeTiger(board,ours,theirs,temp,s.getSNum())){
+                                int x = h.getCoord()[0];
+                                int y = h.getCoord()[1];
+                                int z = h.getCoord()[3];
+                                int[] returnThis = {2,x,y,z};
+                                //DEBUG
+                                System.out.println("Tiger placed");
+                                return returnThis;
+                            }
+                        }
+                    }
+                }
+            }
+        }
         for(Settlement s: ours.getSettlements()){
             for(int terrain=2; terrain<6; terrain++){
                 if(PlacePieces.expandSettlement(board,ours,theirs,terrain,s.getSNum())){

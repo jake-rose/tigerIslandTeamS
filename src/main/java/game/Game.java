@@ -56,6 +56,8 @@ public class Game{
 
     public void theirTile(int orientation, int a, int b, int x, int y, int z){
         Hex h1, h2, h3;
+        //DEBUG
+        System.out.println("Placing their tile...");
         switch(orientation){
             case 1:
                 h1 = new Hex(x,y,z,theirTileNum,1);
@@ -63,6 +65,8 @@ public class Game{
                 h3 = new Hex(x+1,y,z-1,theirTileNum,b);
                 PlaceTile.placeTile(this.board,h1,h2,h3,this.theirPieces,this.ourPieces);
                 this.theirTileNum+=2;
+                //DEBUG
+                System.out.println("Tile placed");
                 break;
             case 2:
                 h1 = new Hex(x,y,z,theirTileNum,1);
@@ -70,6 +74,8 @@ public class Game{
                 h3 = new Hex(x+1,y-1,z,theirTileNum,b);
                 PlaceTile.placeTile(this.board,h1,h2,h3,this.theirPieces,this.ourPieces);
                 this.theirTileNum+=2;
+                //DEBUG
+                System.out.println("Tile placed");
                 break;
             case 3:
                 h1 = new Hex(x,y,z,theirTileNum,1);
@@ -77,6 +83,8 @@ public class Game{
                 h3 = new Hex(x,y-1,z+1,theirTileNum,b);
                 PlaceTile.placeTile(this.board,h1,h2,h3,this.theirPieces,this.ourPieces);
                 this.theirTileNum+=2;
+                //DEBUG
+                System.out.println("Tile placed");
                 break;
             case 4:
                 h1 = new Hex(x,y,z,theirTileNum,1);
@@ -84,6 +92,8 @@ public class Game{
                 h3 = new Hex(x-1,y,z+1,theirTileNum,b);
                 PlaceTile.placeTile(this.board,h1,h2,h3,this.theirPieces,this.ourPieces);
                 this.theirTileNum+=2;
+                //DEBUG
+                System.out.println("Tile placed");
                 break;
             case 5:
                 h1 = new Hex(x,y,z,theirTileNum,1);
@@ -91,6 +101,8 @@ public class Game{
                 h3 = new Hex(x-1,y+1,z,theirTileNum,b);
                 PlaceTile.placeTile(this.board,h1,h2,h3,this.theirPieces,this.ourPieces);
                 this.theirTileNum+=2;
+                //DEBUG
+                System.out.println("Tile placed");
                 break;
             case 6:
                 h1 = new Hex(x,y,z,theirTileNum,1);
@@ -98,25 +110,37 @@ public class Game{
                 h3 = new Hex(x,y+1,z-1,theirTileNum,b);
                 PlaceTile.placeTile(this.board,h1,h2,h3,this.theirPieces,this.ourPieces);
                 this.theirTileNum+=2;
+                //DEBUG
+                System.out.println("Tile placed");
                 break;
         }
     }
 
     public void theirNewSettlement(int x, int y, int z){
+        //DEBUG
+        System.out.println("Placing opponent settlement...");
         Piece temp = new Piece(0,x,y,z);
         PlacePieces.placeSettlement(this.board,this.theirPieces,this.ourPieces,temp);
+        //DEBUG
+        System.out.println("Settlement placed");
     }
     public void theirExpandSettlement(int x, int y, int z, int terrain){
+        //DEBUG
+        System.out.println("Expanding their settlement...");
         Piece temp = new Piece(0,x,y,z);
         for(Settlement s:this.theirPieces.getSettlements()){
             if(s.getPieces().contains(temp)){
                 while(PlacePieces.expandSettlement(board, theirPieces, ourPieces, terrain, s.getSNum())){}
+                //DEBUG
+                System.out.println("Settlement expanded");
                 break;
             }
         }
     }
 
     public void theirTotoro(int x, int y, int z){
+        //DEBUG
+        System.out.println("Placing opponent totoro...");
         Piece temp = new Piece(1,x,y,z);
         Hex location = new Hex(x,y,z);
         List<Hex> adjHexes = board.getHexManager().findAdjPlaced(location);
@@ -127,10 +151,14 @@ public class Game{
             }
         }
         int sNum = theirPieces.findSettlement(location).getSNum();
-        PlacePieces.placeTotoro(this.board, this.theirPieces, this.ourPieces, temp, sNum); 
+        PlacePieces.placeTotoro(this.board, this.theirPieces, this.ourPieces, temp, sNum);
+        //DEBUG
+        System.out.println("Totoro placed");
     }
     
     public void theirTiger(int x, int y, int z){
+        //DEBUG
+        System.out.println("Placing opponent tiger...");
         Piece temp = new Piece(2,x,y,z);
         Hex location = new Hex(x,y,z);
         List<Hex> adjHexes = board.getHexManager().findAdjPlaced(location);
@@ -141,7 +169,9 @@ public class Game{
             }
         }
         int sNum = theirPieces.findSettlement(location).getSNum();
-        PlacePieces.placeTiger(this.board, this.theirPieces, this.ourPieces, temp, sNum); 
+        PlacePieces.placeTiger(this.board, this.theirPieces, this.ourPieces, temp, sNum);
+        //DEBUG
+        System.out.println("Tiger placed");
     }
 
     public int[] ourTile(int a, int b){
