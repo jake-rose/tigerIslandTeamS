@@ -1,9 +1,14 @@
 package game;
 
-import java.util.*;
-import player.*;
-import board.*;
-import pieces.*;
+import board.Board;
+import board.Hex;
+import pieces.Piece;
+import pieces.Settlement;
+import pieces.SettlementManager;
+import player.PlacePieces;
+import player.PlaceTile;
+
+import java.util.List;
 
 public class Game{
     private int gid;
@@ -12,6 +17,25 @@ public class Game{
     private SettlementManager ourPieces;
     private SettlementManager theirPieces;
     private AI ai;
+    private int playerID;
+    private int opponentID;
+
+    public int getOpponentID() {
+        return opponentID;
+    }
+
+    public void setOpponentID(int opponentID) {
+        this.opponentID = opponentID;
+    }
+
+    public int getPlayerID() {
+        return playerID;
+    }
+
+    public void setPlayerID(int playerID) {
+        this.playerID = playerID;
+    }
+
 
     public void setGid(int gid){
         this.gid=gid;
@@ -20,11 +44,12 @@ public class Game{
         return this.gid;
     }
 
-    public Game(int gid){
+    public Game(int playerID, int opponentID, int gid){
        board = new Board();
        ourPieces = new SettlementManager();
        theirPieces = new SettlementManager();
-       this.gid = gid;
+       this.playerID = playerID;
+       this.opponentID = opponentID;
        this.theirTileNum = 1;
        ai = new AI();
     }
@@ -121,7 +146,7 @@ public class Game{
 
     public int[] ourTile(int a, int b){
         Hex h = ai.tilePlacement(this.board,1,a,b,ourPieces,theirPieces);
-        int[] tile = {1,h.getCoord()[0],h.getCoord()[1],h.getCoord()[2]};
+        int[] tile = {h.getCoord()[0],h.getCoord()[1],h.getCoord()[2],1};
         return tile;
     }
 

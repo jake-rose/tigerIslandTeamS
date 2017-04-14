@@ -126,18 +126,18 @@ public class AI{
             }
         }
         for(Settlement s: ours.getSettlements()){
-            for(int i=2; i<6; i++){
-                if(PlacePieces.expandSettlement(board,ours,theirs,i,s.getSNum())){
+            for(int terrain=2; terrain<6; terrain++){
+                if(PlacePieces.expandSettlement(board,ours,theirs,terrain,s.getSNum())){
                     Hex tempHex = s.getPieces().get(0).getLocation();
                     int x = tempHex.getCoord()[0];
                     int y = tempHex.getCoord()[1];
                     int z = tempHex.getCoord()[2];
-                    int[] returnThis = {2,x,y,z,i};
+                    int[] returnThis = {2,x,y,z,terrain};
                     return returnThis;
                 }
             }
         }
-            return null;
+        return null;
     }
 
 }
