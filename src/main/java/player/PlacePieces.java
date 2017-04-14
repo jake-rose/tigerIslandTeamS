@@ -11,6 +11,7 @@ public class PlacePieces{
             if(!(theirs.isOccupied(piece.getLocation()))){
                 if(board.getHexManager().findHex(piece.getLocation()).getTerrain()!=1){
                     int meeples = board.getHexManager().findHex(piece.getLocation()).getLevel();
+                    board.makeOccupied(piece.getLocation());
                     ours.newSettlement(piece, meeples);
                     return true;
                 }
@@ -29,6 +30,7 @@ public class PlacePieces{
             if(!(theirs.isOccupied(piece.getLocation()))){
                 if(board.getHexManager().findHex(piece.getLocation()).getTerrain()!=1){
                     ours.addTotoroToSettlement(piece, sNum);
+                    board.makeOccupied(piece.getLocation());
                     return true;
                 }
                 else
@@ -45,6 +47,7 @@ public class PlacePieces{
         if(!(theirs.isOccupied(piece.getLocation()))){
             if(board.getHexManager().findHex(piece.getLocation()).getTerrain()!=1 && board.getHexManager().findHex(piece.getLocation()).getLevel()>=3){
                 ours.addTigerToSettlement(piece, sNum);
+                board.makeOccupied(piece.getLocation());
                 return true;
             }
             else
@@ -71,6 +74,7 @@ public class PlacePieces{
         }
         if (meeples <= ours.getMeeples()) {
             for (Hex h : expandToThese) {
+                board.makeOccupied(h);
                 Piece p = new Piece(0, h);
                 ours.expandSettlement(p, sNum);
             }

@@ -39,6 +39,8 @@ public class AI{
         List<Hex> potentialHex = board.getHexManager().getHexStack();
         int x, y, z;
         this.tileNum+=2;
+        //DEBUG
+        System.out.println("Placing tile...");
         if(prevHex!=null){
             x = prevHex.getCoord()[0]-2;
             y = prevHex.getCoord()[1]+1;
@@ -54,6 +56,8 @@ public class AI{
             Hex h3 = new Hex(x,y,z,tileNum,t3);
             if(PlaceTile.placeTile(board,h1,h2,h3,ours,theirs)){
                 this.prevHex = h2;
+                //DEBUG
+                System.out.println("Tile placed");
                 return h1;
             }
         }
@@ -72,6 +76,8 @@ public class AI{
             Hex h3 = new Hex(x,y,z,tileNum,t3);
             if(PlaceTile.placeTile(board,h1,h2,h3,ours,theirs)){
                 this.prevHex = h2;
+                //DEBUG
+                System.out.println("Tile placed");
                 return h1;
             }
         }
@@ -79,6 +85,35 @@ public class AI{
     }
 
     public int[] piecePlacement(Board board, SettlementManager ours, SettlementManager theirs){
+        //DEBUG
+        System.out.println("Placing piece...");
+        if(this.newSettlement){
+            this.newSettlement = false;
+            Piece temp = new Piece(0,this.prevHex);
+            if(PlacePieces.placeSettlement(board,ours,theirs,temp)){
+                int x = prevHex.getCoord()[0];
+                int y = prevHex.getCoord()[1];
+                int z = prevHex.getCoord()[2];
+                int[] returnThis = {0,x,y,z};
+                //DEBUG
+                System.out.println("New settlement placed");
+                return returnThis;
+            }
+            else{
+                for(Hex h:board.getHexManager().getHexStack()){
+                    temp = new Piece(0,h);
+                    if(PlacePieces.placeSettlement(board,ours,theirs,temp)){
+                        int x = h.getCoord()[0];
+                        int y = h.getCoord()[1];
+                        int z = h.getCoord()[2];
+                        int[] returnThis = {0,x,y,z};
+                        //DEBUG
+                        System.out.println("New settlement placed");
+                        return returnThis;
+                    }
+                }
+            }
+        }
         if(ours.getTotoros()>0){
             if(ours.getSettlements().size()>0){
                 for(Settlement s:ours.getSettlements()){
@@ -93,6 +128,8 @@ public class AI{
                                     int y = h.getCoord()[1];
                                     int z = h.getCoord()[2];
                                     int[] returnThis = {1,x,y,z};
+                                    //DEBUG
+                                    System.out.println("Totoro placed");
                                     this.newSettlement = true;
                                     return returnThis;
                                 }
@@ -102,32 +139,14 @@ public class AI{
                 }
             }
         }
-        if(this.newSettlement){
-            this.newSettlement = false;
-            Piece temp = new Piece(0,this.prevHex);
-            if(PlacePieces.placeSettlement(board,ours,theirs,temp)){
-                int x = prevHex.getCoord()[0];
-                int y = prevHex.getCoord()[1];
-                int z = prevHex.getCoord()[2];
-                int[] returnThis = {0,x,y,z};
-                return returnThis;
-            }
-            else{
-                for(Hex h:board.getHexManager().getHexStack()){
-                    temp = new Piece(0,h);
-                    if(PlacePieces.placeSettlement(board,ours,theirs,temp)){
-                        int x = h.getCoord()[0];
-                        int y = h.getCoord()[1];
-                        int z = h.getCoord()[2];
-                        int[] returnThis = {0,x,y,z};
-                        return returnThis;
-                    }
-                }
-            }
-        }
         for(Settlement s: ours.getSettlements()){
             for(int terrain=2; terrain<6; terrain++){
                 if(PlacePieces.expandSettlement(board,ours,theirs,terrain,s.getSNum())){
+                    //Continue expansion until no more of the same terrain adjacent
+                    while(PlacePieces.expandSettlement(board,ours,theirs,terrain,s.getSNum())){}
+                    //DEBUG
+                    System.out.println("Expanding settlement "+s.getSNum());
+
                     Hex tempHex = s.getPieces().get(0).getLocation();
                     int x = tempHex.getCoord()[0];
                     int y = tempHex.getCoord()[1];

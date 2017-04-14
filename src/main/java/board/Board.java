@@ -27,12 +27,16 @@ public class Board{
         tile0.add(hex2);
         tile0.add(hex3);
         tile0.add(hex4);
-        this.hexManager.setHexStack(tile0);
+        this.hexManager = new HexManager(tile0);
+    }
+
+    public void makeOccupied(Hex hex){
+        this.hexManager.addOccupied(hex);
     }
     
     //Validate and place new tiles
     public void placeTile(Hex h1, Hex h2, Hex h3){
-        if(hexManager.getHexStack().contains(h1) || hexManager.getHexStack().contains(h2) || hexManager.getHexStack.contains(h3)){
+        if(hexManager.getHexStack().contains(h1) || hexManager.getHexOccupied().contains(h1)){
             hexManager.updateHex(h1);
             hexManager.updateHex(h2);
             hexManager.updateHex(h3);

@@ -5,11 +5,19 @@ import java.util.List;
 
 public class HexManager{
     private static List<Hex> hexStack = new ArrayList();
+    private static List<Hex> hexOccupied = new ArrayList();
     public List<Hex> getHexStack(){
         return this.hexStack;
     }
     public void setHexStack(List<Hex> stack){
         this.hexStack = stack;
+    }
+
+    public List<Hex> getHexOccupied(){
+        return this.hexOccupied;
+    }
+    public void setHexOccupied(List<Hex> stack){
+        this.hexOccupied = stack;
     }
     //HexManager Constructor
     public HexManager(List<Hex> hexStack){
@@ -43,6 +51,10 @@ public class HexManager{
     public void addHex(Hex hex){
         this.hexStack.add(hex);
     }
+    public void addOccupied(Hex hex){
+        this.hexStack.remove(this.hexStack.indexOf(hex));
+        this.hexOccupied.add(hex);
+    }
     //Add hex based on input
     public void addHex(int x, int y, int z, int tile, int terrain){
         Hex hex = new Hex(x,y,z);
@@ -51,34 +63,67 @@ public class HexManager{
         hex.setTerrain(terrain);
         this.hexStack.add(hex);
     }
+    public void addOccupied(int x, int y, int z, int tile, int terrain){
+        Hex hex = new Hex(x,y,z);
+        hex.setLevel(1);
+        hex.setTile(tile);
+        hex.setTerrain(terrain);
+        this.hexStack.remove(this.hexStack.indexOf(hex));
+        this.hexOccupied.add(hex);
+    }
 
     //Finds hex based on coordinates
     public Hex findHex(Hex hex){
         if(hexStack.contains(hex))
             return hexStack.get(hexStack.indexOf(hex));
-        else return null;
+        else if(hexOccupied.contains(hex))
+            return hexOccupied.get(hexOccupied.indexOf(hex));
+        else 
+            return null;
     }
 
     //Find hex in stack and replace with updated information
     public void updateHex(Hex hex){
-        Hex tempHex = this.hexStack.get(hexStack.indexOf(hex));
-        this.hexStack.remove(hexStack.indexOf(hex));
-        int level = tempHex.getLevel();
-        tempHex.setTile(hex.getTile());
-        tempHex.setLevel(level+1);
-        tempHex.setTerrain(hex.getTerrain());
-        this.hexStack.add(tempHex);
+        if(this.hexStack.contains(hex)){
+            Hex tempHex = this.hexStack.get(hexStack.indexOf(hex));
+            this.hexStack.remove(hexStack.indexOf(hex));
+            int level = tempHex.getLevel();
+            tempHex.setTile(hex.getTile());
+            tempHex.setLevel(level+1);
+            tempHex.setTerrain(hex.getTerrain());
+            this.hexStack.add(tempHex);
+        }
+        else{
+            Hex tempHex = this.hexOccupied.get(hexOccupied.indexOf(hex));
+            this.hexOccupied.remove(hexStack.indexof(hex));
+            int level = tempHex.getLevel();
+            tempHex.setTile(hex.getTile());
+            tempHex.setLevel(level+1);
+            tempHex.setTerrain(hex.getTerrain());
+            this.hexStack.add(tempHex);
+        }
     }
     //Update hex based on coordinate input & update with new tile, level, and terrain
     public void updateHex(int x, int y, int z, int tile, int terrain){
         Hex hex = new Hex(x,y,z);
-        Hex tempHex = this.hexStack.get(hexStack.indexOf(hex));
-        this.hexStack.remove(hexStack.indexOf(hex));
-        int level = tempHex.getLevel();
-        tempHex.setLevel(level+1);
-        tempHex.setTile(tile);
-        tempHex.setTerrain(terrain);
-        this.hexStack.add(tempHex);
+        if(this.hexStack.contains(hex)){
+            Hex tempHex = this.hexStack.get(hexStack.indexOf(hex));
+            this.hexStack.remove(hexStack.indexOf(hex));
+            int level = tempHex.getLevel();
+            tempHex.setTile(tile);
+            tempHex.setLevel(level+1);
+            tempHex.setTerrain(terrain);
+            this.hexStack.add(tempHex);
+        }
+        else{
+            Hex tempHex = this.hexOccupied.get(hexOccupied.indexOf(hex));
+            this.hexOccupied.remove(hexStack.indexof(hex));
+            int level = tempHex.getLevel();
+            tempHex.setTile(tile);
+            tempHex.setLevel(level+1);
+            tempHex.setTerrain(terrain);
+            this.hexStack.add(tempHex);
+        }
     }
     //Check if two hexes are same level
     private boolean sameLevel(Hex hex1, Hex hex2){
