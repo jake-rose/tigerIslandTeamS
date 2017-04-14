@@ -22,6 +22,7 @@ public class HexManager{
     //HexManager Constructor
     public HexManager(List<Hex> hexStack){
         this.hexStack = hexStack;
+        this.hexOccupied = new ArrayList<Hex>();
     }
     
     //Gets array of adjacent coordinates
@@ -94,13 +95,13 @@ public class HexManager{
             this.hexStack.add(tempHex);
         }
         else{
-            Hex tempHex = this.hexOccupied.get(hexOccupied.indexOf(hex));
-            this.hexOccupied.remove(hexStack.indexof(hex));
-            int level = tempHex.getLevel();
-            tempHex.setTile(hex.getTile());
-            tempHex.setLevel(level+1);
-            tempHex.setTerrain(hex.getTerrain());
-            this.hexStack.add(tempHex);
+            if(this.hexOccupied.contains(hexStack.indexOf(hex)))
+                this.getHexOccupied().remove(hexStack.indexOf(hex));
+            int level = hex.getLevel();
+            hex.setTile(hex.getTile());
+            hex.setLevel(level+1);
+            hex.setTerrain(hex.getTerrain());
+            this.hexStack.add(hex);
         }
     }
     //Update hex based on coordinate input & update with new tile, level, and terrain
@@ -117,7 +118,7 @@ public class HexManager{
         }
         else{
             Hex tempHex = this.hexOccupied.get(hexOccupied.indexOf(hex));
-            this.hexOccupied.remove(hexStack.indexof(hex));
+            this.hexOccupied.remove(hexStack.indexOf(hex));
             int level = tempHex.getLevel();
             tempHex.setTile(tile);
             tempHex.setLevel(level+1);
@@ -134,8 +135,8 @@ public class HexManager{
     }
     //Check that all hexes of tile are at same level & volcano is on volcano & not covering only 1 tile
     //another idea:Check that all hexes of tile are at same level & volcano is on volcano & have different orientation
-    public boolean validTileHexes(Hex hex1, Hex hex2, Hex hex3){
-        return sameLevel(hex1,hex2) && sameLevel(hex2,hex3) && sameLevel(hex3,hex1) && hex1.getTerrain()==1 && !(sameTile(hex1,hex2) && sameTile(hex2,hex3) && sameTile(hex1,hex3));
+    public boolean validTileHexes(Hex hex1, Hex hex2, Hex hex3) {
+        return (sameLevel(hex1, hex2) && sameLevel(hex2, hex3) && sameLevel(hex3, hex1));
     }
     //Check if two hexes have the same terrain
     public boolean sameTerrain(Hex hex1, Hex hex2){

@@ -44,7 +44,7 @@ public class Game{
         return this.gid;
     }
 
-    public Game(int playerID, int opponentID, int gid){
+    public Game(int playerID, int opponentID){
        board = new Board();
        ourPieces = new SettlementManager();
        theirPieces = new SettlementManager();

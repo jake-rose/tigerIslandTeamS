@@ -1,15 +1,15 @@
 package player;
 
-import board.*;
-import pieces.*;
-import java.util.*;
+import board.Board;
+import board.Hex;
+import pieces.SettlementManager;
 
 public class PlaceTile{
     //Check for underlying hexes as well as wiping out settlements
     private static boolean validTile(Board board, Hex h1, Hex h2, Hex h3, SettlementManager ourSettlements, SettlementManager theirSettlements){
         if(board.getHexManager().validTileHexes(h1,h2,h3)){
             if(!(ourSettlements.isCovered(h1,h2,h3) || theirSettlements.isCovered(h1,h2,h3))){
-                if(board.getHexManager().findAdjPlaced(h1).size()>0 && board.getHexManager().findAdjPlaced(h2).size()>0 && board.getHexManager().findAdjPlaced(h3).size()>0) {
+                if(board.getHexManager().findAdjPlaced(h1).size()>0 || board.getHexManager().findAdjPlaced(h2).size()>0 || board.getHexManager().findAdjPlaced(h3).size()>0) {
                     return true;
                 }
                 else {

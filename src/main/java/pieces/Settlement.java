@@ -1,9 +1,9 @@
 package pieces;
 
-import java.util.*;
+import board.Hex;
 
-import pieces.*;
-import board.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Settlement{
     private List<Piece> pieces;
@@ -18,6 +18,7 @@ public class Settlement{
         this.hasTiger=false;
     }
     public Settlement(int sNum, Piece piece){
+        this.pieces = new ArrayList<Piece>();
         this.pieces.add(piece);
         this.sNum=sNum;
         this.hasTotoro=false;
@@ -26,6 +27,7 @@ public class Settlement{
 
     //Skeleton constructor for temp settlements
     public Settlement(int sNum){
+        this.pieces = new ArrayList<Piece>();
         this.sNum=sNum;
         this.hasTotoro=false;
         this.hasTiger=false;
@@ -46,8 +48,11 @@ public class Settlement{
     }
 
     public Piece getPiece(Hex location){
-        Piece temp = new Piece(0,location);
-        return pieces.get(pieces.indexOf(temp));
+        if(pieces != null) {
+            Piece temp = new Piece(0, location);
+            return pieces.get(pieces.indexOf(temp));
+        }
+        return null;
     }
 
     public int getSNum(){
@@ -74,8 +79,11 @@ public class Settlement{
     }
 
     public boolean findPiece(Hex location){
-        Piece temp = new Piece(1,location);
-        return pieces.contains(temp);
+        if(pieces != null) {
+            Piece temp = new Piece(1, location);
+            return pieces.contains(temp);
+        }
+        return false;
     }
 
     //Replace equals so as to only compare sNum
