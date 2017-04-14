@@ -5,7 +5,7 @@ import java.util.*;
 import board.*;
 
 public class Piece{
-    //0=meeple, 1=totoro, 2=tiger
+    //0=meeple, 1=totoro, 2=standAloneTigerName
     private int type;
     private Hex location;
 

@@ -7,7 +7,6 @@ import java.io.*;
 import java.awt.image.*;
 import javax.imageio.*;
 import javax.swing.*;
-import java.lang.*;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -49,8 +48,8 @@ class ImageFrame7 extends JFrame {
     private Polygon Boards [] = new Polygon[200];
     private Polygon Game [] =new Polygon[200]; //     0         1  2  3      4            5                     6       7      8                   9
     private int IsPlaced [][]=new int [999][10];// [occupition][x][y][z][landscape][player 1&2 piece type][tileIndex][level][settlement size][settlement index]
-    private int PlacedCounter =0;              //    [piece]  ==> 1= meeple  2= totora  3= tiger else 0=nothing for player 1
-    private int TileIndex=0;                   //    [piece]  ==> 4= meeple  5= totora  6= tiger else 0=nothing for player 2
+    private int PlacedCounter =0;              //    [piece]  ==> 1= meeple  2= totora  3= standAloneTigerName else 0=nothing for player 1
+    private int TileIndex=0;                   //    [piece]  ==> 4= meeple  5= totora  6= standAloneTigerName else 0=nothing for player 2
     private boolean firstTile =true;
     private boolean adj= false;
     private int meeple = 20;
@@ -66,7 +65,7 @@ class ImageFrame7 extends JFrame {
     private int player1score=0;
     private int player2score=0;
     private int settlementIndex;
-    private int counter=0;
+    private int counter=1;
 
     private boolean EndGame=false;
     Graphics2D g2d=(Graphics2D)image1.createGraphics();
@@ -1547,7 +1546,7 @@ class ImageFrame7 extends JFrame {
                         try {
                             z=Integer.parseInt(input3);
                             //g2d.drawPolygon(FindHex(x,y,z));
-                            String input4 = JOptionPane.showInputDialog("Please give a type of piece (1 for meeple, 2 for totora, 3 for tiger):");
+                            String input4 = JOptionPane.showInputDialog("Please give a type of piece (1 for meeple, 2 for totora, 3 for standAloneTigerName):");
                             try {
                                 o = Integer.parseInt(input4);
                                     if(EndGame==false && piecePlaced==false && player1roundsEnd==false && tilePlaced==true)
@@ -1559,15 +1558,17 @@ class ImageFrame7 extends JFrame {
                                                         if (IsPlaced[i][3] == z) {
                                                             if (IsPlaced[i][0] == 1 && IsPlaced[i][5] == 0 && IsPlaced[i][4] != 0 ) {
                                                                 IsPlaced[i][5] = 1;
-                                                                meeple--;
+                                                                meeple=meeple-IsPlaced[i][7];
                                                                 player1score=1*IsPlaced[i][7]+player1score;
+                                                                IsPlaced[i][9]=counter++;
+                                                                IsPlaced[i][8]=1;
                                                                 piecePlaced=true;
                                                                 player1roundsEnd=true;
                                                                 player2roundsEnd=false;
                                                                 if (meeple == 0) {
                                                                     EndGame = true;
                                                                 }
-                                                                System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                                                System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                                 System.out.println(IsPlaced[i][5]);
                                                                 break;
                                                             }
@@ -1607,7 +1608,7 @@ class ImageFrame7 extends JFrame {
                                                                     if (totora == 0) {
                                                                         EndGame = true;
                                                                     }
-                                                                    System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                                                    System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                                     System.out.println(IsPlaced[i][5]);
                                                                     break;
                                                                 }
@@ -1622,7 +1623,7 @@ class ImageFrame7 extends JFrame {
                                                                     if (totora == 0) {
                                                                         EndGame = true;
                                                                     }
-                                                                    System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                                                    System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                                     System.out.println(IsPlaced[i][5]);
                                                                     break;
                                                                 }
@@ -1637,7 +1638,7 @@ class ImageFrame7 extends JFrame {
                                                                     if (totora == 0) {
                                                                         EndGame = true;
                                                                     }
-                                                                    System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                                                    System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                                     System.out.println(IsPlaced[i][5]);
                                                                     break;
                                                                 }
@@ -1652,7 +1653,7 @@ class ImageFrame7 extends JFrame {
                                                                     if (totora == 0) {
                                                                         EndGame = true;
                                                                     }
-                                                                    System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                                                    System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                                     System.out.println(IsPlaced[i][5]);
                                                                     break;
                                                                 }
@@ -1667,7 +1668,7 @@ class ImageFrame7 extends JFrame {
                                                                     if (totora == 0) {
                                                                         EndGame = true;
                                                                     }
-                                                                    System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                                                    System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                                     System.out.println(IsPlaced[i][5]);
                                                                     break;
                                                                 }
@@ -1682,7 +1683,7 @@ class ImageFrame7 extends JFrame {
                                                                     if (totora == 0) {
                                                                         EndGame = true;
                                                                     }
-                                                                    System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                                                    System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                                     System.out.println(IsPlaced[i][5]);
                                                                     break;
                                                                 }
@@ -1716,7 +1717,7 @@ class ImageFrame7 extends JFrame {
                                                                 if (tiger == 0) {
                                                                     EndGame = true;
                                                                 }
-                                                                System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                                                System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                                 System.out.println(IsPlaced[i][5]);
                                                                 break;
                                                             }
@@ -1737,8 +1738,8 @@ class ImageFrame7 extends JFrame {
                                             {
 
                                                 int t=Integer.parseInt(input5);
-                                                setSettlementForP1(x,y,z,t,0);
-                                                counter++;
+                                                setSettlementForP1(x,y,z,t);
+
                                                 player1roundsEnd=true;
                                                 player2roundsEnd=false;
 
@@ -1768,14 +1769,16 @@ class ImageFrame7 extends JFrame {
                                                                 if (IsPlaced[i][0] == 1 && IsPlaced[i][5] == 0 && IsPlaced[i][4] != 0 ) {
                                                                     IsPlaced[i][5] = 4;
                                                                     player2score=1*IsPlaced[i][7]+player2score;
-                                                                    meeple1--;
+                                                                    meeple1=meeple1-IsPlaced[i][7];
+                                                                    IsPlaced[i][9]=counter;
+                                                                    IsPlaced[i][8]=1;
                                                                     piecePlaced=true;
                                                                     player1roundsEnd=false;
                                                                     player2roundsEnd=true;
                                                                     if (meeple == 0) {
                                                                         EndGame = true;
                                                                     }
-                                                                    System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                                                    System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                                     System.out.println(IsPlaced[i][5]);
                                                                     break;
                                                                 }
@@ -1821,7 +1824,7 @@ class ImageFrame7 extends JFrame {
                                                                         if (totora == 0) {
                                                                             EndGame = true;
                                                                         }
-                                                                        System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                                                        System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                                         System.out.println(IsPlaced[i][5]);
                                                                         break;
                                                                     }
@@ -1836,7 +1839,7 @@ class ImageFrame7 extends JFrame {
                                                                         if (totora == 0) {
                                                                             EndGame = true;
                                                                         }
-                                                                        System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                                                        System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                                         System.out.println(IsPlaced[i][5]);
                                                                         break;
                                                                     }
@@ -1851,7 +1854,7 @@ class ImageFrame7 extends JFrame {
                                                                         if (totora == 0) {
                                                                             EndGame = true;
                                                                         }
-                                                                        System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                                                        System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                                         System.out.println(IsPlaced[i][5]);
                                                                         break;
                                                                     }
@@ -1866,7 +1869,7 @@ class ImageFrame7 extends JFrame {
                                                                         if (totora == 0) {
                                                                             EndGame = true;
                                                                         }
-                                                                        System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                                                        System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                                         System.out.println(IsPlaced[i][5]);
                                                                         break;
                                                                     }
@@ -1881,7 +1884,7 @@ class ImageFrame7 extends JFrame {
                                                                         if (totora == 0) {
                                                                             EndGame = true;
                                                                         }
-                                                                        System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                                                        System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                                         System.out.println(IsPlaced[i][5]);
                                                                         break;
                                                                     }
@@ -1896,7 +1899,7 @@ class ImageFrame7 extends JFrame {
                                                                         if (totora == 0) {
                                                                             EndGame = true;
                                                                         }
-                                                                        System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                                                        System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                                         System.out.println(IsPlaced[i][5]);
                                                                         break;
                                                                     }
@@ -1927,7 +1930,7 @@ class ImageFrame7 extends JFrame {
                                                                             if (tiger == 0) {
                                                                                 EndGame = true;
                                                                             }
-                                                                            System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                                                            System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                                                             System.out.println(IsPlaced[i][5]);
                                                                             break;
                                                                 }
@@ -1949,7 +1952,7 @@ class ImageFrame7 extends JFrame {
 
                                                     int t=Integer.parseInt(input5);
                                                     setSettlementForP2(x,y,z,t,0);
-                                                    counter++;
+
                                                     player1roundsEnd=false;
                                                     player2roundsEnd=true;
                                                 }
@@ -2067,28 +2070,11 @@ class ImageFrame7 extends JFrame {
         return 0;
     }
 
-    public void setSettlementForP1(int x, int y, int z, int t, int w)
+    public void settlmentAdj(int x, int y, int z ,int t, int w, int sindex)
     {
+
         boolean check1,check2,check3,check4,check5,check6;
         check1=CheckSettlement(x,y+1,z-1,t);
-
-        for (int i =0 ;i<IsPlaced.length;i++)
-        {
-            if(IsPlaced[i][1]==x)
-            {
-                if(IsPlaced[i][2]==y)
-                {
-                    if(IsPlaced[i][3]==z)
-                    {
-                        settlementIndex=IsPlaced[i][9];
-
-
-                    }
-                    else settlementIndex=counter;
-                }
-            }
-        }
-
         if(check1 && ValidMove(x,y+1,z-1)==0 && w!=1)
         {
             for(int i=0;i<PlacedCounter;i++)
@@ -2099,11 +2085,13 @@ class ImageFrame7 extends JFrame {
                     {
                         if(IsPlaced[i][3]==z-1)
                         {
-                            meeple--;
+
+                            System.out.println("expansion@ 1");
+                            meeple=meeple-IsPlaced[i][7];
                             player1score=1*IsPlaced[i][7]+player1score;
                             IsPlaced[i][5]=1;
-                            IsPlaced[i][9]=settlementIndex;
-                            setSettlementForP1(x,y+1,z-1,t,4);
+                            IsPlaced[i][9]=sindex;
+                            settlmentAdj(x,y+1,z-1,t,4,sindex);
                         }
                     }
                 }
@@ -2120,11 +2108,12 @@ class ImageFrame7 extends JFrame {
                     {
                         if(IsPlaced[i][3]==z-1)
                         {
-                            meeple--;
+                            System.out.println("expansion@ 2");
+                            meeple=meeple-IsPlaced[i][7];
                             player1score=1*IsPlaced[i][7]+player1score;
                             IsPlaced[i][5]=1;
-                            IsPlaced[i][9]=settlementIndex;
-                            setSettlementForP1(x+1,y,z-1,t,5);
+                            IsPlaced[i][9]=sindex;
+                            settlmentAdj(x+1,y,z-1,t,5,sindex);
                         }
                     }
                 }
@@ -2141,11 +2130,12 @@ class ImageFrame7 extends JFrame {
                     {
                         if(IsPlaced[i][3]==z)
                         {
-                            meeple--;
+                            System.out.println("expansion@ 3");
+                            meeple=meeple-IsPlaced[i][7];
                             player1score=1*IsPlaced[i][7]+player1score;
                             IsPlaced[i][5]=1;
-                            IsPlaced[i][9]=settlementIndex;
-                            setSettlementForP1(x+1,y,z-1,t,6);
+                            IsPlaced[i][9]=sindex;
+                            settlmentAdj(x+1,y,z-1,t,6,sindex);
                         }
                     }
                 }
@@ -2162,11 +2152,12 @@ class ImageFrame7 extends JFrame {
                     {
                         if(IsPlaced[i][3]==z+1)
                         {
-                            meeple--;
+                            System.out.println("expansion@ 4");
+                            meeple=meeple-IsPlaced[i][7];
                             player1score=1*IsPlaced[i][7]+player1score;
                             IsPlaced[i][5]=1;
-                            IsPlaced[i][9]=settlementIndex;
-                            setSettlementForP1(x,y-1,z+1,t,1);
+                            IsPlaced[i][9]=sindex;
+                            settlmentAdj(x,y-1,z+1,t,1,sindex);
                         }
                     }
                 }
@@ -2183,11 +2174,12 @@ class ImageFrame7 extends JFrame {
                     {
                         if(IsPlaced[i][3]==z+1)
                         {
-                            meeple--;
+                            System.out.println("expansion@ 5");
+                            meeple=meeple-IsPlaced[i][7];
                             player1score=1*IsPlaced[i][7]+player1score;
                             IsPlaced[i][5]=1;
-                            IsPlaced[i][9]=settlementIndex;
-                            setSettlementForP1(x-1,y,z+1,t,2);
+                            IsPlaced[i][9]=sindex;
+                            settlmentAdj(x-1,y,z+1,t,2,sindex);
                         }
                     }
                 }
@@ -2204,164 +2196,228 @@ class ImageFrame7 extends JFrame {
                     {
                         if(IsPlaced[i][3]==z)
                         {
-                            meeple--;
+                            System.out.println("expansion@ 6");
+                            meeple=meeple-IsPlaced[i][7];
                             player1score=1*IsPlaced[i][7]+player1score;
                             IsPlaced[i][5]=1;
-                            IsPlaced[i][9]=settlementIndex;
-                            setSettlementForP1(x-1,y+1,z,t,6);
+                            IsPlaced[i][9]=sindex;
+                            settlmentAdj(x-1,y+1,z,t,6,sindex);
                         }
                     }
                 }
             }
         }
+
+
+    }
+    public void settlmentAdj1(int x, int y, int z ,int t, int w, int sindex)
+    {
+
+        boolean check1,check2,check3,check4,check5,check6;
+        check1=CheckSettlement(x,y+1,z-1,t);
+        if(check1 && ValidMove(x,y+1,z-1)==0 && w!=1)
+        {
+            for(int i=0;i<PlacedCounter;i++)
+            {
+                if(IsPlaced[i][1]==x)
+                {
+                    if(IsPlaced[i][2]==y+1)
+                    {
+                        if(IsPlaced[i][3]==z-1)
+                        {
+                            System.out.println("expansion@ 1 for p2");
+                            meeple1=meeple1-IsPlaced[i][7];
+                            player1score=1*IsPlaced[i][7]+player1score;
+                            IsPlaced[i][5]=4;
+                            IsPlaced[i][9]=sindex;
+                            settlmentAdj1(x,y+1,z-1,t,4,sindex);
+                        }
+                    }
+                }
+            }
+        }
+        check2=CheckSettlement(x+1,y,z-1,t);
+        if(check2 && ValidMove(x+1,y,z-1)==0 && w!=2)
+        {
+            for(int i=0;i<PlacedCounter;i++)
+            {
+                if(IsPlaced[i][1]==x+1)
+                {
+                    if(IsPlaced[i][2]==y)
+                    {
+                        if(IsPlaced[i][3]==z-1)
+                        {
+                            System.out.println("expansion@ 2 for p2");
+                            meeple1=meeple1-IsPlaced[i][7];
+                            player1score=1*IsPlaced[i][7]+player1score;
+                            IsPlaced[i][5]=4;
+                            IsPlaced[i][9]=sindex;
+                            settlmentAdj1(x+1,y,z-1,t,5,sindex);
+                        }
+                    }
+                }
+            }
+        }
+        check3=CheckSettlement(x+1,y-1,z,t);
+        if(check3 && ValidMove(x+1,y-1,z)==0 && w!=3)
+        {
+            for(int i=0;i<PlacedCounter;i++)
+            {
+                if(IsPlaced[i][1]==x+1)
+                {
+                    if(IsPlaced[i][2]==y-1)
+                    {
+                        if(IsPlaced[i][3]==z)
+                        {
+                            System.out.println("expansion@ 2 for p2");
+                            meeple1=meeple1-IsPlaced[i][7];
+                            player1score=1*IsPlaced[i][7]+player1score;
+                            IsPlaced[i][5]=4;
+                            IsPlaced[i][9]=sindex;
+                            settlmentAdj1(x+1,y,z-1,t,6,sindex);
+                        }
+                    }
+                }
+            }
+        }
+        check4=CheckSettlement(x,y-1,z+1,t);
+        if(check4 && ValidMove(x,y-1,z+1)==0 & w!=4)
+        {
+            for(int i=0;i<PlacedCounter;i++)
+            {
+                if(IsPlaced[i][1]==x)
+                {
+                    if(IsPlaced[i][2]==y-1)
+                    {
+                        if(IsPlaced[i][3]==z+1)
+                        {
+                            System.out.println("expansion@ 4 for p2");
+                            meeple1=meeple1-IsPlaced[i][7];
+                            player1score=1*IsPlaced[i][7]+player1score;
+                            IsPlaced[i][5]=4;
+                            IsPlaced[i][9]=sindex;
+                            settlmentAdj1(x,y-1,z+1,t,1,sindex);
+                        }
+                    }
+                }
+            }
+        }
+        check5=CheckSettlement(x-1,y,z+1,t);
+        if(check5 && ValidMove(x-1,y,z+1)==0 && w!=2)
+        {
+            for(int i=0;i<PlacedCounter;i++)
+            {
+                if(IsPlaced[i][1]==x-1)
+                {
+                    if(IsPlaced[i][2]==y)
+                    {
+                        if(IsPlaced[i][3]==z+1)
+                        {
+                            System.out.println("expansion@ 5 for p2");
+                            meeple1=meeple1-IsPlaced[i][7];
+                            player1score=1*IsPlaced[i][7]+player1score;
+                            IsPlaced[i][5]=4;
+                            IsPlaced[i][9]=sindex;
+                            settlmentAdj1(x-1,y,z+1,t,2,sindex);
+                        }
+                    }
+                }
+            }
+        }
+        check6=CheckSettlement(x-1,y+1,z,t);
+        if(check6 && ValidMove(x-1,y+1,z)==0 && w!=3)
+        {
+            for(int i=0;i<PlacedCounter;i++)
+            {
+                if(IsPlaced[i][1]==x-1)
+                {
+                    if(IsPlaced[i][2]==y+1)
+                    {
+                        if(IsPlaced[i][3]==z)
+                        {
+                            System.out.println("expansion@ 6 for p2");
+                            meeple1=meeple1-IsPlaced[i][7];
+                            player1score=1*IsPlaced[i][7]+player1score;
+                            IsPlaced[i][5]=4;
+                            IsPlaced[i][9]=sindex;
+                            settlmentAdj1(x-1,y+1,z,t,6,sindex);
+                        }
+                    }
+                }
+            }
+        }
+
+
+    }
+
+    public void setSettlementForP1(int x, int y, int z, int t)
+    {
+        int sindex=0;
+
+        for (int i =0 ;i<IsPlaced.length;i++)
+        {
+            if(IsPlaced[i][1]==x)
+            {
+                if(IsPlaced[i][2]==y)
+                {
+                    if(IsPlaced[i][3]==z) {
+                        sindex = IsPlaced[i][9];
+
+
+                    }
+                }
+            }
+        }
+
+        for(int i=0;i<PlacedCounter;i++)
+        {
+            if(IsPlaced[i][1]==x)
+            {
+                if(IsPlaced[i][2]==y)
+                {
+                    if(IsPlaced[i][3]==z) {
+                        if (IsPlaced[i][9]==sindex) {
+                            settlmentAdj(IsPlaced[i][1],IsPlaced[i][2],IsPlaced[i][3],t,0,sindex);
+                        }
+
+                    }
+                }
+            }
+        }
+
+
     }
 
 
     public void setSettlementForP2(int x,int y,int z,int t, int w)
-    {
+    {        int sindex=0;
+
+        for (int i =0 ;i<IsPlaced.length;i++)
         {
-            boolean check1,check2,check3,check4,check5,check6;
-            check1=CheckSettlement(x,y+1,z-1,t);
-
-            for (int i =0 ;i<IsPlaced.length;i++)
+            if(IsPlaced[i][1]==x)
             {
-                if(IsPlaced[i][1]==x)
+                if(IsPlaced[i][2]==y)
                 {
-                    if(IsPlaced[i][2]==y)
-                    {
-                        if(IsPlaced[i][3]==z)
-                        {
-                            settlementIndex=IsPlaced[i][9];
+                    if(IsPlaced[i][3]==z) {
+                        sindex = IsPlaced[i][9];
 
 
-                        }
-                        else settlementIndex=counter;
                     }
                 }
             }
+        }
 
-            if(check1 && ValidMove(x,y+1,z-1)==0 && w!=1)
+        for(int i=0;i<PlacedCounter;i++)
+        {
+            if(IsPlaced[i][1]==x)
             {
-                for(int i=0;i<PlacedCounter;i++)
+                if(IsPlaced[i][2]==y)
                 {
-                    if(IsPlaced[i][1]==x)
-                    {
-                        if(IsPlaced[i][2]==y+1)
-                        {
-                            if(IsPlaced[i][3]==z-1)
-                            {
-                                meeple1--;
-                                player2score=1*IsPlaced[i][7]+player2score;
-                                IsPlaced[i][5]=5;
-                                IsPlaced[i][9]=settlementIndex;
-                                setSettlementForP1(x,y+1,z-1,t,4);
-                            }
+                    if(IsPlaced[i][3]==z) {
+                        if (IsPlaced[i][9]==sindex) {
+                            settlmentAdj(IsPlaced[i][1],IsPlaced[i][2],IsPlaced[i][3],t,0,sindex);
                         }
-                    }
-                }
-            }
-            check2=CheckSettlement(x+1,y,z-1,t);
-            if(check2 && ValidMove(x+1,y,z-1)==0 && w!=2)
-            {
-                for(int i=0;i<PlacedCounter;i++)
-                {
-                    if(IsPlaced[i][1]==x+1)
-                    {
-                        if(IsPlaced[i][2]==y)
-                        {
-                            if(IsPlaced[i][3]==z-1)
-                            {
-                                meeple1--;
-                                player2score=1*IsPlaced[i][7]+player2score;
-                                IsPlaced[i][5]=5;
-                                IsPlaced[i][9]=settlementIndex;
-                                setSettlementForP1(x+1,y,z-1,t,5);
-                            }
-                        }
-                    }
-                }
-            }
-            check3=CheckSettlement(x+1,y-1,z,t);
-            if(check3 && ValidMove(x+1,y-1,z)==0 && w!=3)
-            {
-                for(int i=0;i<PlacedCounter;i++)
-                {
-                    if(IsPlaced[i][1]==x+1)
-                    {
-                        if(IsPlaced[i][2]==y-1)
-                        {
-                            if(IsPlaced[i][3]==z)
-                            {
-                                meeple1--;
-                                player2score=1*IsPlaced[i][7]+player2score;
-                                IsPlaced[i][5]=5;
-                                IsPlaced[i][9]=settlementIndex;
-                                setSettlementForP1(x+1,y,z-1,t,6);
-                            }
-                        }
-                    }
-                }
-            }
-            check4=CheckSettlement(x,y-1,z+1,t);
-            if(check4 && ValidMove(x,y-1,z+1)==0 && w!=4)
-            {
-                for(int i=0;i<PlacedCounter;i++)
-                {
-                    if(IsPlaced[i][1]==x)
-                    {
-                        if(IsPlaced[i][2]==y-1)
-                        {
-                            if(IsPlaced[i][3]==z+1)
-                            {
-                                meeple1--;
-                                player2score=1*IsPlaced[i][7]+player2score;
-                                IsPlaced[i][5]=5;
-                                IsPlaced[i][9]=settlementIndex;
-                                setSettlementForP1(x,y-1,z+1,t,1);
-                            }
-                        }
-                    }
-                }
-            }
-            check5=CheckSettlement(x-1,y,z+1,t);
-            if(check5 && ValidMove(x-1,y,z+1)==0 && w!=5)
-            {
-                for(int i=0;i<PlacedCounter;i++)
-                {
-                    if(IsPlaced[i][1]==x-1)
-                    {
-                        if(IsPlaced[i][2]==y)
-                        {
-                            if(IsPlaced[i][3]==z+1)
-                            {
-                                meeple1--;
-                                player2score=1*IsPlaced[i][7]+player2score;
-                                IsPlaced[i][5]=5;
-                                IsPlaced[i][9]=settlementIndex;
-                                setSettlementForP1(x-1,y,z+1,t,2);
-                            }
-                        }
-                    }
-                }
-            }
-            check6=CheckSettlement(x-1,y+1,z,t);
-            if(check6 && ValidMove(x-1,y+1,z)==0 && w!=6)
-            {
-                for(int i=0;i<PlacedCounter;i++)
-                {
-                    if(IsPlaced[i][1]==x-1)
-                    {
-                        if(IsPlaced[i][2]==y+1)
-                        {
-                            if(IsPlaced[i][3]==z)
-                            {
-                                meeple1--;
-                                player2score=1*IsPlaced[i][7]+player2score;
-                                IsPlaced[i][5]=5;
-                                IsPlaced[i][9]=settlementIndex;
-                                setSettlementForP1(x-1,y+1,z,t,3);
-                            }
-                        }
+
                     }
                 }
             }
@@ -2727,12 +2783,14 @@ class ImageFrame7 extends JFrame {
             }
 
         }
-        tile Tile = new tile();
-        String test1 = Tile.getHex1Type();
-        String test2 = Tile.getHex2Type();
-        String test3 = Tile.getHex3Type();
 
-        placeTile(array[0],array[1],array[2],o,test2,test3);
+        System.out.println("AI: "+ array[0]);
+        System.out.println("AI: "+array[1]);
+        System.out.println("AI: "+array[2]);
+        System.out.println("AI "+ o);
+
+
+        placeTile(array[0],array[1],array[2],o);
 
         boolean op1=false;
         boolean op2=false;
@@ -2789,7 +2847,7 @@ class ImageFrame7 extends JFrame {
                                     if (meeple == 0) {
                                         EndGame = true;
                                     }
-                                    System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                    System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                     System.out.println(IsPlaced[i][5]);
 
                                     break;
@@ -2830,7 +2888,7 @@ class ImageFrame7 extends JFrame {
                                         if (totora == 0) {
                                             EndGame = true;
                                         }
-                                        System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                        System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                         System.out.println(IsPlaced[i][5]);
 
                                         break;
@@ -2846,7 +2904,7 @@ class ImageFrame7 extends JFrame {
                                         if (totora == 0) {
                                             EndGame = true;
                                         }
-                                        System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                        System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                         System.out.println(IsPlaced[i][5]);
 
                                         break;
@@ -2862,7 +2920,7 @@ class ImageFrame7 extends JFrame {
                                         if (totora == 0) {
                                             EndGame = true;
                                         }
-                                        System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                        System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                         System.out.println(IsPlaced[i][5]);
 
                                         break;
@@ -2878,7 +2936,7 @@ class ImageFrame7 extends JFrame {
                                         if (totora == 0) {
                                             EndGame = true;
                                         }
-                                        System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                        System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                         System.out.println(IsPlaced[i][5]);
 
                                         break;
@@ -2894,7 +2952,7 @@ class ImageFrame7 extends JFrame {
                                         if (totora == 0) {
                                             EndGame = true;
                                         }
-                                        System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                        System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                         System.out.println(IsPlaced[i][5]);
 
                                         break;
@@ -2910,7 +2968,7 @@ class ImageFrame7 extends JFrame {
                                         if (totora == 0) {
                                             EndGame = true;
                                         }
-                                        System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                        System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                         System.out.println(IsPlaced[i][5]);
 
                                         break;
@@ -2945,7 +3003,7 @@ class ImageFrame7 extends JFrame {
                                     if (tiger == 0) {
                                         EndGame = true;
                                     }
-                                    System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                    System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                     System.out.println(IsPlaced[i][5]);
 
                                     break;
@@ -2964,7 +3022,7 @@ class ImageFrame7 extends JFrame {
             {
 
                 int t=w;
-                setSettlementForP1(x,y,z,t,0);
+                setSettlementForP1(x,y,z,t);
                 counter++;
                 player1roundsEnd=true;
                 player2roundsEnd=false;
@@ -2996,7 +3054,7 @@ class ImageFrame7 extends JFrame {
                                         if (meeple == 0) {
                                             EndGame = true;
                                         }
-                                        System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                        System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                         System.out.println(IsPlaced[i][5]);
 
                                         break;
@@ -3043,7 +3101,7 @@ class ImageFrame7 extends JFrame {
                                             if (totora == 0) {
                                                 EndGame = true;
                                             }
-                                            System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                            System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                             System.out.println(IsPlaced[i][5]);
 
                                             break;
@@ -3059,7 +3117,7 @@ class ImageFrame7 extends JFrame {
                                             if (totora == 0) {
                                                 EndGame = true;
                                             }
-                                            System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                            System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                             System.out.println(IsPlaced[i][5]);
 
                                             break;
@@ -3075,7 +3133,7 @@ class ImageFrame7 extends JFrame {
                                             if (totora == 0) {
                                                 EndGame = true;
                                             }
-                                            System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                            System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                             System.out.println(IsPlaced[i][5]);
 
                                             break;
@@ -3091,7 +3149,7 @@ class ImageFrame7 extends JFrame {
                                             if (totora == 0) {
                                                 EndGame = true;
                                             }
-                                            System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                            System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                             System.out.println(IsPlaced[i][5]);
 
                                             break;
@@ -3107,7 +3165,7 @@ class ImageFrame7 extends JFrame {
                                             if (totora == 0) {
                                                 EndGame = true;
                                             }
-                                            System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                            System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                             System.out.println(IsPlaced[i][5]);
 
                                             break;
@@ -3123,7 +3181,7 @@ class ImageFrame7 extends JFrame {
                                             if (totora == 0) {
                                                 EndGame = true;
                                             }
-                                            System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                            System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                             System.out.println(IsPlaced[i][5]);
 
                                             break;
@@ -3155,7 +3213,7 @@ class ImageFrame7 extends JFrame {
                                         if (tiger == 0) {
                                             EndGame = true;
                                         }
-                                        System.out.println("1= meeple  2= totora  3= tiger || 0=nothing");
+                                        System.out.println("1= meeple  2= totora  3= standAloneTigerName || 0=nothing");
                                         System.out.println(IsPlaced[i][5]);
 
                                         break;
@@ -3193,719 +3251,802 @@ class ImageFrame7 extends JFrame {
 
     }
 
-    private void placeTile(int x, int y, int z, int o,String t1, String t2)
+    private void placeTile(int x, int y, int z, int o)
     {
-        {
+
+        tile Tile = new tile();
+        String test1 = Tile.getHex1Type();
+        String test2 = Tile.getHex2Type();
+        String test3 = Tile.getHex3Type();
 
 
-            String test1 = "volcano";
-            String test2 = t1;
-            String test3 = t2;
 
-            System.out.println(test1);
-            System.out.println(test2);
-            System.out.println(test3);
+        Polygon hex1 = null;
+        Polygon hex2 = null;
+        Polygon hex3 = null;
 
-            Polygon hex1 = null;
-            Polygon hex2 = null;
-            Polygon hex3 = null;
+        // System.out.println("made here");
+        boolean tempHex = CheckAdj(x, y, z);
+        if (EndGame == false && tilePlaced==false) {
+            if (ValidMove(x, y, z) == 1 && CheckVolcano(x, y, z) == 0) {
+                if (o == 1) {
+                    if (ValidMove(x, y + 1, z - 1) == 1 && ValidMove(x + 1, y, z - 1) == 1) {
+                        int temp1 = CheckTileIndex(x, y, z);
+                        int temp2 = CheckTileIndex(x, y + 1, z - 1);
+                        int temp3 = CheckTileIndex(x + 1, y, z - 1);
+                        boolean nope=false;
+                        for(int i=0;i<PlacedCounter;i++)
+                        {
+                            if (IsPlaced[i][1] == x) {
+                                if (IsPlaced[i][2] == y + 1) {
+                                    if (IsPlaced[i][3] == z - 1) {
+                                        if(IsPlaced[i][5]==2 || IsPlaced[i][5]==3 || IsPlaced[i][5]==5|| IsPlaced[i][5]==6)
+                                            nope=true;
+                                    }
+                                }
+                            }
+                        }
 
-            // System.out.println("made here");
-            boolean tempHex = CheckAdj(x, y, z);
-            if (EndGame == false && tilePlaced==false) {
-                if (ValidMove(x, y, z) == 1 && CheckVolcano(x, y, z) == 0) {
-                    if (o == 1) {
-                        if (ValidMove(x, y + 1, z - 1) == 1 && ValidMove(x + 1, y, z - 1) == 1) {
-                            int temp1 = CheckTileIndex(x, y, z);
-                            int temp2 = CheckTileIndex(x, y + 1, z - 1);
-                            int temp3 = CheckTileIndex(x + 1, y, z - 1);
-                            boolean nope=false;
-                            for(int i=0;i<PlacedCounter;i++)
-                            {
+                        for(int i=0;i<PlacedCounter;i++)
+                        {
+                            if (IsPlaced[i][1] == x+1) {
+                                if (IsPlaced[i][2] == y) {
+                                    if (IsPlaced[i][3] == z - 1) {
+                                        if(IsPlaced[i][5]==2 || IsPlaced[i][5]==3 || IsPlaced[i][5]==5 || IsPlaced[i][5]==6)
+                                            nope=true;
+                                    }
+                                }
+                            }
+                        }
+
+                        if ((temp1 != temp2 || temp2 != temp3) &&nope==false) {
+                            tilePlaced=true;
+                            for (int i = 0; i < PlacedCounter; i++) {
+                                if (IsPlaced[i][1] == x) {
+                                    if (IsPlaced[i][2] == y) {
+                                        if (IsPlaced[i][3] == z) {
+                                            if (test1 == "volcano")
+                                                IsPlaced[i][4] = 0;
+                                            else if (test1 == "rocks")
+                                                IsPlaced[i][4] = 1;
+                                            else if (test1 == "jungle")
+                                                IsPlaced[i][4] = 2;
+                                            else if (test1 == "lake")
+                                                IsPlaced[i][4] = 3;
+                                            else if (test1 == "grassland")
+                                                IsPlaced[i][4] = 4;
+                                            IsPlaced[i][5]=0;
+                                            IsPlaced[i][7] = IsPlaced[i][7] + 1;
+                                            IsPlaced[i][6] = TileIndex;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+
+                            for (int i = 0; i < PlacedCounter; i++) {
                                 if (IsPlaced[i][1] == x) {
                                     if (IsPlaced[i][2] == y + 1) {
                                         if (IsPlaced[i][3] == z - 1) {
-                                            if(IsPlaced[i][5]==2 || IsPlaced[i][5]==3 || IsPlaced[i][5]==5|| IsPlaced[i][5]==6)
-                                                nope=true;
+                                            if (test2 == "volcano")
+                                                IsPlaced[i][4] = 0;
+                                            else if (test2 == "rocks")
+                                                IsPlaced[i][4] = 1;
+                                            else if (test2 == "jungle")
+                                                IsPlaced[i][4] = 2;
+                                            else if (test2 == "lake")
+                                                IsPlaced[i][4] = 3;
+                                            else if (test2 == "grassland")
+                                                IsPlaced[i][4] = 4;
+                                            IsPlaced[i][5]=0;
+                                            IsPlaced[i][7] = IsPlaced[i][7] + 1;
+                                            IsPlaced[i][6] = TileIndex;
+                                            break;
                                         }
                                     }
                                 }
                             }
 
-                            for(int i=0;i<PlacedCounter;i++)
-                            {
-                                if (IsPlaced[i][1] == x+1) {
+                            for (int i = 0; i < PlacedCounter; i++) {
+                                if (IsPlaced[i][1] == x + 1) {
                                     if (IsPlaced[i][2] == y) {
                                         if (IsPlaced[i][3] == z - 1) {
-                                            if(IsPlaced[i][5]==2 || IsPlaced[i][5]==3 || IsPlaced[i][5]==5 || IsPlaced[i][5]==6)
-                                                nope=true;
+                                            if (test3 == "volcano")
+                                                IsPlaced[i][4] = 0;
+                                            else if (test3 == "rocks")
+                                                IsPlaced[i][4] = 1;
+                                            else if (test3 == "jungle")
+                                                IsPlaced[i][4] = 2;
+                                            else if (test3 == "lake")
+                                                IsPlaced[i][4] = 3;
+                                            else if (test3 == "grassland")
+                                                IsPlaced[i][4] = 4;
+                                            IsPlaced[i][5]=0;
+                                            IsPlaced[i][7] = IsPlaced[i][7] + 1;
+                                            IsPlaced[i][6] = TileIndex++;
+                                            break;
                                         }
                                     }
                                 }
                             }
+                            g2d.setColor(Color.green);
+                            hex1 = FindHex(x, y, z);
 
-                            if ((temp1 != temp2 || temp2 != temp3) &&nope==false) {
-                                tilePlaced=true;
-                                for (int i = 0; i < PlacedCounter; i++) {
-                                    if (IsPlaced[i][1] == x) {
-                                        if (IsPlaced[i][2] == y) {
-                                            if (IsPlaced[i][3] == z) {
-                                                if (test1 == "volcano")
-                                                    IsPlaced[i][4] = 0;
-                                                else if (test1 == "rocks")
-                                                    IsPlaced[i][4] = 1;
-                                                else if (test1 == "jungle")
-                                                    IsPlaced[i][4] = 2;
-                                                else if (test1 == "lake")
-                                                    IsPlaced[i][4] = 3;
-                                                else if (test1 == "grassland")
-                                                    IsPlaced[i][4] = 4;
-                                                IsPlaced[i][5]=0;
-                                                IsPlaced[i][7] = IsPlaced[i][7] + 1;
-                                                IsPlaced[i][6] = TileIndex;
-                                                break;
-                                            }
-                                        }
-                                    }
-                                }
-
-                                for (int i = 0; i < PlacedCounter; i++) {
-                                    if (IsPlaced[i][1] == x) {
-                                        if (IsPlaced[i][2] == y + 1) {
-                                            if (IsPlaced[i][3] == z - 1) {
-                                                if (test2 == "volcano")
-                                                    IsPlaced[i][4] = 0;
-                                                else if (test2 == "rocks")
-                                                    IsPlaced[i][4] = 1;
-                                                else if (test2 == "jungle")
-                                                    IsPlaced[i][4] = 2;
-                                                else if (test2 == "lake")
-                                                    IsPlaced[i][4] = 3;
-                                                else if (test2 == "grassland")
-                                                    IsPlaced[i][4] = 4;
-                                                IsPlaced[i][5]=0;
-                                                IsPlaced[i][7] = IsPlaced[i][7] + 1;
-                                                IsPlaced[i][6] = TileIndex;
-                                                break;
-                                            }
-                                        }
-                                    }
-                                }
-
-                                for (int i = 0; i < PlacedCounter; i++) {
-                                    if (IsPlaced[i][1] == x + 1) {
-                                        if (IsPlaced[i][2] == y) {
-                                            if (IsPlaced[i][3] == z - 1) {
-                                                if (test3 == "volcano")
-                                                    IsPlaced[i][4] = 0;
-                                                else if (test3 == "rocks")
-                                                    IsPlaced[i][4] = 1;
-                                                else if (test3 == "jungle")
-                                                    IsPlaced[i][4] = 2;
-                                                else if (test3 == "lake")
-                                                    IsPlaced[i][4] = 3;
-                                                else if (test3 == "grassland")
-                                                    IsPlaced[i][4] = 4;
-                                                IsPlaced[i][5]=0;
-                                                IsPlaced[i][7] = IsPlaced[i][7] + 1;
-                                                IsPlaced[i][6] = TileIndex++;
-                                                break;
-                                            }
-                                        }
-                                    }
-                                }
-
-
-
-                            } else {
-                                System.out.println("Please place higher level tile onto two different base tile");
-                            }
+                            hex2 = FindHex(x, y + 1, z - 1);
+                            hex3 = FindHex(x + 1, y, z - 1);
+                            g2d.drawPolygon(hex1);
+                            g2d.setColor(Color.black);
+                            g2d.drawPolygon(hex2);
+                            g2d.drawPolygon(hex3);
 
 
                         } else {
-
-                            System.out.println("Please place higher level on occupied hex");
+                            JOptionPane.showMessageDialog(null, "Please place higher level tile onto two different base tile", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
+                            button1();
                         }
 
-                    } else if (o == 2 && CheckVolcano(x, y, z) == 0) {
-                        if (ValidMove(x + 1, y, z - 1) == 1 && ValidMove(x + 1, y - 1, z) == 1) {
-                            tilePlaced=true;
-                            int temp1 = CheckTileIndex(x, y, z);
-                            int temp2 = CheckTileIndex(x + 1, y, z - 1);
-                            int temp3 = CheckTileIndex(x + 1, y - 1, z);
-                            boolean nope=false;
 
-                            for(int i=0;i<PlacedCounter;i++)
-                            {
-                                if (IsPlaced[i][1] == x+1) {
-                                    if (IsPlaced[i][2] == y) {
-                                        if (IsPlaced[i][3] == z - 1) {
-                                            if(IsPlaced[i][5]==2 || IsPlaced[i][5]==3 || IsPlaced[i][5]==5 || IsPlaced[i][5]==6)
-                                                nope=true;
-                                        }
-                                    }
-                                }
-                            }
-
-                            for(int i=0;i<PlacedCounter;i++)
-                            {
-                                if (IsPlaced[i][1] == x+1) {
-                                    if (IsPlaced[i][2] == y-1) {
-                                        if (IsPlaced[i][3] == z) {
-                                            if(IsPlaced[i][5]==2 || IsPlaced[i][5]==3|| IsPlaced[i][5]==5|| IsPlaced[i][5]==6)
-                                                nope=true;
-                                        }
-                                    }
-                                }
-                            }
-
-                            if ((temp1 != temp2 || temp2 != temp3)&&nope==false) {
-                                for (int i = 0; i < PlacedCounter; i++) {
-                                    if (IsPlaced[i][1] == x) {
-                                        if (IsPlaced[i][2] == y) {
-                                            if (IsPlaced[i][3] == z) {
-                                                if (test1 == "volcano")
-                                                    IsPlaced[i][4] = 0;
-                                                else if (test1 == "rocks")
-                                                    IsPlaced[i][4] = 1;
-                                                else if (test1 == "jungle")
-                                                    IsPlaced[i][4] = 2;
-                                                else if (test1 == "lake")
-                                                    IsPlaced[i][4] = 3;
-                                                else if (test1 == "grassland")
-                                                    IsPlaced[i][4] = 4;
-                                                IsPlaced[i][5]=0;
-                                                IsPlaced[i][7] = IsPlaced[i][7] + 1;
-                                                IsPlaced[i][6] = TileIndex;
-                                                break;
-                                            }
-                                        }
-                                    }
-                                }
-
-                                for (int i = 0; i < PlacedCounter; i++) {
-                                    if (IsPlaced[i][1] == x + 1) {
-                                        if (IsPlaced[i][2] == y) {
-                                            if (IsPlaced[i][3] == z - 1) {
-                                                if (test2 == "volcano")
-                                                    IsPlaced[i][4] = 0;
-                                                else if (test2 == "rocks")
-                                                    IsPlaced[i][4] = 1;
-                                                else if (test2 == "jungle")
-                                                    IsPlaced[i][4] = 2;
-                                                else if (test2 == "lake")
-                                                    IsPlaced[i][4] = 3;
-                                                else if (test2 == "grassland")
-                                                    IsPlaced[i][4] = 4;
-                                                IsPlaced[i][5]=0;
-                                                IsPlaced[i][7] = IsPlaced[i][7] + 1;
-                                                IsPlaced[i][6] = TileIndex;
-                                                break;
-                                            }
-                                        }
-                                    }
-                                }
-
-                                for (int i = 0; i < PlacedCounter; i++) {
-                                    if (IsPlaced[i][1] == x + 1) {
-                                        if (IsPlaced[i][2] == y - 1) {
-                                            if (IsPlaced[i][3] == z) {
-                                                if (test3 == "volcano")
-                                                    IsPlaced[i][4] = 0;
-                                                else if (test3 == "rocks")
-                                                    IsPlaced[i][4] = 1;
-                                                else if (test3 == "jungle")
-                                                    IsPlaced[i][4] = 2;
-                                                else if (test3 == "lake")
-                                                    IsPlaced[i][4] = 3;
-                                                else if (test3 == "grassland")
-                                                    IsPlaced[i][4] = 4;
-                                                IsPlaced[i][5]=0;
-                                                IsPlaced[i][7] = IsPlaced[i][7] + 1;
-                                                IsPlaced[i][6] = TileIndex++;
-                                                break;
-                                            }
-                                        }
-                                    }
-                                }
-
-                            } else {
-                                System.out.println("Please place higher level tile onto two different base tile");
-                            }
-
-                        } else {
-
-                            System.out.println("Please place higher level on occupied hex");
-                        }
-                    } else if (o == 3 && CheckVolcano(x, y, z) == 0) {
-                        if (ValidMove(x + 1, y - 1, z) == 1 && ValidMove(x, y - 1, z + 1) == 1) {
-                            tilePlaced=true;
-                            int temp1 = CheckTileIndex(x, y, z);
-                            int temp2 = CheckTileIndex(x + 1, y - 1, z);
-                            int temp3 = CheckTileIndex(x, y - 1, z + 1);
-                            boolean nope=false;
-
-                            for(int i=0;i<PlacedCounter;i++)
-                            {
-                                if (IsPlaced[i][1] == x+1) {
-                                    if (IsPlaced[i][2] == y-1) {
-                                        if (IsPlaced[i][3] == z) {
-                                            if(IsPlaced[i][5]==2 || IsPlaced[i][5]==3 || IsPlaced[i][5]==5 || IsPlaced[i][5]==6)
-                                                nope=true;
-                                        }
-                                    }
-                                }
-                            }
-
-                            for(int i=0;i<PlacedCounter;i++)
-                            {
-                                if (IsPlaced[i][1] == x) {
-                                    if (IsPlaced[i][2] == y-1) {
-                                        if (IsPlaced[i][3] == z+1) {
-                                            if(IsPlaced[i][5]==2 || IsPlaced[i][5]==3 || IsPlaced[i][5]==5 || IsPlaced[i][5]==6)
-                                                nope=true;
-                                        }
-                                    }
-                                }
-                            }
-
-                            if ((temp1 != temp2 || temp2 != temp3)&&nope==false) {
-                                for (int i = 0; i < PlacedCounter; i++) {
-                                    if (IsPlaced[i][1] == x) {
-                                        if (IsPlaced[i][2] == y) {
-                                            if (IsPlaced[i][3] == z) {
-                                                if (test1 == "volcano")
-                                                    IsPlaced[i][4] = 0;
-                                                else if (test1 == "rocks")
-                                                    IsPlaced[i][4] = 1;
-                                                else if (test1 == "jungle")
-                                                    IsPlaced[i][4] = 2;
-                                                else if (test1 == "lake")
-                                                    IsPlaced[i][4] = 3;
-                                                else if (test1 == "grassland")
-                                                    IsPlaced[i][4] = 4;
-                                                IsPlaced[i][5]=0;
-                                                IsPlaced[i][7] = IsPlaced[i][7] + 1;
-                                                IsPlaced[i][6] = TileIndex;
-                                                break;
-                                            }
-                                        }
-                                    }
-                                }
-
-                                for (int i = 0; i < PlacedCounter; i++) {
-                                    if (IsPlaced[i][1] == x + 1) {
-                                        if (IsPlaced[i][2] == y - 1) {
-                                            if (IsPlaced[i][3] == z) {
-                                                if (test2 == "volcano")
-                                                    IsPlaced[i][4] = 0;
-                                                else if (test2 == "rocks")
-                                                    IsPlaced[i][4] = 1;
-                                                else if (test2 == "jungle")
-                                                    IsPlaced[i][4] = 2;
-                                                else if (test2 == "lake")
-                                                    IsPlaced[i][4] = 3;
-                                                else if (test2 == "grassland")
-                                                    IsPlaced[i][4] = 4;
-                                                IsPlaced[i][5]=0;
-                                                IsPlaced[i][7] = IsPlaced[i][7] + 1;
-                                                IsPlaced[i][6] = TileIndex;
-                                                break;
-                                            }
-                                        }
-                                    }
-                                }
-
-                                for (int i = 0; i < PlacedCounter; i++) {
-                                    if (IsPlaced[i][1] == x) {
-                                        if (IsPlaced[i][2] == y - 1) {
-                                            if (IsPlaced[i][3] == z + 1) {
-                                                if (test3 == "volcano")
-                                                    IsPlaced[i][4] = 0;
-                                                else if (test3 == "rocks")
-                                                    IsPlaced[i][4] = 1;
-                                                else if (test3 == "jungle")
-                                                    IsPlaced[i][4] = 2;
-                                                else if (test3 == "lake")
-                                                    IsPlaced[i][4] = 3;
-                                                else if (test3 == "grassland")
-                                                    IsPlaced[i][4] = 4;
-                                                IsPlaced[i][5]=0;
-                                                IsPlaced[i][7] = IsPlaced[i][7] + 1;
-                                                IsPlaced[i][6] = TileIndex++;
-                                                break;
-                                            }
-                                        }
-                                    }
-                                }
-
-
-                            } else {
-                                JOptionPane.showMessageDialog(null, "Please place higher level tile onto two different base tile", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
-                            }
-
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Please place higher level on occupied hex", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
-                        }
-                    } else if (o == 4 && CheckVolcano(x, y, z) == 0) {
-                        if (ValidMove(x, y - 1, z + 1) == 1 && ValidMove(x - 1, y, z + 1) == 1) {
-                            tilePlaced=true;
-                            int temp1 = CheckTileIndex(x, y, z);
-                            int temp2 = CheckTileIndex(x, y - 1, z + 1);
-                            int temp3 = CheckTileIndex(x - 1, y, z + 1);
-                            boolean nope=false;
-
-                            for(int i=0;i<PlacedCounter;i++)
-                            {
-                                if (IsPlaced[i][1] == x) {
-                                    if (IsPlaced[i][2] == y-1) {
-                                        if (IsPlaced[i][3] == z+1) {
-                                            if(IsPlaced[i][5]==2 || IsPlaced[i][5]==3 || IsPlaced[i][5]==5 || IsPlaced[i][5]==6)
-                                                nope=true;
-                                        }
-                                    }
-                                }
-                            }
-
-                            for(int i=0;i<PlacedCounter;i++)
-                            {
-                                if (IsPlaced[i][1] == x-1) {
-                                    if (IsPlaced[i][2] == y) {
-                                        if (IsPlaced[i][3] == z+1) {
-                                            if(IsPlaced[i][5]==2 || IsPlaced[i][5]==3 || IsPlaced[i][5]==5 || IsPlaced[i][5]==6)
-                                                nope=true;
-                                        }
-                                    }
-                                }
-                            }
-
-                            if ((temp1 != temp2 || temp2 != temp3)&& nope==false) {
-                                for (int i = 0; i < PlacedCounter; i++) {
-                                    if (IsPlaced[i][1] == x) {
-                                        if (IsPlaced[i][2] == y) {
-                                            if (IsPlaced[i][3] == z) {
-                                                if (test1 == "volcano")
-                                                    IsPlaced[i][4] = 0;
-                                                else if (test1 == "rocks")
-                                                    IsPlaced[i][4] = 1;
-                                                else if (test1 == "jungle")
-                                                    IsPlaced[i][4] = 2;
-                                                else if (test1 == "lake")
-                                                    IsPlaced[i][4] = 3;
-                                                else if (test1 == "grassland")
-                                                    IsPlaced[i][4] = 4;
-                                                IsPlaced[i][5]=0;
-                                                IsPlaced[i][7] = IsPlaced[i][7] + 1;
-                                                IsPlaced[i][6] = TileIndex;
-                                                break;
-                                            }
-                                        }
-                                    }
-                                }
-
-                                for (int i = 0; i < PlacedCounter; i++) {
-                                    if (IsPlaced[i][1] == x) {
-                                        if (IsPlaced[i][2] == y - 1) {
-                                            if (IsPlaced[i][3] == z + 1) {
-                                                if (test2 == "volcano")
-                                                    IsPlaced[i][4] = 0;
-                                                else if (test2 == "rocks")
-                                                    IsPlaced[i][4] = 1;
-                                                else if (test2 == "jungle")
-                                                    IsPlaced[i][4] = 2;
-                                                else if (test2 == "lake")
-                                                    IsPlaced[i][4] = 3;
-                                                else if (test2 == "grassland")
-                                                    IsPlaced[i][4] = 4;
-                                                IsPlaced[i][5]=0;
-                                                IsPlaced[i][7] = IsPlaced[i][7] + 1;
-                                                IsPlaced[i][6] = TileIndex;
-                                                break;
-                                            }
-                                        }
-                                    }
-                                }
-
-                                for (int i = 0; i < PlacedCounter; i++) {
-                                    if (IsPlaced[i][1] == x - 1) {
-                                        if (IsPlaced[i][2] == y) {
-                                            if (IsPlaced[i][3] == z + 1) {
-                                                if (test3 == "volcano")
-                                                    IsPlaced[i][4] = 0;
-                                                else if (test3 == "rocks")
-                                                    IsPlaced[i][4] = 1;
-                                                else if (test3 == "jungle")
-                                                    IsPlaced[i][4] = 2;
-                                                else if (test3 == "lake")
-                                                    IsPlaced[i][4] = 3;
-                                                else if (test3 == "grassland")
-                                                    IsPlaced[i][4] = 4;
-                                                IsPlaced[i][5]=0;
-                                                IsPlaced[i][7] = IsPlaced[i][7] + 1;
-                                                IsPlaced[i][6] = TileIndex++;
-                                                break;
-                                            }
-                                        }
-                                    }
-                                }
-
-
-                            } else {
-                                JOptionPane.showMessageDialog(null, "Please place higher level tile onto two different base tile", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
-                            }
-
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Please place higher level on occupied hex", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
-                        }
-                    } else if (o == 5 && CheckVolcano(x, y, z) == 0) {
-                        if (ValidMove(x - 1, y, z + 1) == 1 && ValidMove(x - 1, y + 1, z) == 1) {
-                            tilePlaced=true;
-                            int temp1 = CheckTileIndex(x, y, z);
-                            int temp2 = CheckTileIndex(x - 1, y, z + 1);
-                            int temp3 = CheckTileIndex(x - 1, y + 1, z);
-                            boolean nope=false;
-
-                            for(int i=0;i<PlacedCounter;i++)
-                            {
-                                if (IsPlaced[i][1] == x-1) {
-                                    if (IsPlaced[i][2] == y) {
-                                        if (IsPlaced[i][3] == z+1) {
-                                            if(IsPlaced[i][5]==2 || IsPlaced[i][5]==3 || IsPlaced[i][5]==5 || IsPlaced[i][5]==6)
-                                                nope=true;
-                                        }
-                                    }
-                                }
-                            }
-
-                            for(int i=0;i<PlacedCounter;i++)
-                            {
-                                if (IsPlaced[i][1] == x-1) {
-                                    if (IsPlaced[i][2] == y+1) {
-                                        if (IsPlaced[i][3] == z) {
-                                            if(IsPlaced[i][5]==2 || IsPlaced[i][5]==3 || IsPlaced[i][5]==5 || IsPlaced[i][5]==6)
-                                                nope=true;
-                                        }
-                                    }
-                                }
-                            }
-
-                            if ((temp1 != temp2 || temp2 != temp3)&&nope==false) {
-                                for (int i = 0; i < PlacedCounter; i++) {
-                                    if (IsPlaced[i][1] == x) {
-                                        if (IsPlaced[i][2] == y) {
-                                            if (IsPlaced[i][3] == z) {
-                                                if (test1 == "volcano")
-                                                    IsPlaced[i][4] = 0;
-                                                else if (test1 == "rocks")
-                                                    IsPlaced[i][4] = 1;
-                                                else if (test1 == "jungle")
-                                                    IsPlaced[i][4] = 2;
-                                                else if (test1 == "lake")
-                                                    IsPlaced[i][4] = 3;
-                                                else if (test1 == "grassland")
-                                                    IsPlaced[i][4] = 4;
-                                                IsPlaced[i][5]=0;
-                                                IsPlaced[i][7] = IsPlaced[i][7] + 1;
-                                                IsPlaced[i][6] = TileIndex;
-                                                break;
-                                            }
-                                        }
-                                    }
-                                }
-
-                                for (int i = 0; i < PlacedCounter; i++) {
-                                    if (IsPlaced[i][1] == x - 1) {
-                                        if (IsPlaced[i][2] == y) {
-                                            if (IsPlaced[i][3] == z + 1) {
-                                                if (test2 == "volcano")
-                                                    IsPlaced[i][4] = 0;
-                                                else if (test2 == "rocks")
-                                                    IsPlaced[i][4] = 1;
-                                                else if (test2 == "jungle")
-                                                    IsPlaced[i][4] = 2;
-                                                else if (test2 == "lake")
-                                                    IsPlaced[i][4] = 3;
-                                                else if (test2 == "grassland")
-                                                    IsPlaced[i][4] = 4;
-                                                IsPlaced[i][5]=0;
-                                                IsPlaced[i][7] = IsPlaced[i][7] + 1;
-                                                IsPlaced[i][6] = TileIndex;
-                                                break;
-                                            }
-                                        }
-                                    }
-                                }
-
-                                for (int i = 0; i < PlacedCounter; i++) {
-                                    if (IsPlaced[i][1] == x - 1) {
-                                        if (IsPlaced[i][2] == y + 1) {
-                                            if (IsPlaced[i][3] == z) {
-                                                if (test3 == "volcano")
-                                                    IsPlaced[i][4] = 0;
-                                                else if (test3 == "rocks")
-                                                    IsPlaced[i][4] = 1;
-                                                else if (test3 == "jungle")
-                                                    IsPlaced[i][4] = 2;
-                                                else if (test3 == "lake")
-                                                    IsPlaced[i][4] = 3;
-                                                else if (test3 == "grassland")
-                                                    IsPlaced[i][4] = 4;
-                                                IsPlaced[i][5]=0;
-                                                IsPlaced[i][7] = IsPlaced[i][7] + 1;
-                                                IsPlaced[i][6] = TileIndex++;
-                                                break;
-                                            }
-                                        }
-                                    }
-                                }
-
-
-                            } else {
-                                JOptionPane.showMessageDialog(null, "Please place higher level tile onto two different base tile", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
-                            }
-
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Please place higher level on occupied hex", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
-                        }
-                    } else if (o == 6 && CheckVolcano(x, y, z) == 0) {
-                        if (ValidMove(x - 1, y + 1, z) == 1 && ValidMove(x, y + 1, z - 1) == 1) {
-                            tilePlaced=true;
-                            int temp1 = CheckTileIndex(x, y, z);
-                            int temp2 = CheckTileIndex(x - 1, y + 1, z);
-                            int temp3 = CheckTileIndex(x, y + 1, z - 1);
-                            boolean nope=false;
-
-                            for(int i=0;i<PlacedCounter;i++)
-                            {
-                                if (IsPlaced[i][1] == x-1) {
-                                    if (IsPlaced[i][2] == y+1) {
-                                        if (IsPlaced[i][3] == z) {
-                                            if(IsPlaced[i][5]==2 || IsPlaced[i][5]==3 || IsPlaced[i][5]==5 || IsPlaced[i][5]==6)
-                                                nope=true;
-                                        }
-                                    }
-                                }
-                            }
-
-                            for(int i=0;i<PlacedCounter;i++)
-                            {
-                                if (IsPlaced[i][1] == x) {
-                                    if (IsPlaced[i][2] == y+1) {
-                                        if (IsPlaced[i][3] == z-1) {
-                                            if(IsPlaced[i][5]==2 || IsPlaced[i][5]==3 || IsPlaced[i][5]==5 || IsPlaced[i][5]==6)
-                                                nope=true;
-                                        }
-                                    }
-                                }
-                            }
-
-                            if ((temp1 != temp2 || temp2 != temp3) &&nope ==false) {
-                                for (int i = 0; i < PlacedCounter; i++) {
-                                    if (IsPlaced[i][1] == x) {
-                                        if (IsPlaced[i][2] == y) {
-                                            if (IsPlaced[i][3] == z) {
-                                                if (test1 == "volcano")
-                                                    IsPlaced[i][4] = 0;
-                                                else if (test1 == "rocks")
-                                                    IsPlaced[i][4] = 1;
-                                                else if (test1 == "jungle")
-                                                    IsPlaced[i][4] = 2;
-                                                else if (test1 == "lake")
-                                                    IsPlaced[i][4] = 3;
-                                                else if (test1 == "grassland")
-                                                    IsPlaced[i][4] = 4;
-                                                IsPlaced[i][5]=0;
-                                                IsPlaced[i][7] = IsPlaced[i][7] + 1;
-                                                IsPlaced[i][6] = TileIndex;
-                                                break;
-                                            }
-                                        }
-                                    }
-                                }
-
-                                for (int i = 0; i < PlacedCounter; i++) {
-                                    if (IsPlaced[i][1] == x - 1) {
-                                        if (IsPlaced[i][2] == y + 1) {
-                                            if (IsPlaced[i][3] == z) {
-                                                if (test2 == "volcano")
-                                                    IsPlaced[i][4] = 0;
-                                                else if (test2 == "rocks")
-                                                    IsPlaced[i][4] = 1;
-                                                else if (test2 == "jungle")
-                                                    IsPlaced[i][4] = 2;
-                                                else if (test2 == "lake")
-                                                    IsPlaced[i][4] = 3;
-                                                else if (test2 == "grassland")
-                                                    IsPlaced[i][4] = 4;
-                                                IsPlaced[i][5]=0;
-                                                IsPlaced[i][7] = IsPlaced[i][7] + 1;
-                                                IsPlaced[i][6] = TileIndex;
-                                                break;
-                                            }
-                                        }
-                                    }
-                                }
-
-                                for (int i = 0; i < PlacedCounter; i++) {
-                                    if (IsPlaced[i][1] == x) {
-                                        if (IsPlaced[i][2] == y + 1) {
-                                            if (IsPlaced[i][3] == z - 1) {
-                                                if (test3 == "volcano")
-                                                    IsPlaced[i][4] = 0;
-                                                else if (test3 == "rocks")
-                                                    IsPlaced[i][4] = 1;
-                                                else if (test3 == "jungle")
-                                                    IsPlaced[i][4] = 2;
-                                                else if (test3 == "lake")
-                                                    IsPlaced[i][4] = 3;
-                                                else if (test3 == "grassland")
-                                                    IsPlaced[i][4] = 4;
-                                                IsPlaced[i][5]=0;
-                                                IsPlaced[i][7] = IsPlaced[i][7] + 1;
-                                                IsPlaced[i][6] = TileIndex++;
-                                                break;
-                                            }
-                                        }
-                                    }
-                                }
-
-
-                            } else {
-                                JOptionPane.showMessageDialog(null, "Please place higher level tile onto two different base tile", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
-                            }
-
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Please place higher level on occupied hex", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
-                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Please place higher level on occupied hex", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
+                        button1();
                     }
 
+                } else if (o == 2 && CheckVolcano(x, y, z) == 0) {
+                    if (ValidMove(x + 1, y, z - 1) == 1 && ValidMove(x + 1, y - 1, z) == 1) {
+                        tilePlaced=true;
+                        int temp1 = CheckTileIndex(x, y, z);
+                        int temp2 = CheckTileIndex(x + 1, y, z - 1);
+                        int temp3 = CheckTileIndex(x + 1, y - 1, z);
+                        boolean nope=false;
 
+                        for(int i=0;i<PlacedCounter;i++)
+                        {
+                            if (IsPlaced[i][1] == x+1) {
+                                if (IsPlaced[i][2] == y) {
+                                    if (IsPlaced[i][3] == z - 1) {
+                                        if(IsPlaced[i][5]==2 || IsPlaced[i][5]==3 || IsPlaced[i][5]==5 || IsPlaced[i][5]==6)
+                                            nope=true;
+                                    }
+                                }
+                            }
+                        }
+
+                        for(int i=0;i<PlacedCounter;i++)
+                        {
+                            if (IsPlaced[i][1] == x+1) {
+                                if (IsPlaced[i][2] == y-1) {
+                                    if (IsPlaced[i][3] == z) {
+                                        if(IsPlaced[i][5]==2 || IsPlaced[i][5]==3|| IsPlaced[i][5]==5|| IsPlaced[i][5]==6)
+                                            nope=true;
+                                    }
+                                }
+                            }
+                        }
+
+                        if ((temp1 != temp2 || temp2 != temp3)&&nope==false) {
+                            for (int i = 0; i < PlacedCounter; i++) {
+                                if (IsPlaced[i][1] == x) {
+                                    if (IsPlaced[i][2] == y) {
+                                        if (IsPlaced[i][3] == z) {
+                                            if (test1 == "volcano")
+                                                IsPlaced[i][4] = 0;
+                                            else if (test1 == "rocks")
+                                                IsPlaced[i][4] = 1;
+                                            else if (test1 == "jungle")
+                                                IsPlaced[i][4] = 2;
+                                            else if (test1 == "lake")
+                                                IsPlaced[i][4] = 3;
+                                            else if (test1 == "grassland")
+                                                IsPlaced[i][4] = 4;
+                                            IsPlaced[i][5]=0;
+                                            IsPlaced[i][7] = IsPlaced[i][7] + 1;
+                                            IsPlaced[i][6] = TileIndex;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+
+                            for (int i = 0; i < PlacedCounter; i++) {
+                                if (IsPlaced[i][1] == x + 1) {
+                                    if (IsPlaced[i][2] == y) {
+                                        if (IsPlaced[i][3] == z - 1) {
+                                            if (test2 == "volcano")
+                                                IsPlaced[i][4] = 0;
+                                            else if (test2 == "rocks")
+                                                IsPlaced[i][4] = 1;
+                                            else if (test2 == "jungle")
+                                                IsPlaced[i][4] = 2;
+                                            else if (test2 == "lake")
+                                                IsPlaced[i][4] = 3;
+                                            else if (test2 == "grassland")
+                                                IsPlaced[i][4] = 4;
+                                            IsPlaced[i][5]=0;
+                                            IsPlaced[i][7] = IsPlaced[i][7] + 1;
+                                            IsPlaced[i][6] = TileIndex;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+
+                            for (int i = 0; i < PlacedCounter; i++) {
+                                if (IsPlaced[i][1] == x + 1) {
+                                    if (IsPlaced[i][2] == y - 1) {
+                                        if (IsPlaced[i][3] == z) {
+                                            if (test3 == "volcano")
+                                                IsPlaced[i][4] = 0;
+                                            else if (test3 == "rocks")
+                                                IsPlaced[i][4] = 1;
+                                            else if (test3 == "jungle")
+                                                IsPlaced[i][4] = 2;
+                                            else if (test3 == "lake")
+                                                IsPlaced[i][4] = 3;
+                                            else if (test3 == "grassland")
+                                                IsPlaced[i][4] = 4;
+                                            IsPlaced[i][5]=0;
+                                            IsPlaced[i][7] = IsPlaced[i][7] + 1;
+                                            IsPlaced[i][6] = TileIndex++;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                            g2d.setColor(Color.green);
+                            hex1 = FindHex(x, y, z);
+
+                            hex2 = FindHex(x + 1, y, z - 1);
+                            hex3 = FindHex(x + 1, y - 1, z);
+                            g2d.drawPolygon(hex1);
+                            g2d.setColor(Color.black);
+                            g2d.drawPolygon(hex2);
+                            g2d.drawPolygon(hex3);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Please place higher level tile onto two different base tile", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
+                            button1();
+                        }
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Please place higher level on occupied hex:", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
+                        button1();
+                    }
+                } else if (o == 3 && CheckVolcano(x, y, z) == 0) {
+                    if (ValidMove(x + 1, y - 1, z) == 1 && ValidMove(x, y - 1, z + 1) == 1) {
+                        tilePlaced=true;
+                        int temp1 = CheckTileIndex(x, y, z);
+                        int temp2 = CheckTileIndex(x + 1, y - 1, z);
+                        int temp3 = CheckTileIndex(x, y - 1, z + 1);
+                        boolean nope=false;
+
+                        for(int i=0;i<PlacedCounter;i++)
+                        {
+                            if (IsPlaced[i][1] == x+1) {
+                                if (IsPlaced[i][2] == y-1) {
+                                    if (IsPlaced[i][3] == z) {
+                                        if(IsPlaced[i][5]==2 || IsPlaced[i][5]==3 || IsPlaced[i][5]==5 || IsPlaced[i][5]==6)
+                                            nope=true;
+                                    }
+                                }
+                            }
+                        }
+
+                        for(int i=0;i<PlacedCounter;i++)
+                        {
+                            if (IsPlaced[i][1] == x) {
+                                if (IsPlaced[i][2] == y-1) {
+                                    if (IsPlaced[i][3] == z+1) {
+                                        if(IsPlaced[i][5]==2 || IsPlaced[i][5]==3 || IsPlaced[i][5]==5 || IsPlaced[i][5]==6)
+                                            nope=true;
+                                    }
+                                }
+                            }
+                        }
+
+                        if ((temp1 != temp2 || temp2 != temp3)&&nope==false) {
+                            for (int i = 0; i < PlacedCounter; i++) {
+                                if (IsPlaced[i][1] == x) {
+                                    if (IsPlaced[i][2] == y) {
+                                        if (IsPlaced[i][3] == z) {
+                                            if (test1 == "volcano")
+                                                IsPlaced[i][4] = 0;
+                                            else if (test1 == "rocks")
+                                                IsPlaced[i][4] = 1;
+                                            else if (test1 == "jungle")
+                                                IsPlaced[i][4] = 2;
+                                            else if (test1 == "lake")
+                                                IsPlaced[i][4] = 3;
+                                            else if (test1 == "grassland")
+                                                IsPlaced[i][4] = 4;
+                                            IsPlaced[i][5]=0;
+                                            IsPlaced[i][7] = IsPlaced[i][7] + 1;
+                                            IsPlaced[i][6] = TileIndex;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+
+                            for (int i = 0; i < PlacedCounter; i++) {
+                                if (IsPlaced[i][1] == x + 1) {
+                                    if (IsPlaced[i][2] == y - 1) {
+                                        if (IsPlaced[i][3] == z) {
+                                            if (test2 == "volcano")
+                                                IsPlaced[i][4] = 0;
+                                            else if (test2 == "rocks")
+                                                IsPlaced[i][4] = 1;
+                                            else if (test2 == "jungle")
+                                                IsPlaced[i][4] = 2;
+                                            else if (test2 == "lake")
+                                                IsPlaced[i][4] = 3;
+                                            else if (test2 == "grassland")
+                                                IsPlaced[i][4] = 4;
+                                            IsPlaced[i][5]=0;
+                                            IsPlaced[i][7] = IsPlaced[i][7] + 1;
+                                            IsPlaced[i][6] = TileIndex;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+
+                            for (int i = 0; i < PlacedCounter; i++) {
+                                if (IsPlaced[i][1] == x) {
+                                    if (IsPlaced[i][2] == y - 1) {
+                                        if (IsPlaced[i][3] == z + 1) {
+                                            if (test3 == "volcano")
+                                                IsPlaced[i][4] = 0;
+                                            else if (test3 == "rocks")
+                                                IsPlaced[i][4] = 1;
+                                            else if (test3 == "jungle")
+                                                IsPlaced[i][4] = 2;
+                                            else if (test3 == "lake")
+                                                IsPlaced[i][4] = 3;
+                                            else if (test3 == "grassland")
+                                                IsPlaced[i][4] = 4;
+                                            IsPlaced[i][5]=0;
+                                            IsPlaced[i][7] = IsPlaced[i][7] + 1;
+                                            IsPlaced[i][6] = TileIndex++;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+
+                            g2d.setColor(Color.green);
+                            hex1 = FindHex(x, y, z);
+
+                            hex2 = FindHex(x + 1, y - 1, z);
+                            hex3 = FindHex(x, y - 1, z + 1);
+                            g2d.drawPolygon(hex1);
+                            g2d.setColor(Color.black);
+                            g2d.drawPolygon(hex2);
+                            g2d.drawPolygon(hex3);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Please place higher level tile onto two different base tile", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
+                            button1();
+                        }
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Please place higher level on occupied hex", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
+                        button1();
+                    }
+                } else if (o == 4 && CheckVolcano(x, y, z) == 0) {
+                    if (ValidMove(x, y - 1, z + 1) == 1 && ValidMove(x - 1, y, z + 1) == 1) {
+                        tilePlaced=true;
+                        int temp1 = CheckTileIndex(x, y, z);
+                        int temp2 = CheckTileIndex(x, y - 1, z + 1);
+                        int temp3 = CheckTileIndex(x - 1, y, z + 1);
+                        boolean nope=false;
+
+                        for(int i=0;i<PlacedCounter;i++)
+                        {
+                            if (IsPlaced[i][1] == x) {
+                                if (IsPlaced[i][2] == y-1) {
+                                    if (IsPlaced[i][3] == z+1) {
+                                        if(IsPlaced[i][5]==2 || IsPlaced[i][5]==3 || IsPlaced[i][5]==5 || IsPlaced[i][5]==6)
+                                            nope=true;
+                                    }
+                                }
+                            }
+                        }
+
+                        for(int i=0;i<PlacedCounter;i++)
+                        {
+                            if (IsPlaced[i][1] == x-1) {
+                                if (IsPlaced[i][2] == y) {
+                                    if (IsPlaced[i][3] == z+1) {
+                                        if(IsPlaced[i][5]==2 || IsPlaced[i][5]==3 || IsPlaced[i][5]==5 || IsPlaced[i][5]==6)
+                                            nope=true;
+                                    }
+                                }
+                            }
+                        }
+
+                        if ((temp1 != temp2 || temp2 != temp3)&& nope==false) {
+                            for (int i = 0; i < PlacedCounter; i++) {
+                                if (IsPlaced[i][1] == x) {
+                                    if (IsPlaced[i][2] == y) {
+                                        if (IsPlaced[i][3] == z) {
+                                            if (test1 == "volcano")
+                                                IsPlaced[i][4] = 0;
+                                            else if (test1 == "rocks")
+                                                IsPlaced[i][4] = 1;
+                                            else if (test1 == "jungle")
+                                                IsPlaced[i][4] = 2;
+                                            else if (test1 == "lake")
+                                                IsPlaced[i][4] = 3;
+                                            else if (test1 == "grassland")
+                                                IsPlaced[i][4] = 4;
+                                            IsPlaced[i][5]=0;
+                                            IsPlaced[i][7] = IsPlaced[i][7] + 1;
+                                            IsPlaced[i][6] = TileIndex;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+
+                            for (int i = 0; i < PlacedCounter; i++) {
+                                if (IsPlaced[i][1] == x) {
+                                    if (IsPlaced[i][2] == y - 1) {
+                                        if (IsPlaced[i][3] == z + 1) {
+                                            if (test2 == "volcano")
+                                                IsPlaced[i][4] = 0;
+                                            else if (test2 == "rocks")
+                                                IsPlaced[i][4] = 1;
+                                            else if (test2 == "jungle")
+                                                IsPlaced[i][4] = 2;
+                                            else if (test2 == "lake")
+                                                IsPlaced[i][4] = 3;
+                                            else if (test2 == "grassland")
+                                                IsPlaced[i][4] = 4;
+                                            IsPlaced[i][5]=0;
+                                            IsPlaced[i][7] = IsPlaced[i][7] + 1;
+                                            IsPlaced[i][6] = TileIndex;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+
+                            for (int i = 0; i < PlacedCounter; i++) {
+                                if (IsPlaced[i][1] == x - 1) {
+                                    if (IsPlaced[i][2] == y) {
+                                        if (IsPlaced[i][3] == z + 1) {
+                                            if (test3 == "volcano")
+                                                IsPlaced[i][4] = 0;
+                                            else if (test3 == "rocks")
+                                                IsPlaced[i][4] = 1;
+                                            else if (test3 == "jungle")
+                                                IsPlaced[i][4] = 2;
+                                            else if (test3 == "lake")
+                                                IsPlaced[i][4] = 3;
+                                            else if (test3 == "grassland")
+                                                IsPlaced[i][4] = 4;
+                                            IsPlaced[i][5]=0;
+                                            IsPlaced[i][7] = IsPlaced[i][7] + 1;
+                                            IsPlaced[i][6] = TileIndex++;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+
+                            g2d.setColor(Color.green);
+                            hex1 = FindHex(x, y, z);
+
+                            hex2 = FindHex(x, y - 1, z + 1);
+                            hex3 = FindHex(x - 1, y, z + 1);
+                            g2d.drawPolygon(hex1);
+                            g2d.setColor(Color.black);
+                            g2d.drawPolygon(hex2);
+                            g2d.drawPolygon(hex3);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Please place higher level tile onto two different base tile", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
+                            button1();
+                        }
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Please place higher level on occupied hex", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
+                        button1();
+                    }
+                } else if (o == 5 && CheckVolcano(x, y, z) == 0) {
+                    if (ValidMove(x - 1, y, z + 1) == 1 && ValidMove(x - 1, y + 1, z) == 1) {
+                        tilePlaced=true;
+                        int temp1 = CheckTileIndex(x, y, z);
+                        int temp2 = CheckTileIndex(x - 1, y, z + 1);
+                        int temp3 = CheckTileIndex(x - 1, y + 1, z);
+                        boolean nope=false;
+
+                        for(int i=0;i<PlacedCounter;i++)
+                        {
+                            if (IsPlaced[i][1] == x-1) {
+                                if (IsPlaced[i][2] == y) {
+                                    if (IsPlaced[i][3] == z+1) {
+                                        if(IsPlaced[i][5]==2 || IsPlaced[i][5]==3 || IsPlaced[i][5]==5 || IsPlaced[i][5]==6)
+                                            nope=true;
+                                    }
+                                }
+                            }
+                        }
+
+                        for(int i=0;i<PlacedCounter;i++)
+                        {
+                            if (IsPlaced[i][1] == x-1) {
+                                if (IsPlaced[i][2] == y+1) {
+                                    if (IsPlaced[i][3] == z) {
+                                        if(IsPlaced[i][5]==2 || IsPlaced[i][5]==3 || IsPlaced[i][5]==5 || IsPlaced[i][5]==6)
+                                            nope=true;
+                                    }
+                                }
+                            }
+                        }
+
+                        if ((temp1 != temp2 || temp2 != temp3)&&nope==false) {
+                            for (int i = 0; i < PlacedCounter; i++) {
+                                if (IsPlaced[i][1] == x) {
+                                    if (IsPlaced[i][2] == y) {
+                                        if (IsPlaced[i][3] == z) {
+                                            if (test1 == "volcano")
+                                                IsPlaced[i][4] = 0;
+                                            else if (test1 == "rocks")
+                                                IsPlaced[i][4] = 1;
+                                            else if (test1 == "jungle")
+                                                IsPlaced[i][4] = 2;
+                                            else if (test1 == "lake")
+                                                IsPlaced[i][4] = 3;
+                                            else if (test1 == "grassland")
+                                                IsPlaced[i][4] = 4;
+                                            IsPlaced[i][5]=0;
+                                            IsPlaced[i][7] = IsPlaced[i][7] + 1;
+                                            IsPlaced[i][6] = TileIndex;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+
+                            for (int i = 0; i < PlacedCounter; i++) {
+                                if (IsPlaced[i][1] == x - 1) {
+                                    if (IsPlaced[i][2] == y) {
+                                        if (IsPlaced[i][3] == z + 1) {
+                                            if (test2 == "volcano")
+                                                IsPlaced[i][4] = 0;
+                                            else if (test2 == "rocks")
+                                                IsPlaced[i][4] = 1;
+                                            else if (test2 == "jungle")
+                                                IsPlaced[i][4] = 2;
+                                            else if (test2 == "lake")
+                                                IsPlaced[i][4] = 3;
+                                            else if (test2 == "grassland")
+                                                IsPlaced[i][4] = 4;
+                                            IsPlaced[i][5]=0;
+                                            IsPlaced[i][7] = IsPlaced[i][7] + 1;
+                                            IsPlaced[i][6] = TileIndex;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+
+                            for (int i = 0; i < PlacedCounter; i++) {
+                                if (IsPlaced[i][1] == x - 1) {
+                                    if (IsPlaced[i][2] == y + 1) {
+                                        if (IsPlaced[i][3] == z) {
+                                            if (test3 == "volcano")
+                                                IsPlaced[i][4] = 0;
+                                            else if (test3 == "rocks")
+                                                IsPlaced[i][4] = 1;
+                                            else if (test3 == "jungle")
+                                                IsPlaced[i][4] = 2;
+                                            else if (test3 == "lake")
+                                                IsPlaced[i][4] = 3;
+                                            else if (test3 == "grassland")
+                                                IsPlaced[i][4] = 4;
+                                            IsPlaced[i][5]=0;
+                                            IsPlaced[i][7] = IsPlaced[i][7] + 1;
+                                            IsPlaced[i][6] = TileIndex++;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+
+                            g2d.setColor(Color.green);
+                            hex1 = FindHex(x, y, z);
+
+                            hex2 = FindHex(x - 1, y, z + 1);
+                            hex3 = FindHex(x - 1, y + 1, z);
+                            g2d.drawPolygon(hex1);
+                            g2d.setColor(Color.black);
+                            g2d.drawPolygon(hex2);
+                            g2d.drawPolygon(hex3);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Please place higher level tile onto two different base tile", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
+                            button1();
+                        }
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Please place higher level on occupied hex", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
+                        button1();
+                    }
+                } else if (o == 6 && CheckVolcano(x, y, z) == 0) {
+                    if (ValidMove(x - 1, y + 1, z) == 1 && ValidMove(x, y + 1, z - 1) == 1) {
+                        tilePlaced=true;
+                        int temp1 = CheckTileIndex(x, y, z);
+                        int temp2 = CheckTileIndex(x - 1, y + 1, z);
+                        int temp3 = CheckTileIndex(x, y + 1, z - 1);
+                        boolean nope=false;
+
+                        for(int i=0;i<PlacedCounter;i++)
+                        {
+                            if (IsPlaced[i][1] == x-1) {
+                                if (IsPlaced[i][2] == y+1) {
+                                    if (IsPlaced[i][3] == z) {
+                                        if(IsPlaced[i][5]==2 || IsPlaced[i][5]==3 || IsPlaced[i][5]==5 || IsPlaced[i][5]==6)
+                                            nope=true;
+                                    }
+                                }
+                            }
+                        }
+
+                        for(int i=0;i<PlacedCounter;i++)
+                        {
+                            if (IsPlaced[i][1] == x) {
+                                if (IsPlaced[i][2] == y+1) {
+                                    if (IsPlaced[i][3] == z-1) {
+                                        if(IsPlaced[i][5]==2 || IsPlaced[i][5]==3 || IsPlaced[i][5]==5 || IsPlaced[i][5]==6)
+                                            nope=true;
+                                    }
+                                }
+                            }
+                        }
+
+                        if ((temp1 != temp2 || temp2 != temp3) &&nope ==false) {
+                            for (int i = 0; i < PlacedCounter; i++) {
+                                if (IsPlaced[i][1] == x) {
+                                    if (IsPlaced[i][2] == y) {
+                                        if (IsPlaced[i][3] == z) {
+                                            if (test1 == "volcano")
+                                                IsPlaced[i][4] = 0;
+                                            else if (test1 == "rocks")
+                                                IsPlaced[i][4] = 1;
+                                            else if (test1 == "jungle")
+                                                IsPlaced[i][4] = 2;
+                                            else if (test1 == "lake")
+                                                IsPlaced[i][4] = 3;
+                                            else if (test1 == "grassland")
+                                                IsPlaced[i][4] = 4;
+                                            IsPlaced[i][5]=0;
+                                            IsPlaced[i][7] = IsPlaced[i][7] + 1;
+                                            IsPlaced[i][6] = TileIndex;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+
+                            for (int i = 0; i < PlacedCounter; i++) {
+                                if (IsPlaced[i][1] == x - 1) {
+                                    if (IsPlaced[i][2] == y + 1) {
+                                        if (IsPlaced[i][3] == z) {
+                                            if (test2 == "volcano")
+                                                IsPlaced[i][4] = 0;
+                                            else if (test2 == "rocks")
+                                                IsPlaced[i][4] = 1;
+                                            else if (test2 == "jungle")
+                                                IsPlaced[i][4] = 2;
+                                            else if (test2 == "lake")
+                                                IsPlaced[i][4] = 3;
+                                            else if (test2 == "grassland")
+                                                IsPlaced[i][4] = 4;
+                                            IsPlaced[i][5]=0;
+                                            IsPlaced[i][7] = IsPlaced[i][7] + 1;
+                                            IsPlaced[i][6] = TileIndex;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+
+                            for (int i = 0; i < PlacedCounter; i++) {
+                                if (IsPlaced[i][1] == x) {
+                                    if (IsPlaced[i][2] == y + 1) {
+                                        if (IsPlaced[i][3] == z - 1) {
+                                            if (test3 == "volcano")
+                                                IsPlaced[i][4] = 0;
+                                            else if (test3 == "rocks")
+                                                IsPlaced[i][4] = 1;
+                                            else if (test3 == "jungle")
+                                                IsPlaced[i][4] = 2;
+                                            else if (test3 == "lake")
+                                                IsPlaced[i][4] = 3;
+                                            else if (test3 == "grassland")
+                                                IsPlaced[i][4] = 4;
+                                            IsPlaced[i][5]=0;
+                                            IsPlaced[i][7] = IsPlaced[i][7] + 1;
+                                            IsPlaced[i][6] = TileIndex++;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+
+                            g2d.setColor(Color.green);
+                            hex1 = FindHex(x, y, z);
+
+                            hex2 = FindHex(x - 1, y + 1, z);
+                            hex3 = FindHex(x, y + 1, z - 1);
+                            g2d.drawPolygon(hex1);
+                            g2d.setColor(Color.black);
+                            g2d.drawPolygon(hex2);
+                            g2d.drawPolygon(hex3);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Please place higher level tile onto two different base tile", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
+                            button1();
+                        }
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Please place higher level on occupied hex", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
+                        button1();
+                    }
                 }
-                else
-                {
-                    if (tempHex == true || firstTile == true) {
-                        if (ValidMove(x, y, z) == 0) {
+
+
+            }
+            else
+            {
+                if (tempHex == true || firstTile == true) {
+                    if (ValidMove(x, y, z) == 0) {
+                        IsPlaced[PlacedCounter][0] = 1;
+                        IsPlaced[PlacedCounter][1] = x;
+                        IsPlaced[PlacedCounter][2] = y;
+                        IsPlaced[PlacedCounter][3] = z;
+                        if (test1 == "volcano")
+                            IsPlaced[PlacedCounter][4] = 0;
+                        else if (test1 == "rocks")
+                            IsPlaced[PlacedCounter][4] = 1;
+                        else if (test1 == "jungle")
+                            IsPlaced[PlacedCounter][4] = 2;
+                        else if (test1 == "lake")
+                            IsPlaced[PlacedCounter][4] = 3;
+                        else if (test1 == "grassland")
+                            IsPlaced[PlacedCounter][4] = 4;
+                        IsPlaced[PlacedCounter][7] = 1;
+                        IsPlaced[PlacedCounter][5] = 0;
+                        IsPlaced[PlacedCounter++][6] = TileIndex;
+                        System.out.println( IsPlaced[PlacedCounter-1][4]);
+
+
+                        hex1 = FindHex(x, y, z);
+                        adj = true;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Please place hex on empty place", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
+                        button1();
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "New tile has to be adjacen of pervious tile", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
+                    button1();
+                }
+
+
+                if (o == 1) {
+                    if (CheckAdj(x, y + 1, z - 1) == true || CheckAdj(x + 1, y, z - 1) == true || firstTile == true || adj == true) {
+                        if (ValidMove(x, y + 1, z - 1) == 0 && ValidMove(x + 1, y, z - 1) == 0) {
+                            tilePlaced=true;
                             IsPlaced[PlacedCounter][0] = 1;
                             IsPlaced[PlacedCounter][1] = x;
-                            IsPlaced[PlacedCounter][2] = y;
-                            IsPlaced[PlacedCounter][3] = z;
-                            if (test1 == "volcano")
+                            IsPlaced[PlacedCounter][2] = y + 1;
+                            IsPlaced[PlacedCounter][3] = z - 1;
+                            if (test2 == "volcano")
                                 IsPlaced[PlacedCounter][4] = 0;
-                            else if (test1 == "rocks")
+                            else if (test2 == "rocks")
                                 IsPlaced[PlacedCounter][4] = 1;
-                            else if (test1 == "jungle")
+                            else if (test2 == "jungle")
                                 IsPlaced[PlacedCounter][4] = 2;
-                            else if (test1 == "lake")
+                            else if (test2 == "lake")
                                 IsPlaced[PlacedCounter][4] = 3;
-                            else if (test1 == "grassland")
+                            else if (test2 == "grassland")
                                 IsPlaced[PlacedCounter][4] = 4;
                             IsPlaced[PlacedCounter][7] = 1;
                             IsPlaced[PlacedCounter][5] = 0;
@@ -3913,364 +4054,361 @@ class ImageFrame7 extends JFrame {
                             System.out.println( IsPlaced[PlacedCounter-1][4]);
 
 
-
-                            adj = true;
+                            IsPlaced[PlacedCounter][0] = 1;
+                            IsPlaced[PlacedCounter][1] = x + 1;
+                            IsPlaced[PlacedCounter][2] = y;
+                            IsPlaced[PlacedCounter][3] = z - 1;
+                            if (test3 == "volcano")
+                                IsPlaced[PlacedCounter][4] = 0;
+                            else if (test3 == "rocks")
+                                IsPlaced[PlacedCounter][4] = 1;
+                            else if (test3 == "jungle")
+                                IsPlaced[PlacedCounter][4] = 2;
+                            else if (test3 == "lake")
+                                IsPlaced[PlacedCounter][4] = 3;
+                            else if (test3 == "grassland")
+                                IsPlaced[PlacedCounter][4] = 4;
+                            IsPlaced[PlacedCounter][7] = 1;
+                            IsPlaced[PlacedCounter][5] = 0;
+                            IsPlaced[PlacedCounter++][6] = TileIndex++;
+                            System.out.println( IsPlaced[PlacedCounter-1][4]);
+                            g2d.setColor(Color.red);
+                            hex2 = FindHex(x, y + 1, z - 1);
+                            hex3 = FindHex(x + 1, y, z - 1);
+                            g2d.drawPolygon(hex1);
+                            g2d.setColor(Color.black);
+                            g2d.drawPolygon(hex2);
+                            g2d.drawPolygon(hex3);
+                            firstTile = false;
+                            adj = false;
                         } else {
-                            JOptionPane.showMessageDialog(null, "Please place hex on empty place", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
 
+                            SetIsplaced(x, y, z);
+                            JOptionPane.showMessageDialog(null, "Please place hex on empty place", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
+                            button1();
                         }
                     } else {
+
                         JOptionPane.showMessageDialog(null, "New tile has to be adjacen of pervious tile", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
+                        button1();
                     }
 
+                } else if (o == 2) {
+                    if (CheckAdj(x + 1, y, z - 1) == true || CheckAdj(x + 1, y - 1, z) == true || firstTile == true || adj == true) {
+                        if (ValidMove(x + 1, y, z - 1) == 0 && ValidMove(x + 1, y - 1, z) == 0) {
+                            tilePlaced=true;
+                            IsPlaced[PlacedCounter][0] = 1;
+                            IsPlaced[PlacedCounter][1] = x + 1;
+                            IsPlaced[PlacedCounter][2] = y;
+                            IsPlaced[PlacedCounter][3] = z - 1;
+                            if (test2 == "volcano")
+                                IsPlaced[PlacedCounter][4] = 0;
+                            else if (test2 == "rocks")
+                                IsPlaced[PlacedCounter][4] = 1;
+                            else if (test2 == "jungle")
+                                IsPlaced[PlacedCounter][4] = 2;
+                            else if (test2 == "lake")
+                                IsPlaced[PlacedCounter][4] = 3;
+                            else if (test2 == "grassland")
+                                IsPlaced[PlacedCounter][4] = 4;
+                            IsPlaced[PlacedCounter][7] = 1;
+                            IsPlaced[PlacedCounter][5] = 0;
+                            IsPlaced[PlacedCounter++][6] = TileIndex;
+                            System.out.println( IsPlaced[PlacedCounter-1][4]);
 
-                    if (o == 1) {
-                        if (CheckAdj(x, y + 1, z - 1) == true || CheckAdj(x + 1, y, z - 1) == true || firstTile == true || adj == true) {
-                            if (ValidMove(x, y + 1, z - 1) == 0 && ValidMove(x + 1, y, z - 1) == 0) {
-                                tilePlaced=true;
-                                IsPlaced[PlacedCounter][0] = 1;
-                                IsPlaced[PlacedCounter][1] = x;
-                                IsPlaced[PlacedCounter][2] = y + 1;
-                                IsPlaced[PlacedCounter][3] = z - 1;
-                                if (test2 == "volcano")
-                                    IsPlaced[PlacedCounter][4] = 0;
-                                else if (test2 == "rocks")
-                                    IsPlaced[PlacedCounter][4] = 1;
-                                else if (test2 == "jungle")
-                                    IsPlaced[PlacedCounter][4] = 2;
-                                else if (test2 == "lake")
-                                    IsPlaced[PlacedCounter][4] = 3;
-                                else if (test2 == "grassland")
-                                    IsPlaced[PlacedCounter][4] = 4;
-                                IsPlaced[PlacedCounter][7] = 1;
-                                IsPlaced[PlacedCounter][5] = 0;
-                                IsPlaced[PlacedCounter++][6] = TileIndex;
-                                System.out.println( IsPlaced[PlacedCounter-1][4]);
-
-
-                                IsPlaced[PlacedCounter][0] = 1;
-                                IsPlaced[PlacedCounter][1] = x + 1;
-                                IsPlaced[PlacedCounter][2] = y;
-                                IsPlaced[PlacedCounter][3] = z - 1;
-                                if (test3 == "volcano")
-                                    IsPlaced[PlacedCounter][4] = 0;
-                                else if (test3 == "rocks")
-                                    IsPlaced[PlacedCounter][4] = 1;
-                                else if (test3 == "jungle")
-                                    IsPlaced[PlacedCounter][4] = 2;
-                                else if (test3 == "lake")
-                                    IsPlaced[PlacedCounter][4] = 3;
-                                else if (test3 == "grassland")
-                                    IsPlaced[PlacedCounter][4] = 4;
-                                IsPlaced[PlacedCounter][7] = 1;
-                                IsPlaced[PlacedCounter][5] = 0;
-                                IsPlaced[PlacedCounter++][6] = TileIndex++;
-                                System.out.println( IsPlaced[PlacedCounter-1][4]);
-
-                                firstTile = false;
-                                adj = false;
-                            } else {
-
-                                SetIsplaced(x, y, z);
-                                JOptionPane.showMessageDialog(null, "Please place hex on empty place", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
-                            }
+                            IsPlaced[PlacedCounter][0] = 1;
+                            IsPlaced[PlacedCounter][1] = x + 1;
+                            IsPlaced[PlacedCounter][2] = y - 1;
+                            IsPlaced[PlacedCounter][3] = z;
+                            if (test3 == "volcano")
+                                IsPlaced[PlacedCounter][4] = 0;
+                            else if (test3 == "rocks")
+                                IsPlaced[PlacedCounter][4] = 1;
+                            else if (test3 == "jungle")
+                                IsPlaced[PlacedCounter][4] = 2;
+                            else if (test3 == "lake")
+                                IsPlaced[PlacedCounter][4] = 3;
+                            else if (test3 == "grassland")
+                                IsPlaced[PlacedCounter][4] = 4;
+                            IsPlaced[PlacedCounter][7] = 1;
+                            IsPlaced[PlacedCounter][5] = 0;
+                            IsPlaced[PlacedCounter++][6] = TileIndex++;
+                            System.out.println( IsPlaced[PlacedCounter-1][4]);
+                            g2d.setColor(Color.red);
+                            hex2 = FindHex(x + 1, y, z - 1);
+                            hex3 = FindHex(x + 1, y - 1, z);
+                            g2d.drawPolygon(hex1);
+                            g2d.setColor(Color.black);
+                            g2d.drawPolygon(hex2);
+                            g2d.drawPolygon(hex3);
+                            firstTile = false;
+                            adj = false;
                         } else {
-
-                            JOptionPane.showMessageDialog(null, "New tile has to be adjacen of pervious tile", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
+                            SetIsplaced(x, y, z);
+                            JOptionPane.showMessageDialog(null, "Please place hex on empty place", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
+                            button1();
                         }
+                    } else {
 
-                    } else if (o == 2) {
-                        if (CheckAdj(x + 1, y, z - 1) == true || CheckAdj(x + 1, y - 1, z) == true || firstTile == true || adj == true) {
-                            if (ValidMove(x + 1, y, z - 1) == 0 && ValidMove(x + 1, y - 1, z) == 0) {
-                                tilePlaced=true;
-                                IsPlaced[PlacedCounter][0] = 1;
-                                IsPlaced[PlacedCounter][1] = x + 1;
-                                IsPlaced[PlacedCounter][2] = y;
-                                IsPlaced[PlacedCounter][3] = z - 1;
-                                if (test2 == "volcano")
-                                    IsPlaced[PlacedCounter][4] = 0;
-                                else if (test2 == "rocks")
-                                    IsPlaced[PlacedCounter][4] = 1;
-                                else if (test2 == "jungle")
-                                    IsPlaced[PlacedCounter][4] = 2;
-                                else if (test2 == "lake")
-                                    IsPlaced[PlacedCounter][4] = 3;
-                                else if (test2 == "grassland")
-                                    IsPlaced[PlacedCounter][4] = 4;
-                                IsPlaced[PlacedCounter][7] = 1;
-                                IsPlaced[PlacedCounter][5] = 0;
-                                IsPlaced[PlacedCounter++][6] = TileIndex;
-                                System.out.println( IsPlaced[PlacedCounter-1][4]);
-
-                                IsPlaced[PlacedCounter][0] = 1;
-                                IsPlaced[PlacedCounter][1] = x + 1;
-                                IsPlaced[PlacedCounter][2] = y - 1;
-                                IsPlaced[PlacedCounter][3] = z;
-                                if (test3 == "volcano")
-                                    IsPlaced[PlacedCounter][4] = 0;
-                                else if (test3 == "rocks")
-                                    IsPlaced[PlacedCounter][4] = 1;
-                                else if (test3 == "jungle")
-                                    IsPlaced[PlacedCounter][4] = 2;
-                                else if (test3 == "lake")
-                                    IsPlaced[PlacedCounter][4] = 3;
-                                else if (test3 == "grassland")
-                                    IsPlaced[PlacedCounter][4] = 4;
-                                IsPlaced[PlacedCounter][7] = 1;
-                                IsPlaced[PlacedCounter][5] = 0;
-                                IsPlaced[PlacedCounter++][6] = TileIndex++;
-                                System.out.println( IsPlaced[PlacedCounter-1][4]);
-
-                                firstTile = false;
-                                adj = false;
-                            } else {
-                                SetIsplaced(x, y, z);
-                                JOptionPane.showMessageDialog(null, "Please place hex on empty place", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
-                            }
-                        } else {
-
-                            JOptionPane.showMessageDialog(null, "New tile has to be adjacen of pervious tile", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
-                        }
-
-                    } else if (o == 3) {
-                        if (CheckAdj(x + 1, y - 1, z) == true || CheckAdj(x, y - 1, z + 1) == true || firstTile == true || adj == true) {
-                            if (ValidMove(x + 1, y - 1, z) == 0 && ValidMove(x, y - 1, z + 1) == 0) {
-                                tilePlaced=true;
-                                IsPlaced[PlacedCounter][0] = 1;
-                                IsPlaced[PlacedCounter][1] = x;
-                                IsPlaced[PlacedCounter][2] = y + 1;
-                                IsPlaced[PlacedCounter][3] = z - 1;
-                                if (test2 == "volcano")
-                                    IsPlaced[PlacedCounter][4] = 0;
-                                else if (test2 == "rocks")
-                                    IsPlaced[PlacedCounter][4] = 1;
-                                else if (test2 == "jungle")
-                                    IsPlaced[PlacedCounter][4] = 2;
-                                else if (test2 == "lake")
-                                    IsPlaced[PlacedCounter][4] = 3;
-                                else if (test2 == "grassland")
-                                    IsPlaced[PlacedCounter][4] = 4;
-                                IsPlaced[PlacedCounter][7] = 1;
-                                IsPlaced[PlacedCounter][5] = 0;
-                                IsPlaced[PlacedCounter++][6] = TileIndex;
-                                System.out.println( IsPlaced[PlacedCounter-1][4]);
-
-                                IsPlaced[PlacedCounter][0] = 1;
-                                IsPlaced[PlacedCounter][1] = x + 1;
-                                IsPlaced[PlacedCounter][2] = y;
-                                IsPlaced[PlacedCounter][3] = z - 1;
-                                if (test3 == "volcano")
-                                    IsPlaced[PlacedCounter][4] = 0;
-                                else if (test3 == "rocks")
-                                    IsPlaced[PlacedCounter][4] = 1;
-                                else if (test3 == "jungle")
-                                    IsPlaced[PlacedCounter][4] = 2;
-                                else if (test3 == "lake")
-                                    IsPlaced[PlacedCounter][4] = 3;
-                                else if (test3 == "grassland")
-                                    IsPlaced[PlacedCounter][4] = 4;
-                                IsPlaced[PlacedCounter][7] = 1;
-                                IsPlaced[PlacedCounter][5] = 0;
-                                IsPlaced[PlacedCounter++][6] = TileIndex++;
-                                System.out.println( IsPlaced[PlacedCounter-1][4]);
-
-                                firstTile = false;
-                                adj = false;
-                            } else {
-                                SetIsplaced(x, y, z);
-                                JOptionPane.showMessageDialog(null, "Please place hex on empty place", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
-                            }
-                        } else {
-
-                            JOptionPane.showMessageDialog(null, "New tile has to be adjacen of pervious tile", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
-                        }
-                    } else if (o == 4) {
-                        if (CheckAdj(x, y - 1, z + 1) == true || CheckAdj(x - 1, y, z + 1) == true || firstTile == true || adj == true) {
-                            if (ValidMove(x, y - 1, z + 1) == 0 && ValidMove(x - 1, y, z + 1) == 0) {
-                                tilePlaced=true;
-                                IsPlaced[PlacedCounter][0] = 1;
-                                IsPlaced[PlacedCounter][1] = x;
-                                IsPlaced[PlacedCounter][2] = y - 1;
-                                IsPlaced[PlacedCounter][3] = z + 1;
-                                if (test2 == "volcano")
-                                    IsPlaced[PlacedCounter][4] = 0;
-                                else if (test2 == "rocks")
-                                    IsPlaced[PlacedCounter][4] = 1;
-                                else if (test2 == "jungle")
-                                    IsPlaced[PlacedCounter][4] = 2;
-                                else if (test2 == "lake")
-                                    IsPlaced[PlacedCounter][4] = 3;
-                                else if (test2 == "grassland")
-                                    IsPlaced[PlacedCounter][4] = 4;
-                                IsPlaced[PlacedCounter][7] = 1;
-                                IsPlaced[PlacedCounter][5] = 0;
-                                IsPlaced[PlacedCounter++][6] = TileIndex;
-                                System.out.println( IsPlaced[PlacedCounter-1][4]);
-
-                                IsPlaced[PlacedCounter][0] = 1;
-                                IsPlaced[PlacedCounter][1] = x - 1;
-                                IsPlaced[PlacedCounter][2] = y;
-                                IsPlaced[PlacedCounter][3] = z + 1;
-                                if (test3 == "volcano")
-                                    IsPlaced[PlacedCounter][4] = 0;
-                                else if (test3 == "rocks")
-                                    IsPlaced[PlacedCounter][4] = 1;
-                                else if (test3 == "jungle")
-                                    IsPlaced[PlacedCounter][4] = 2;
-                                else if (test3 == "lake")
-                                    IsPlaced[PlacedCounter][4] = 3;
-                                else if (test3 == "grassland")
-                                    IsPlaced[PlacedCounter][4] = 4;
-                                IsPlaced[PlacedCounter][7] = 1;
-                                IsPlaced[PlacedCounter][5] = 0;
-                                IsPlaced[PlacedCounter++][6] = TileIndex++;
-                                System.out.println( IsPlaced[PlacedCounter-1][4]);
-
-                                firstTile = false;
-                                adj = false;
-                            } else {
-                                SetIsplaced(x, y, z);
-                                JOptionPane.showMessageDialog(null, "Please place hex on empty place", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
-                            }
-                        } else {
-
-                            JOptionPane.showMessageDialog(null, "New tile has to be adjacen of pervious tile", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
-                        }
-
-                    } else if (o == 5) {
-                        if (CheckAdj(x - 1, y, z + 1) == true || CheckAdj(x - 1, y + 1, z) == true || firstTile == true || adj == true) {
-                            if (ValidMove(x - 1, y, z + 1) == 0 && ValidMove(x - 1, y + 1, z) == 0) {
-                                tilePlaced=true;
-                                IsPlaced[PlacedCounter][0] = 1;
-                                IsPlaced[PlacedCounter][1] = x - 1;
-                                IsPlaced[PlacedCounter][2] = y;
-                                IsPlaced[PlacedCounter][3] = z + 1;
-                                if (test2 == "volcano")
-                                    IsPlaced[PlacedCounter][4] = 0;
-                                else if (test2 == "rocks")
-                                    IsPlaced[PlacedCounter][4] = 1;
-                                else if (test2 == "jungle")
-                                    IsPlaced[PlacedCounter][4] = 2;
-                                else if (test2 == "lake")
-                                    IsPlaced[PlacedCounter][4] = 3;
-                                else if (test2 == "grassland")
-                                    IsPlaced[PlacedCounter][4] = 4;
-                                IsPlaced[PlacedCounter][7] = 1;
-                                IsPlaced[PlacedCounter][5] = 0;
-                                IsPlaced[PlacedCounter++][6] = TileIndex;
-                                System.out.println( IsPlaced[PlacedCounter-1][4]);
-
-                                IsPlaced[PlacedCounter][0] = 1;
-                                IsPlaced[PlacedCounter][1] = x - 1;
-                                IsPlaced[PlacedCounter][2] = y + 1;
-                                IsPlaced[PlacedCounter][3] = z;
-
-                                if (test3 == "volcano")
-                                    IsPlaced[PlacedCounter][4] = 0;
-                                else if (test3 == "rocks")
-                                    IsPlaced[PlacedCounter][4] = 1;
-                                else if (test3 == "jungle")
-                                    IsPlaced[PlacedCounter][4] = 2;
-                                else if (test3 == "lake")
-                                    IsPlaced[PlacedCounter][4] = 3;
-                                else if (test3 == "grassland")
-                                    IsPlaced[PlacedCounter][4] = 4;
-                                IsPlaced[PlacedCounter][7] = 1;
-                                IsPlaced[PlacedCounter][5] = 0;
-                                IsPlaced[PlacedCounter++][6] = TileIndex++;
-                                System.out.println( IsPlaced[PlacedCounter-1][4]);
-
-                                firstTile = false;
-                                adj = false;
-                            } else {
-                                SetIsplaced(x, y, z);
-                                JOptionPane.showMessageDialog(null, "Please place hex on empty place", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
-                            }
-                        } else {
-
-                            JOptionPane.showMessageDialog(null, "New tile has to be adjacen of pervious tile", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
-                        }
-
-                    } else if (o == 6) {
-                        if (CheckAdj(x - 1, y + 1, z) == true || CheckAdj(x, y + 1, z - 1) == true || firstTile == true || adj == true) {
-                            if (ValidMove(x - 1, y + 1, z) == 0 && ValidMove(x, y + 1, z - 1) == 0) {
-                                tilePlaced=true;
-                                IsPlaced[PlacedCounter][0] = 1;
-                                IsPlaced[PlacedCounter][1] = x - 1;
-                                IsPlaced[PlacedCounter][2] = y + 1;
-                                IsPlaced[PlacedCounter][3] = z;
-                                if (test2 == "volcano")
-                                    IsPlaced[PlacedCounter][4] = 0;
-                                else if (test2 == "rocks")
-                                    IsPlaced[PlacedCounter][4] = 1;
-                                else if (test2 == "jungle")
-                                    IsPlaced[PlacedCounter][4] = 2;
-                                else if (test2 == "lake")
-                                    IsPlaced[PlacedCounter][4] = 3;
-                                else if (test2 == "grassland")
-                                    IsPlaced[PlacedCounter][4] = 4;
-                                IsPlaced[PlacedCounter][7] = 1;
-                                IsPlaced[PlacedCounter][5] = 0;
-                                IsPlaced[PlacedCounter++][6] = TileIndex;
-                                System.out.println( IsPlaced[PlacedCounter-1][4]);
-
-
-                                IsPlaced[PlacedCounter][0] = 1;
-                                IsPlaced[PlacedCounter][1] = x;
-                                IsPlaced[PlacedCounter][2] = y + 1;
-                                IsPlaced[PlacedCounter][3] = z - 1;
-
-                                if (test3 == "volcano")
-                                    IsPlaced[PlacedCounter][4] = 0;
-                                else if (test3 == "rocks")
-                                    IsPlaced[PlacedCounter][4] = 1;
-                                else if (test3 == "jungle")
-                                    IsPlaced[PlacedCounter][4] = 2;
-                                else if (test3 == "lake")
-                                    IsPlaced[PlacedCounter][4] = 3;
-                                else if (test3 == "grassland")
-                                    IsPlaced[PlacedCounter][4] = 4;
-                                IsPlaced[PlacedCounter][7] = 1;
-                                IsPlaced[PlacedCounter][5] = 0;
-                                IsPlaced[PlacedCounter++][6] = TileIndex++;
-
-                                System.out.println( IsPlaced[PlacedCounter-1][4]);
-
-                                firstTile = false;
-                                adj = false;
-                            } else {
-                                SetIsplaced(x, y, z);
-                                JOptionPane.showMessageDialog(null, "Please place hex on empty place", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
-                            }
-                        } else {
-
-                            JOptionPane.showMessageDialog(null, "New tile has to be adjacen of pervious tile", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
-                        }
+                        JOptionPane.showMessageDialog(null, "New tile has to be adjacen of pervious tile", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
+                        button1();
                     }
 
+                } else if (o == 3) {
+                    if (CheckAdj(x + 1, y - 1, z) == true || CheckAdj(x, y - 1, z + 1) == true || firstTile == true || adj == true) {
+                        if (ValidMove(x + 1, y - 1, z) == 0 && ValidMove(x, y - 1, z + 1) == 0) {
+                            tilePlaced=true;
+                            IsPlaced[PlacedCounter][0] = 1;
+                            IsPlaced[PlacedCounter][1] = x;
+                            IsPlaced[PlacedCounter][2] = y + 1;
+                            IsPlaced[PlacedCounter][3] = z - 1;
+                            if (test2 == "volcano")
+                                IsPlaced[PlacedCounter][4] = 0;
+                            else if (test2 == "rocks")
+                                IsPlaced[PlacedCounter][4] = 1;
+                            else if (test2 == "jungle")
+                                IsPlaced[PlacedCounter][4] = 2;
+                            else if (test2 == "lake")
+                                IsPlaced[PlacedCounter][4] = 3;
+                            else if (test2 == "grassland")
+                                IsPlaced[PlacedCounter][4] = 4;
+                            IsPlaced[PlacedCounter][7] = 1;
+                            IsPlaced[PlacedCounter][5] = 0;
+                            IsPlaced[PlacedCounter++][6] = TileIndex;
+                            System.out.println( IsPlaced[PlacedCounter-1][4]);
+
+                            IsPlaced[PlacedCounter][0] = 1;
+                            IsPlaced[PlacedCounter][1] = x + 1;
+                            IsPlaced[PlacedCounter][2] = y;
+                            IsPlaced[PlacedCounter][3] = z - 1;
+                            if (test3 == "volcano")
+                                IsPlaced[PlacedCounter][4] = 0;
+                            else if (test3 == "rocks")
+                                IsPlaced[PlacedCounter][4] = 1;
+                            else if (test3 == "jungle")
+                                IsPlaced[PlacedCounter][4] = 2;
+                            else if (test3 == "lake")
+                                IsPlaced[PlacedCounter][4] = 3;
+                            else if (test3 == "grassland")
+                                IsPlaced[PlacedCounter][4] = 4;
+                            IsPlaced[PlacedCounter][7] = 1;
+                            IsPlaced[PlacedCounter][5] = 0;
+                            IsPlaced[PlacedCounter++][6] = TileIndex++;
+                            System.out.println( IsPlaced[PlacedCounter-1][4]);
+                            g2d.setColor(Color.red);
+                            hex2 = FindHex(x + 1, y - 1, z);
+                            hex3 = FindHex(x, y - 1, z + 1);
+                            g2d.drawPolygon(hex1);
+                            g2d.setColor(Color.black);
+                            g2d.drawPolygon(hex2);
+                            g2d.drawPolygon(hex3);
+                            firstTile = false;
+                            adj = false;
+                        } else {
+                            SetIsplaced(x, y, z);
+                            JOptionPane.showMessageDialog(null, "Please place hex on empty place", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
+                            button1();
+                        }
+                    } else {
+
+                        JOptionPane.showMessageDialog(null, "New tile has to be adjacen of pervious tile", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
+                        button1();
+                    }
+                } else if (o == 4) {
+                    if (CheckAdj(x, y - 1, z + 1) == true || CheckAdj(x - 1, y, z + 1) == true || firstTile == true || adj == true) {
+                        if (ValidMove(x, y - 1, z + 1) == 0 && ValidMove(x - 1, y, z + 1) == 0) {
+                            tilePlaced=true;
+                            IsPlaced[PlacedCounter][0] = 1;
+                            IsPlaced[PlacedCounter][1] = x;
+                            IsPlaced[PlacedCounter][2] = y - 1;
+                            IsPlaced[PlacedCounter][3] = z + 1;
+                            if (test2 == "volcano")
+                                IsPlaced[PlacedCounter][4] = 0;
+                            else if (test2 == "rocks")
+                                IsPlaced[PlacedCounter][4] = 1;
+                            else if (test2 == "jungle")
+                                IsPlaced[PlacedCounter][4] = 2;
+                            else if (test2 == "lake")
+                                IsPlaced[PlacedCounter][4] = 3;
+                            else if (test2 == "grassland")
+                                IsPlaced[PlacedCounter][4] = 4;
+                            IsPlaced[PlacedCounter][7] = 1;
+                            IsPlaced[PlacedCounter][5] = 0;
+                            IsPlaced[PlacedCounter++][6] = TileIndex;
+                            System.out.println( IsPlaced[PlacedCounter-1][4]);
+
+                            IsPlaced[PlacedCounter][0] = 1;
+                            IsPlaced[PlacedCounter][1] = x - 1;
+                            IsPlaced[PlacedCounter][2] = y;
+                            IsPlaced[PlacedCounter][3] = z + 1;
+                            if (test3 == "volcano")
+                                IsPlaced[PlacedCounter][4] = 0;
+                            else if (test3 == "rocks")
+                                IsPlaced[PlacedCounter][4] = 1;
+                            else if (test3 == "jungle")
+                                IsPlaced[PlacedCounter][4] = 2;
+                            else if (test3 == "lake")
+                                IsPlaced[PlacedCounter][4] = 3;
+                            else if (test3 == "grassland")
+                                IsPlaced[PlacedCounter][4] = 4;
+                            IsPlaced[PlacedCounter][7] = 1;
+                            IsPlaced[PlacedCounter][5] = 0;
+                            IsPlaced[PlacedCounter++][6] = TileIndex++;
+                            System.out.println( IsPlaced[PlacedCounter-1][4]);
+                            g2d.setColor(Color.red);
+                            hex2 = FindHex(x, y - 1, z + 1);
+                            hex3 = FindHex(x - 1, y, z + 1);
+                            g2d.drawPolygon(hex1);
+                            g2d.setColor(Color.black);
+                            g2d.drawPolygon(hex2);
+                            g2d.drawPolygon(hex3);
+                            firstTile = false;
+                            adj = false;
+                        } else {
+                            SetIsplaced(x, y, z);
+                            JOptionPane.showMessageDialog(null, "Please place hex on empty place", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
+                            button1();
+                        }
+                    } else {
+
+                        JOptionPane.showMessageDialog(null, "New tile has to be adjacen of pervious tile", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
+                        button1();
+                    }
+
+                } else if (o == 5) {
+                    if (CheckAdj(x - 1, y, z + 1) == true || CheckAdj(x - 1, y + 1, z) == true || firstTile == true || adj == true) {
+                        if (ValidMove(x - 1, y, z + 1) == 0 && ValidMove(x - 1, y + 1, z) == 0) {
+                            tilePlaced=true;
+                            IsPlaced[PlacedCounter][0] = 1;
+                            IsPlaced[PlacedCounter][1] = x - 1;
+                            IsPlaced[PlacedCounter][2] = y;
+                            IsPlaced[PlacedCounter][3] = z + 1;
+                            if (test2 == "volcano")
+                                IsPlaced[PlacedCounter][4] = 0;
+                            else if (test2 == "rocks")
+                                IsPlaced[PlacedCounter][4] = 1;
+                            else if (test2 == "jungle")
+                                IsPlaced[PlacedCounter][4] = 2;
+                            else if (test2 == "lake")
+                                IsPlaced[PlacedCounter][4] = 3;
+                            else if (test2 == "grassland")
+                                IsPlaced[PlacedCounter][4] = 4;
+                            IsPlaced[PlacedCounter][7] = 1;
+                            IsPlaced[PlacedCounter][5] = 0;
+                            IsPlaced[PlacedCounter++][6] = TileIndex;
+                            System.out.println( IsPlaced[PlacedCounter-1][4]);
+
+                            IsPlaced[PlacedCounter][0] = 1;
+                            IsPlaced[PlacedCounter][1] = x - 1;
+                            IsPlaced[PlacedCounter][2] = y + 1;
+                            IsPlaced[PlacedCounter][3] = z;
+                            hex2 = FindHex(x - 1, y, z + 1);
+                            hex3 = FindHex(x - 1, y + 1, z);
+                            if (test3 == "volcano")
+                                IsPlaced[PlacedCounter][4] = 0;
+                            else if (test3 == "rocks")
+                                IsPlaced[PlacedCounter][4] = 1;
+                            else if (test3 == "jungle")
+                                IsPlaced[PlacedCounter][4] = 2;
+                            else if (test3 == "lake")
+                                IsPlaced[PlacedCounter][4] = 3;
+                            else if (test3 == "grassland")
+                                IsPlaced[PlacedCounter][4] = 4;
+                            IsPlaced[PlacedCounter][7] = 1;
+                            IsPlaced[PlacedCounter][5] = 0;
+                            IsPlaced[PlacedCounter++][6] = TileIndex++;
+                            System.out.println( IsPlaced[PlacedCounter-1][4]);
+                            g2d.setColor(Color.red);
+                            g2d.drawPolygon(hex1);
+                            g2d.setColor(Color.black);
+                            g2d.drawPolygon(hex2);
+                            g2d.drawPolygon(hex3);
+                            firstTile = false;
+                            adj = false;
+                        } else {
+                            SetIsplaced(x, y, z);
+                            JOptionPane.showMessageDialog(null, "Please place hex on empty place", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
+                            button1();
+                        }
+                    } else {
+
+                        JOptionPane.showMessageDialog(null, "New tile has to be adjacen of pervious tile", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
+                        button1();
+                    }
+
+                } else if (o == 6) {
+                    if (CheckAdj(x - 1, y + 1, z) == true || CheckAdj(x, y + 1, z - 1) == true || firstTile == true || adj == true) {
+                        if (ValidMove(x - 1, y + 1, z) == 0 && ValidMove(x, y + 1, z - 1) == 0) {
+                            tilePlaced=true;
+                            IsPlaced[PlacedCounter][0] = 1;
+                            IsPlaced[PlacedCounter][1] = x - 1;
+                            IsPlaced[PlacedCounter][2] = y + 1;
+                            IsPlaced[PlacedCounter][3] = z;
+                            if (test2 == "volcano")
+                                IsPlaced[PlacedCounter][4] = 0;
+                            else if (test2 == "rocks")
+                                IsPlaced[PlacedCounter][4] = 1;
+                            else if (test2 == "jungle")
+                                IsPlaced[PlacedCounter][4] = 2;
+                            else if (test2 == "lake")
+                                IsPlaced[PlacedCounter][4] = 3;
+                            else if (test2 == "grassland")
+                                IsPlaced[PlacedCounter][4] = 4;
+                            IsPlaced[PlacedCounter][7] = 1;
+                            IsPlaced[PlacedCounter][5] = 0;
+                            IsPlaced[PlacedCounter++][6] = TileIndex;
+                            System.out.println( IsPlaced[PlacedCounter-1][4]);
+
+
+                            IsPlaced[PlacedCounter][0] = 1;
+                            IsPlaced[PlacedCounter][1] = x;
+                            IsPlaced[PlacedCounter][2] = y + 1;
+                            IsPlaced[PlacedCounter][3] = z - 1;
+                            hex2 = FindHex(x - 1, y + 1, z);
+                            hex3 = FindHex(x, y + 1, z - 1);
+                            if (test3 == "volcano")
+                                IsPlaced[PlacedCounter][4] = 0;
+                            else if (test3 == "rocks")
+                                IsPlaced[PlacedCounter][4] = 1;
+                            else if (test3 == "jungle")
+                                IsPlaced[PlacedCounter][4] = 2;
+                            else if (test3 == "lake")
+                                IsPlaced[PlacedCounter][4] = 3;
+                            else if (test3 == "grassland")
+                                IsPlaced[PlacedCounter][4] = 4;
+                            IsPlaced[PlacedCounter][7] = 1;
+                            IsPlaced[PlacedCounter][5] = 0;
+                            IsPlaced[PlacedCounter++][6] = TileIndex++;
+
+                            System.out.println( IsPlaced[PlacedCounter-1][4]);
+                            g2d.setColor(Color.red);
+                            g2d.drawPolygon(hex1);
+                            g2d.setColor(Color.black);
+                            g2d.drawPolygon(hex2);
+                            g2d.drawPolygon(hex3);
+                            firstTile = false;
+                            adj = false;
+                        } else {
+                            SetIsplaced(x, y, z);
+                            JOptionPane.showMessageDialog(null, "Please place hex on empty place", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
+                            button1();
+                        }
+                    } else {
+
+                        JOptionPane.showMessageDialog(null, "New tile has to be adjacen of pervious tile", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
+                        button1();
+                    }
                 }
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(null, "Player turn is completed or &Game is finished", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
 
             }
-
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Player turn is completed or &Game is finished", "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
 
         }
+
+
     }
 
     public int [] FindCord(Polygon game)
